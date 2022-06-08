@@ -1,11 +1,11 @@
 namespace Guify.Components
 {
-    class RadioButton : ComponentBase
-    {
-        public bool Value { get; set; }
+	// class RadioButton : ComponentBase
+	// {
+	// 	public bool Value { get; set; }
 
-        public string Text {get; set; } = string.Empty;
+	// 	public string Comment {get; set; } = string.Empty;
 
-        public Action<ComponentBase, bool> OnValueChanged = (s, e) => {};
-    }
+	// 	public Action<ComponentBase, bool> OnValueChanged = (s, e) => {};
+	// }
 }
