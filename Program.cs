@@ -1,17 +1,23 @@
-﻿using Guify.Components;
-using Guify.IO;
+﻿using Avalonia;
+using Avalonia.ReactiveUI;
+using System;
 
-namespace Guify
+namespace Todo
 {
-	class Program
-	{
-		public static void Main(string[] argv) 
-		{
-			Console.WriteLine("Hello world");
-			var text = new Label("labelxxxaiugbria");
-			text.Render(4, 2);
-			var printer = new Printer();
-			printer.Print(text.Buffer);
-		}
-	}
+    class Program
+    {
+        // Initialization code. Don't use any Avalonia, third-party APIs or any
+        // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
+        // yet and stuff might break.
+        [STAThread]
+        public static void Main(string[] args) => BuildAvaloniaApp()
+            .StartWithClassicDesktopLifetime(args);
+
+        // Avalonia configuration, don't remove; also used by visual designer.
+        public static AppBuilder BuildAvaloniaApp()
+            => AppBuilder.Configure<App>()
+                .UsePlatformDetect()
+                .LogToTrace()
+                .UseReactiveUI();
+    }
 }
