@@ -1,4 +1,4 @@
-namespace Guify.Models {
+namespace Guify.Models.Components {
 	class Label {
 		public Label(string text) {
 			Text = text;
