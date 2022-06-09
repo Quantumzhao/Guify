@@ -1,9 +1,9 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Todo.ViewModels;
+using Guify.ViewModels;
 
-namespace Todo
+namespace Guify
 {
     public class ViewLocator : IDataTemplate
     {

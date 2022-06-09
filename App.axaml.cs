@@ -1,10 +1,13 @@
+global using System.Collections.Generic;
+global using System;
+
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Todo.ViewModels;
-using Todo.Views;
+using Guify.ViewModels;
+using Guify.Views;
 
-namespace Todo
+namespace Guify
 {
     public partial class App : Application
     {

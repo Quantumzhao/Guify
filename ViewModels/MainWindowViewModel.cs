@@ -1,4 +1,4 @@
-﻿namespace Todo.ViewModels
+﻿namespace Guify.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {

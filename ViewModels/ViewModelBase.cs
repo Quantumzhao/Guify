@@ -1,6 +1,6 @@
 ﻿using ReactiveUI;
 
-namespace Todo.ViewModels
+namespace Guify.ViewModels
 {
     public class ViewModelBase : ReactiveObject
     {

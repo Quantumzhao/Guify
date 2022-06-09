@@ -1,8 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.ReactiveUI;
-using System;
 
-namespace Todo
+namespace Guify
 {
     class Program
     {
@@ -10,8 +9,13 @@ namespace Todo
         // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
         // yet and stuff might break.
         [STAThread]
-        public static void Main(string[] args) => BuildAvaloniaApp()
-            .StartWithClassicDesktopLifetime(args);
+        public static void Main(string[] args) {
+            if (args.Length == 0) {
+                BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+            } else {
+                Guify.CLI.CLIMain.EntryPoint(args);
+            }
+        }
 
         // Avalonia configuration, don't remove; also used by visual designer.
         public static AppBuilder BuildAvaloniaApp()
