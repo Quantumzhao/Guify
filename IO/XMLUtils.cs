@@ -31,7 +31,7 @@ static class XMLUtils {
 		return new Page(label, comment, controls);
 	}
 
-	private static ElementBase LoadElements(XElement xml)
+	private static ControlBase LoadElements(XElement xml)
 
 		=> xml.Name.LocalName switch {
 			nameof(Group) => throw new NotImplementedException(),

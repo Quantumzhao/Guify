@@ -6,11 +6,11 @@ namespace Guify.Models {
 	}
 
 	class Constraint<T> : Constraint {
-		public Constraint(T value, ValueComponent<T> component) {
+		public Constraint(T value, ComponentBase<T> component) {
 			Set2Value = value;
 			Component = component;
 		}
 		public readonly T Set2Value;
-		public readonly ValueComponent<T> Component;
+		public readonly ComponentBase<T> Component;
 	}
 }

@@ -1,5 +1,5 @@
 namespace Guify.Models {
-	class ElementBase {
+	class ControlBase {
 		
 	}
 }

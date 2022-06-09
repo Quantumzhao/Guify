@@ -1,7 +1,7 @@
 namespace Guify.Models.Containers {
-	class Page : ElementBase {
+	class Page : ControlBase {
 
-		public Page(string label, string comment, ElementBase[] items) {
+		public Page(string label, string comment, ControlBase[] items) {
 			Label = label;
 			Comment = comment;
 			Items = items;
@@ -9,6 +9,8 @@ namespace Guify.Models.Containers {
 
 		public readonly string Label;
 		public readonly string Comment;
-		public readonly ElementBase[] Items;
+		public readonly ControlBase[] Items;
+
+		public bool IsUsingThis { get; set; } = false;
 	}
 }

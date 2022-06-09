@@ -1,5 +1,5 @@
 namespace Guify.Models.Containers {
-	class ContainerBase : ElementBase {
-		public readonly List<ElementBase> Items = new List<ElementBase>();
+	class ContainerBase : ControlBase {
+		public readonly List<ControlBase> Items = new List<ControlBase>();
 	}
 }

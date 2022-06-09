@@ -1,5 +1,5 @@
-namespace Guify.Models.Components {
-	class Group {
-		public readonly List<ElementBase> Components = new List<ElementBase>();
-	}
+namespace Guify.Models.Containers;
+
+class Group : ContainerBase {
+	public readonly List<ControlBase> Components = new List<ControlBase>();
 }
