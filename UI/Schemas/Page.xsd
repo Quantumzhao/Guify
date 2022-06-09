@@ -11,8 +11,8 @@
                 <xs:sequence minOccurs="0" maxOccurs="unbounded">
                     <xs:element ref="Group"></xs:element>
                 </xs:sequence>
-                <xs:attribute name="Label" type="xs:string"></xs:attribute>
-                <xs:attribute name="Comment" type="xs:string"></xs:attribute>
+                <xs:attribute name="Verb" type="xs:string" use="required"></xs:attribute>
+                <xs:attribute name="Comment" type="xs:string" use="optional"></xs:attribute>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>

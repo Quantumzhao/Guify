@@ -2,8 +2,9 @@
 <xs:schema targetNamespace="urn:Guify.Namespace" xmlns="urn:Guify.Namespace" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="OpenFolderBox">
         <xs:complexType>
-            <xs:attribute name="Comment" type="xs:string"/>
-            <xs:attribute name="Default" type="xs:string"/>
+            <xs:attribute name="Comment" type="xs:string" use="required"/>
+            <xs:attribute name="Default" type="xs:string" use="optional"/>
+            <xs:attribute name="Required" type="xs:boolean" use="optional"></xs:attribute>
         </xs:complexType>
     </xs:element>
 </xs:schema>

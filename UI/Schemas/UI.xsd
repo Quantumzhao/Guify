@@ -8,6 +8,7 @@
                     <xs:element ref="Page"></xs:element>
                 </xs:sequence>
             </xs:choice>
+            <xs:attribute name="Command" type="xs:string" use="required"></xs:attribute>
         </xs:complexType>
     </xs:element>
 </xs:schema>
