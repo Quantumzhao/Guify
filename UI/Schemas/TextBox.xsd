@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:Guify.Namespace" xmlns="urn:Guify.Namespace" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="./ValueType.xsd"></xs:include>
+    <xs:element name="TextBox">
+        <xs:complexType>
+            <xs:attribute name="Comment" type="xs:string"/>
+            <xs:attribute name="Default" type="xs:string"/>
+            <xs:attribute name="Type" type="ValidValues"></xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

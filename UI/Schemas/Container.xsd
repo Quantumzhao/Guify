@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:Guify.Namespace" xmlns="urn:Guify.Namespace" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="./Checkbox.xsd"></xs:include>
+    <xs:include schemaLocation="./OpenFolderBox.xsd"></xs:include>
+    <xs:include schemaLocation="./TextBox.xsd"></xs:include>
+    <xs:complexType name="Container" abstract="true">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:choice>
+                <xs:element ref="Checkbox"></xs:element>
+                <xs:element ref="OpenFolderBox"></xs:element>
+                <xs:element ref="TextBox"></xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:Guify.Namespace" 
+           xmlns="urn:Guify.Namespace" 
+           elementFormDefault="qualified" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="ValidValues">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="string" />
+            <xs:enumeration value="int" />
+            <xs:enumeration value="float" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

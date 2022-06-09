@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:Guify.Namespace" xmlns="urn:Guify.Namespace" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="./ValueType.xsd"/>
+    <xs:element name="Checkbox">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Flag" maxOccurs="1" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="short" type="xs:string" use="optional" />
+                        <xs:attribute name="long" type="xs:string" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Comment" type="xs:string"/>
+            <xs:attribute name="Default" type="xs:boolean"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
