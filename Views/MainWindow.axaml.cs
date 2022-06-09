@@ -1,15 +1,11 @@
 using Avalonia.Controls;
 
-namespace Guify.Views
+namespace Guify.Views;
+
+public partial class MainWindow : Window
 {
-    public partial class MainWindow : Window
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-            var t = new TextBlock();
-            t.Text = "test";
-            this.Content = t;
-        }
+        InitializeComponent();
     }
 }

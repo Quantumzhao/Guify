@@ -1,6 +1,8 @@
 namespace Guify.Models.Components {
 	class Option : ValueComponent<bool> {
-		public Option(bool defaultValue, string text) : base(defaultValue) {
+		public Option(bool defaultValue, string text, bool isRequired, string longName
+			, string shortName) : base(defaultValue, isRequired, longName, shortName) {
+				
 			Text = text;
 		}
 
