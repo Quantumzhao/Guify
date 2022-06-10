@@ -4,12 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Guify.Views.MainView"
-             Initialized="OnMainViewLoaded">
+             Initialized="OnMainViewLoaded"
+             DataContext="{Binding}">
   <StackPanel Orientation="Vertical">
-    <TabControl Items="{Binding Pages}">
+    <TabControl Name="MainTab">
       <TabControl.ItemsPanel>
+        
       </TabControl.ItemsPanel>
       <TabControl.ItemTemplate>
+        <DataTemplate>
+          <TabItem Header="{Binding Name}">
+            <ContentControl>
+              something
+            </ContentControl>
+          </TabItem>
+        </DataTemplate>
       </TabControl.ItemTemplate>
     </TabControl>
     <Button Content="Execute" Click="Execute" />

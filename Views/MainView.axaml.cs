@@ -17,16 +17,15 @@ namespace Guify.Views
         {
             InitializeComponent();
         }
-
-        private Page[] Pages { get; set; } = new Page[0];
-
+        
         public void OnMainViewLoaded(object sender, EventArgs args) {
 
             // var tabControl = new TabControl();
             // tabControl.Items = pages;
+            MainTab.Items = Program.Pages;
         }
 
-        private UserControl[] RenderPages(Page[] pages) {
+        private UserControl[] RenderPages(Verb[] pages) {
             // return pages.Select(p => {
             //     var tabItem = new TabItem();
             //     tabItem.Header = p.Label;
