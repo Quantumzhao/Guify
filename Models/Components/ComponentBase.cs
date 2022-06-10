@@ -1,21 +1,41 @@
-namespace Guify.Models.Components {
-	abstract class ComponentBase<T> : ControlBase {
+namespace Guify.Models.Components;
 
-		public ComponentBase(T defaultValue, bool isRequired, string? longName, string? shortName) {
+abstract class ComponentBase<T> : ControlBase {
 
-			DefaultValue = defaultValue;
-			IsRequired = isRequired;
-			LongName = longName;
-			ShortName = shortName;
+	public ComponentBase(T defaultValue, bool isRequired, string? longName, string? shortName) {
+
+		DefaultValue = defaultValue;
+		Value = defaultValue;
+		
+		IsRequired = isRequired;
+		LongName = longName;
+		ShortName = shortName;
+	}
+
+	public readonly string? LongName = null;
+	public readonly string? ShortName = null;
+
+	public bool IsChanged {
+		get {
+			if (Value == null) throw new ArgumentNullException("Impossible");
+			return Value.Equals(DefaultValue);
 		}
+	}
 
-		public readonly string? LongName = null;
-		public readonly string? ShortName = null;
+	public abstract T Value { get; set; }
+	public readonly T DefaultValue;
+	public readonly bool IsRequired;
 
-		public bool IsChanged { get; set; } = false;
+	public override string Compile() {
 
-		public abstract T Value { get; set; }
-		public readonly T DefaultValue;
-		public readonly bool IsRequired;
+		var flag = (LongName, ShortName) switch {
+			(string l, _) => l,
+			(null, string s) => s,
+			_ => string.Empty
+		} + " ";
+
+		if (IsRequired) return flag + Value.FuckingToString();
+		else if (IsChanged) return flag + Value.FuckingToString();
+		else return string.Empty;
 	}
 }

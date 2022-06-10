@@ -11,5 +11,4 @@ class OpenFolderBox : ComponentBase<string> {
 
 	public readonly string Comment;
 	public override string Value { get; set; }
-
 }

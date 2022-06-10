@@ -1,5 +1,6 @@
-namespace Guify.Models {
-	class ControlBase {
-		
-	}
+namespace Guify.Models;
+
+abstract class ControlBase {
+	
+	public abstract string Compile();
 }

@@ -22,10 +22,8 @@ namespace Guify.Views
 
         public void OnMainViewLoaded(object sender, EventArgs args) {
 
-            var pages = RenderPages(XMLUtils.LoadFile(ConfigIO.FindPathEntry(Program.RootCommand)));
-
-            var tabControl = new TabControl();
-            tabControl.Items = pages;
+            // var tabControl = new TabControl();
+            // tabControl.Items = pages;
         }
 
         private UserControl[] RenderPages(Page[] pages) {
@@ -37,7 +35,8 @@ namespace Guify.Views
 			throw new NotImplementedException();
         }
 
-        private UserControl RenderControls(ElementBase elements) {
+        private void Execute(object? sender, RoutedEventArgs e)
+        {
             throw new NotImplementedException();
         }
     }
