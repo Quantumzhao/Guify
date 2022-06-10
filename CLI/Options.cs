@@ -22,7 +22,7 @@ namespace Guify.CLI {
 	[Verb("run", true, HelpText = "run the following commands (perhaps also arguments)")]
 	class WrapperOptions {
 
-		[Value(1)]
+		[Value(1, Min = 1)]
 		public IEnumerable<string>? Properties { get; set; }
 	}
 }

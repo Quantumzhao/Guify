@@ -2,7 +2,7 @@ namespace Guify.Models.Components;
 
 abstract class ComponentBase<T> : ControlBase {
 
-	public ComponentBase(T defaultValue, bool isRequired, string? longName, string? shortName) {
+	public ComponentBase(T defaultValue, bool isRequired, string? longName, string? shortName, string description) {
 
 		DefaultValue = defaultValue;
 		Value = defaultValue;
@@ -10,6 +10,7 @@ abstract class ComponentBase<T> : ControlBase {
 		IsRequired = isRequired;
 		LongName = longName;
 		ShortName = shortName;
+		Description = description;
 	}
 
 	public readonly string? LongName = null;
@@ -25,6 +26,7 @@ abstract class ComponentBase<T> : ControlBase {
 	public abstract T Value { get; set; }
 	public readonly T DefaultValue;
 	public readonly bool IsRequired;
+	public readonly string Description;
 
 	public override string Compile() {
 

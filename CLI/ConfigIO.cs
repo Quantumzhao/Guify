@@ -20,6 +20,9 @@ namespace Guify.CLI {
 
 		private static IEnumerable<string[]> GetEntries() {
 
+			if (!File.Exists((CONFIG_PATH)))
+				throw new FileNotFoundException("the config file may be deleted, moved or renamed");
+
 			var entries = File.ReadAllLines(CONFIG_PATH)?.Select(l => l.Split(','));
 
 			if (entries == null) throw new FileNotFoundException(
@@ -28,10 +31,9 @@ namespace Guify.CLI {
 		}
 
 		public static string FindPathEntry(string name) {
-
 			var queryResult = GetEntries().FirstOrDefault(e => e[0] == name);
 			if (queryResult == null) throw new ArgumentNullException(
-				"this command has not be configured yet");
+				Program.RootCommand);
 			else return queryResult[1];
 		}
 	}

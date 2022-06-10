@@ -14,7 +14,7 @@ namespace Guify;
 class Program {
 
 	public static string RootCommand { get; private set; } = string.Empty;
-	public static Page[] Pages = new Page[0];
+	public static Verb[] Pages = new Verb[0];
 
 	// Initialization code. Don't use any Avalonia, third-party APIs or any
 	// SynchronizationContext-reliant code before AppMain is called: things aren't initialized
@@ -37,12 +37,13 @@ class Program {
 				}
 			})
 			.WithParsed<WrapperOptions>(o => {
-				if (o.Properties == null || o.Properties.Count() == 0)
-				// RootCommand = string.Join(' ', args);
-				// InitGUI();
-				// BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
-				Console.WriteLine("here");
-				ShellUtils.Bash("apt list");
+				if (o.Properties == null || o.Properties.Count() == 0) {}
+				else
+				RootCommand = string.Join(' ', args);
+				InitGUI();
+				BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+				// Console.WriteLine("here");
+				// ShellUtils.Bash("apt list");
 			});
 
 	// Avalonia configuration, don't remove; also used by visual designer.
@@ -53,7 +54,7 @@ class Program {
 			.UseReactiveUI();
 
 	private static void InitGUI() {
-		
+
 		Pages = XMLUtils.LoadFile(ConfigIO.FindPathEntry(RootCommand));
 	}
 

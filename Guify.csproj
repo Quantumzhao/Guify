@@ -6,12 +6,18 @@
 	<!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
 	<TrimMode>copyused</TrimMode>
 	<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+	<Authors>Quantumzhao</Authors>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Models/" />
     <AvaloniaResource Include="Assets/**" />
     <None Remove=".gitignore" />
-    <AvaloniaResource Include="CLI/config.cfg" />
+    <None Update="CLI/config.cfg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="UI/**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
 	<!--This helps with theme dll-s trimming.

@@ -1,10 +1,10 @@
 namespace Guify.Models.Components;
 
-class OpenFolderBox : ComponentBase<string> {
+class OpenFileBox : ComponentBase<string> {
 
-	public OpenFolderBox(string defaultValue, bool isRequired, string description, string? longName
+	public OpenFileBox(string defaultValue, string description, bool isRequired, string? longName
 		, string? shortName) : base(defaultValue, isRequired, longName, shortName, description) {
-		
+
 		Value = defaultValue;
 	}
 
