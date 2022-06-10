@@ -7,6 +7,7 @@ using Guify.Models.Containers;
 using Guify.Models;
 using Guify.IO;
 using System.Linq;
+using System.Diagnostics;
 
 namespace Guify;
 
@@ -20,7 +21,7 @@ class Program {
 	// yet and stuff might break.
 	[STAThread]
 	public static void Main(string[] args)
-		=> Parser.Default.ParseArguments<AddUIOptions, RemoveUIOptions>(args)
+		=> Parser.Default.ParseArguments<AddUIOptions, RemoveUIOptions, WrapperOptions>(args)
 			.WithParsed<AddUIOptions>(o => {
 				if (o.Name == null || o.Path == null) {
 					throw new ArgumentNullException("name or path is null");
@@ -35,10 +36,13 @@ class Program {
 					ConfigIO.RemoveEntry(o.Name);
 				}
 			})
-			.WithNotParsed(_ => {
-				RootCommand = string.Join(' ', args);
-				InitGUI();
-				BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+			.WithParsed<WrapperOptions>(o => {
+				if (o.Properties == null || o.Properties.Count() == 0)
+				// RootCommand = string.Join(' ', args);
+				// InitGUI();
+				// BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+				Console.WriteLine("here");
+				ShellUtils.Bash("apt list");
 			});
 
 	// Avalonia configuration, don't remove; also used by visual designer.
@@ -58,6 +62,15 @@ class Program {
 		var currentPage = Pages.First(p => p.IsUsingThis);
 		if (currentPage == null) throw new ArgumentException("Impossible");
 
-		throw new NotImplementedException();
+		return currentPage.Compile();
 	}
+
+	public static void Run() {
+		var command = RootCommand + " " + Compile();
+
+		ShellUtils.Bash(command);
+
+
+	}
+	
 }
