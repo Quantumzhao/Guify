@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Guify.CLI {
 	class ConfigIO {
-		private const string CONFIG_PATH = "./config.cfg";
+		private const string CONFIG_PATH = "./CLI/config.cfg";
 		public static void AddEntry(string name, string path) {
 
 			if (!File.Exists(CONFIG_PATH)) File.Create(CONFIG_PATH);

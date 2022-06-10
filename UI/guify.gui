@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<UI Command="guify" xmlns="urn:Guify.Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify.Namespace ./Schemas/UI.xsd">
-    <Page Verb="Add" Comment="Add a new Guify UI file for a command">
-        <TextBox Comment="name of the command" Required="true" />
-        <OpenFolderBox Comment="path to the Guify UI file" Required="true" />
-    </Page>
-    <Page Verb="Remove" Comment="Remove an associated Guify UI file">
-        <TextBox Comment="name of the command" Required="true" />
-    </Page>
-</UI>
+<Root Command="guify" xmlns="urn:Guify.Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify.Namespace ./Schemas/Root.xsd">
+    <Verb Name="Add" Description="Add a new Guify UI file for a command">
+        <String Description="name of the command" Required="true" LongName="--name" ShortName="-n" />
+        <SelectFolder Description="path to the Guify UI file" Required="true" />
+    </Verb>
+    <Verb Name="Remove" Description="Remove an associated Guify UI file">
+        <SelectFolder Description="name of the command" Required="true" LongName="--name" ShortName="-n" />
+    </Verb>
+</Root>
