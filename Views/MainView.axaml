@@ -2,25 +2,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:Guify.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Guify.Views.MainView"
              Initialized="OnMainViewLoaded"
              DataContext="{Binding}">
-  <StackPanel Orientation="Vertical">
-    <TabControl Name="MainTab">
-      <TabControl.ItemsPanel>
-        
-      </TabControl.ItemsPanel>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+    </Grid.RowDefinitions>
+    <TabControl Name="MainTab" Grid.Row="0">
+      <!--                               Header                                    -->
       <TabControl.ItemTemplate>
         <DataTemplate>
-          <TabItem Header="{Binding Name}">
-            <ContentControl>
-              something
-            </ContentControl>
-          </TabItem>
+          <StackPanel Orientation="Vertical">
+            <TextBlock Text="{Binding Name}" 
+                       TextWrapping="Wrap"
+                       HorizontalAlignment="Stretch"/>
+          </StackPanel>
         </DataTemplate>
       </TabControl.ItemTemplate>
+      <!--                              Content                                     -->
+      <TabControl.ContentTemplate>
+        <DataTemplate>
+          <ScrollViewer>
+            <views:PageView />
+          </ScrollViewer>
+        </DataTemplate>
+      </TabControl.ContentTemplate>
     </TabControl>
-    <Button Content="Execute" Click="Execute" />
-  </StackPanel>
+    <Button Click="Execute" 
+            Height="50" 
+            VerticalContentAlignment="Center" 
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            Margin="10"
+            Grid.Row="1">
+      Execute
+    </Button>
+  </Grid>
 </UserControl>

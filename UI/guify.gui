@@ -2,7 +2,7 @@
 <Root Command="guify" xmlns="urn:Guify.Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify.Namespace ./Schemas/Root.xsd">
     <Verb Name="Add" Description="Add a new Guify UI file for a command">
         <String Description="name of the command" Required="true" LongName="--name" ShortName="-n" />
-        <SelectFolder Description="path to the Guify UI file" Required="true" />
+        <SelectFolder Description="path to the Guify UI file" Required="true" LongName="--path" ShortName="-p" />
     </Verb>
     <Verb Name="Remove" Description="Remove an associated Guify UI file">
         <SelectFolder Description="name of the command" Required="true" LongName="--name" ShortName="-n" />

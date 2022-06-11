@@ -3,7 +3,6 @@ using Avalonia.ReactiveUI;
 using CommandLine;
 using Guify.CLI;
 using Guify.Models.Components;
-using Guify.Models.Containers;
 using Guify.Models;
 using Guify.IO;
 using System.Linq;

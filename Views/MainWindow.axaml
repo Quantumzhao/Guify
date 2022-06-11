@@ -8,6 +8,8 @@
         x:Class="Guify.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Guify"
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight"
+        TransparencyLevelHint="Blur"
+        Background="#C0FFFFFF">
         <views:MainView />
 </Window>

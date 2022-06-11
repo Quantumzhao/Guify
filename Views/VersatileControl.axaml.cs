@@ -2,11 +2,11 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace Guify.Views.Components;
+namespace Guify.Views;
 
-public partial class StringField : UserControl
+public partial class VersatileControl : UserControl
 {
-    public StringField()
+    public VersatileControl()
     {
         InitializeComponent();
     }
