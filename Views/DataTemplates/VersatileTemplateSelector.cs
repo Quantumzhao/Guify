@@ -16,7 +16,7 @@ class VersatileTemplateSelector : IDataTemplate
 	{
 		if (param == null) throw new ArgumentNullException();
 		else if (param is StringField) return Templates[XMLUtils.STRING_FIELD].Build(param);
-		else if (param is SelectFolder) return Templates[XMLUtils.SELECT_FOLDER_FIELD].Build(param);
+		else if (param is SelectFolderField) return Templates[XMLUtils.SELECT_FOLDER_FIELD].Build(param);
 		else throw new ArgumentException();
 	}
 

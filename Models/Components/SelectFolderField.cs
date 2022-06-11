@@ -1,8 +1,8 @@
 namespace Guify.Models.Components;
 
-class SelectFolder : ComponentBase<string>
+class SelectFolderField : ComponentBase<string>
 {
-	public SelectFolder(string defaultValue, string description, bool isRequired, string? longName
+	public SelectFolderField(string defaultValue, string description, bool isRequired, string? longName
 		, string? shortName) : base(defaultValue, isRequired, longName, shortName, description)
 	{
 

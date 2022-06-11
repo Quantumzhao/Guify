@@ -46,7 +46,7 @@ static class XMLUtils
 	private static ControlBase LoadElements(XElement xml)
 		=> xml.Name.LocalName switch
 		{
-			SELECT_FOLDER_FIELD => LoadOpenFileField(xml),
+			SELECT_FOLDER_FIELD => LoadSelectFolderField(xml),
 			STRING_FIELD => LoadTextBox(xml),
 			var any => throw new ArgumentException($"{any} is not a valid component")
 		};
@@ -71,6 +71,17 @@ static class XMLUtils
 		var shortName = node.GetShortName();
 
 		return new OpenFileField(defaultValue, isRequired, desc, longName, shortName);
+	}
+
+	private static SelectFolderField LoadSelectFolderField(XElement node)
+	{
+		var defaultValue = node.GetDefaultValue();
+		var desc = node.GetDescription();
+		var isRequired = node.GetIsRequired();
+		var longName = node.GetLongName();
+		var shortName = node.GetShortName();
+
+		return new SelectFolderField(defaultValue, desc, isRequired, longName, shortName);
 	}
 
 	private static bool GetIsRequired(this XElement node)
