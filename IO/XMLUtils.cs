@@ -5,10 +5,11 @@ using System.Linq;
 
 namespace Guify.IO;
 
-static class XMLUtils {
-
-	public const string OPEN_FOLDER_BOX = "SelectFolder";
-	public const string TEXT_BOX = "String";
+static class XMLUtils
+{
+	public const string SELECT_FOLDER_FIELD = "SelectFolder";
+	public const string STRING_FIELD = "String";
+	public const string YESNO_FIELD = "YesNo";
 	public const string NAME = "Name";
 	public const string DESCRIPTION = "Description";
 	public const string DEFAULT = "Default";
@@ -16,8 +17,8 @@ static class XMLUtils {
 	public const string LONG_NAME = "LongName";
 	public const string SHORT_NAME = "ShortName";
 
-	public static Verb[] LoadFile(string path) {
-
+	public static Verb[] LoadFile(string path)
+	{
 		var doc = XDocument.Load(path);
 		if (doc == null) throw new ArgumentNullException("The file doesn't exist");
 
@@ -27,13 +28,14 @@ static class XMLUtils {
 		return ui.Elements().Select(e => LoadVerb(e)).ToArray();
 	}
 
-	private static Verb LoadVerb(XElement element) {
-
+	private static Verb LoadVerb(XElement element)
+	{
 		var name = element.Attribute(NAME)?.Value;
 		var comment = element.GetDescription();
 		var controls = element.Elements().Select(e => LoadElements(e)).ToArray();
 
-		if (name == null || comment == null) {
+		if (name == null || comment == null)
+		{
 
 			throw new ArgumentNullException("verb or description is null");
 		}
@@ -42,42 +44,42 @@ static class XMLUtils {
 	}
 
 	private static ControlBase LoadElements(XElement xml)
-
-		=> xml.Name.LocalName switch {
-			OPEN_FOLDER_BOX => LoadOpenFolderBox(xml),
-			TEXT_BOX => LoadTextBox(xml),
+		=> xml.Name.LocalName switch
+		{
+			SELECT_FOLDER_FIELD => LoadOpenFileField(xml),
+			STRING_FIELD => LoadTextBox(xml),
 			var any => throw new ArgumentException($"{any} is not a valid component")
 		};
 
-	private static TextBox LoadTextBox(XElement node) {
-
+	private static StringField LoadTextBox(XElement node)
+	{
 		var comment = node.GetDescription();
 		var defaultValue = node.GetDefaultValue();
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();
 		var shortName = node.GetShortName();
 
-		return new TextBox(defaultValue, comment, isRequired, longName, shortName);
+		return new StringField(defaultValue, comment, isRequired, longName, shortName);
 	}
 
-	private static OpenFolderBox LoadOpenFolderBox(XElement node) {
-
+	private static OpenFileField LoadOpenFileField(XElement node)
+	{
 		var defaultValue = node.GetDefaultValue();
 		var desc = node.GetDescription();
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();
 		var shortName = node.GetShortName();
 
-		return new OpenFolderBox(defaultValue, isRequired, desc, longName, shortName);
+		return new OpenFileField(defaultValue, isRequired, desc, longName, shortName);
 	}
 
 	private static bool GetIsRequired(this XElement node)
 		=> bool.Parse(node.Attribute(REQUIRED)?.Value ?? "false");
 
-	private static string GetDescription(this XElement node) {
-
+	private static string GetDescription(this XElement node)
+	{
 		var desc = node.Attribute(DESCRIPTION)?.Value;
-		if (desc == null ) throw new ArgumentNullException("description is not given");
+		if (desc == null) throw new ArgumentNullException("description is not given");
 		else return desc;
 	}
 

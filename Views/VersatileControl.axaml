@@ -5,16 +5,19 @@
              xmlns:dt="using:Guify.Views.DataTemplates"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Guify.Views.VersatileControl" DataContext="{Binding}">
-  <!-- <ContentControl Content="{Binding}"> -->
-  <!--   <ContentControl.ContentTemplate> -->
-  <!--     <dt:VersatileTemplateSelector> -->
-  <!--       <DataTemplate x:Key="YesNo"> -->
-  <!--         <CheckBox></CheckBox> -->
-  <!--       </DataTemplate> -->
-  <!--       <DataTemplate x:Key="String"> -->
-  <!--         <TextBox></TextBox> -->
-  <!--       </DataTemplate> -->
-  <!--     </dt:VersatileTemplateSelector> -->
-  <!--   </ContentControl.ContentTemplate> -->
-  <!-- </ContentControl> -->
+  <ContentControl Content="{Binding}">
+    <ContentControl.ContentTemplate>
+      <dt:VersatileTemplateSelector>
+        <DataTemplate x:Key="YesNo">
+          <CheckBox></CheckBox>
+        </DataTemplate>
+        <DataTemplate x:Key="String">
+          <TextBox></TextBox>
+        </DataTemplate>
+        <DataTemplate x:Key="SelectFolder">
+          <TextBlock Text="here"></TextBlock>
+        </DataTemplate>
+      </dt:VersatileTemplateSelector>
+    </ContentControl.ContentTemplate>
+  </ContentControl>
 </UserControl>

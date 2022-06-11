@@ -2,8 +2,8 @@ using System.Diagnostics;
 
 namespace Guify.IO;
 
-class ShellUtils {
-
+class ShellUtils 
+{
 	public static void Bash(string cmd)
 	{
 		var escapedArgs = cmd.Replace("\"", "\\\"");

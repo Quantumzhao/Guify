@@ -10,8 +10,8 @@ using System.Diagnostics;
 
 namespace Guify;
 
-class Program {
-
+class Program
+{
 	public static string RootCommand { get; private set; } = string.Empty;
 	public static Verb[] Pages = new Verb[0];
 
@@ -21,24 +21,33 @@ class Program {
 	[STAThread]
 	public static void Main(string[] args)
 		=> Parser.Default.ParseArguments<AddUIOptions, RemoveUIOptions, WrapperOptions>(args)
-			.WithParsed<AddUIOptions>(o => {
-				if (o.Name == null || o.Path == null) {
+			.WithParsed<AddUIOptions>(o =>
+			{
+				if (o.Name == null || o.Path == null)
+				{
 					throw new ArgumentNullException("name or path is null");
-				} else {
+				}
+				else
+				{
 					ConfigIO.AddEntry(o.Name, o.Path);
 				}
 			})
-			.WithParsed<RemoveUIOptions>(o => {
-				if (o.Name == null) {
+			.WithParsed<RemoveUIOptions>(o =>
+			{
+				if (o.Name == null)
+				{
 					throw new ArgumentNullException("name is null");
-				} else {
+				}
+				else
+				{
 					ConfigIO.RemoveEntry(o.Name);
 				}
 			})
-			.WithParsed<WrapperOptions>(o => {
-				if (o.Properties == null || o.Properties.Count() == 0) {}
+			.WithParsed<WrapperOptions>(o =>
+			{
+				if (o.Properties == null || o.Properties.Count() == 0) { }
 				else
-				RootCommand = string.Join(' ', args);
+					RootCommand = string.Join(' ', args);
 				InitGUI();
 				BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 				// Console.WriteLine("here");
@@ -52,25 +61,23 @@ class Program {
 			.LogToTrace()
 			.UseReactiveUI();
 
-	private static void InitGUI() {
-
+	private static void InitGUI()
+	{
 		Pages = XMLUtils.LoadFile(ConfigIO.FindPathEntry(RootCommand));
 	}
 
-	public static string Compile() {
-
+	public static string Compile()
+	{
 		var currentPage = Pages.First(p => p.IsUsingThis);
 		if (currentPage == null) throw new ArgumentException("Impossible");
 
 		return currentPage.Compile();
 	}
 
-	public static void Run() {
+	public static void Run()
+	{
 		var command = RootCommand + " " + Compile();
 
 		ShellUtils.Bash(command);
-
-
 	}
-	
 }

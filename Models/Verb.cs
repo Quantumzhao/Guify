@@ -2,9 +2,10 @@ using System.Linq;
 
 namespace Guify.Models;
 
-class Verb : ControlBase {
-
-	public Verb(string label, string comment, ControlBase[] items) {
+class Verb : ControlBase
+{
+	public Verb(string label, string comment, ControlBase[] items)
+	{
 		Name = label;
 		Description = comment;
 		Items = items;
@@ -16,6 +17,6 @@ class Verb : ControlBase {
 
 	public bool IsUsingThis { get; set; } = false;
 
-	public override string Compile() 
+	public override string Compile()
 		=> Name + " " + string.Join(' ', Items.Select(i => i.Compile()));
 }

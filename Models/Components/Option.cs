@@ -1,9 +1,12 @@
-namespace Guify.Models.Components {
-	class Option : ComponentBase<bool> {
+namespace Guify.Models.Components
+{
+	class Option : ComponentBase<bool>
+	{
 		public Option(bool defaultValue, bool isRequired, string longName
-			, string shortName, string description) : base(defaultValue, isRequired, longName, 
-			shortName, description) {
-				
+			, string shortName, string description) : base(defaultValue, isRequired, longName,
+			shortName, description)
+		{
+
 		}
 
 		public override bool Value { get; set; }
