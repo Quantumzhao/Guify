@@ -1,4 +1,3 @@
-using Guify.Models.Containers;
 using Guify.Models.Components;
 using Guify.Models;
 using System.Xml.Linq;
@@ -8,7 +7,6 @@ namespace Guify.IO;
 
 static class XMLUtils {
 
-	public const string GROUP = "Group";
 	public const string OPEN_FOLDER_BOX = "SelectFolder";
 	public const string TEXT_BOX = "String";
 	public const string NAME = "Name";
@@ -46,7 +44,6 @@ static class XMLUtils {
 	private static ControlBase LoadElements(XElement xml)
 
 		=> xml.Name.LocalName switch {
-			GROUP => throw new NotImplementedException(),
 			OPEN_FOLDER_BOX => LoadOpenFolderBox(xml),
 			TEXT_BOX => LoadTextBox(xml),
 			var any => throw new ArgumentException($"{any} is not a valid component")
