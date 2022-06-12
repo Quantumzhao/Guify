@@ -10,9 +10,12 @@ static class XMLUtils
 	public const string SELECT_FOLDER_FIELD = "SelectFolder";
 	public const string STRING_FIELD = "String";
 	public const string YESNO_FIELD = "YesNo";
+	public const string NUMBER_FIELD = "Number";
+	public const string PICK_VALUE_FIELD = "PickValue";
+	public const string SAVE_FILE_FIELD = "SaveFile";
 	public const string NAME = "Name";
 	public const string DESCRIPTION = "Description";
-	public const string DEFAULT = "Default";
+	public const string CUSTOM_DEFAULT = "CustomDefault";
 	public const string REQUIRED = "Required";
 	public const string LONG_NAME = "LongName";
 	public const string SHORT_NAME = "ShortName";
@@ -95,7 +98,7 @@ static class XMLUtils
 	}
 
 	private static string GetDefaultValue(this XElement node)
-		=> node.Attribute(DEFAULT)?.Value ?? string.Empty;
+		=> node.Attribute(CUSTOM_DEFAULT)?.Value ?? string.Empty;
 
 	private static string? GetLongName(this XElement node)
 		=> node.Attribute(LONG_NAME)?.Value;

@@ -20,13 +20,12 @@ This tool also comes with a set of XSD schemas to help users create valid XML do
 
 The following table is the recommended layout. 
 
-| *nix style CLI Grammar                                       | XML Node                                            |
-| ------------------------------------------------------------ | --------------------------------------------------- |
-| Verb                                                         | `Page`                                              |
-| Flags (with short/long name) with **no** argument            | `Checkbox`                                          |
-| Flags (with short/long name) with `string`/`int`/`float` argument | `TextBox`/`NumberBox`                              |
-| Flags (with short/long name) with path-to-file/directory argument | `OpenFolderBox`/`OpenFileBox`/`SaveFileBox`         |
+| *nix style CLI Grammar                                       | XML Node                                           |
+| ------------------------------------------------------------ | -------------------------------------------------- |
+| Verb, like `commit`, `merge` in *Git*                        | `Verb`                                             |
+| Flags (with short/long name) with **no** argument            | `YesNo`                                            |
+| Flags (with short/long name) with `string`/`int`/`float` argument | `String`/`Number`                                  |
+| Flags (with short/long name) with path-to-file/directory argument | `SelectFolder`/`OpenFile`/`SaveFile`               |
 | Arguments with no flags                                      | `TextBox`, although users have to supply a comment |
-| Mutually exclusive flags                                     | `RadioButton` wrapped in `Group`                    |
-| Flags with constraints (e.g. some other flags must be `false` if this flag is `true`) | `CheckBox` but with extra constraints               |
-| Flags with choices                                           | `ListBox`                                           |
+| Mutually exclusive flags                                     | `YesNo` within a `Group`                           |
+| Flags with choices                                           | `ListBox`                                          |

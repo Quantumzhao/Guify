@@ -4,7 +4,9 @@
     <xs:element name="SelectFolder">
         <xs:complexType>
             <xs:complexContent>
-                <xs:extension base="ComponentBase"></xs:extension>
+                <xs:extension base="ComponentBase">
+                    <xs:attribute name="CustomDefault" type="xs:string" use="optional"></xs:attribute>
+                </xs:extension>
             </xs:complexContent>
         </xs:complexType>
     </xs:element>

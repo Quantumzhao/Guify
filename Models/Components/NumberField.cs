@@ -1,5 +1,5 @@
 namespace Guify.Models.Components;
 
-class NumberBox {
+class NumberField {
 	
 }

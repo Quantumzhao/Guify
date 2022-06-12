@@ -1,8 +1,8 @@
 namespace Guify.Models.Components
 {
-	class Option : ComponentBase<bool>
+	class RadioButtonField : ComponentBase<bool>
 	{
-		public Option(bool defaultValue, bool isRequired, string longName
+		public RadioButtionField(bool defaultValue, bool isRequired, string longName
 			, string shortName, string description) : base(defaultValue, isRequired, longName,
 			shortName, description)
 		{

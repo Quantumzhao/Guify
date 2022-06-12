@@ -7,8 +7,20 @@
                 <xs:sequence minOccurs="1" maxOccurs="unbounded">
                     <xs:element ref="Verb"></xs:element>
                 </xs:sequence>
+                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:choice>
+                        <xs:element ref="YesNo"></xs:element>
+                        <xs:element ref="SelectFolder"></xs:element>
+                        <xs:element ref="String"></xs:element>
+                        <xs:element ref="Number"></xs:element>
+                        <xs:element ref="PickValue"></xs:element>
+                        <xs:element ref="SaveFile"></xs:element>
+                        <xs:element ref="OpenFile"></xs:element>
+                    </xs:choice>        
+                </xs:sequence>
             </xs:choice>
             <xs:attribute name="Command" type="xs:string" use="required"></xs:attribute>
+            <xs:attribute name="Help" use="optional" default="--help"></xs:attribute>
         </xs:complexType>
     </xs:element>
 </xs:schema>

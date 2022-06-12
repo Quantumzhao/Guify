@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema targetNamespace="urn:Guify.Namespace" xmlns="urn:Guify.Namespace" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:include schemaLocation="./ComponentBase.xsd"></xs:include>
-    <xs:element name="YesNo">
+    <xs:element name="Number">
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="ComponentBase">
-                    <xs:attribute name="Group" use="optional" type="xs:string"></xs:attribute>
-                    <xs:attribute name="CustomDefault" use="optional" type="xs:boolean"></xs:attribute>
+                    <xs:attribute name="CustomDefault" type="NumberType" use="optional"></xs:attribute>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>
     </xs:element>
+    <xs:simpleType name="NumberType">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:float"></xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:integer"></xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
 </xs:schema>

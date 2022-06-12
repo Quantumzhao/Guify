@@ -15,7 +15,10 @@
           <TextBox></TextBox>
         </DataTemplate>
         <DataTemplate x:Key="SelectFolder">
-          <TextBlock Text="here"></TextBlock>
+          <StackPanel>
+            <Button Content="Browse" Click="BrowseFolder"></Button>
+            <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
+          </StackPanel>
         </DataTemplate>
       </dt:VersatileTemplateSelector>
     </ContentControl.ContentTemplate>

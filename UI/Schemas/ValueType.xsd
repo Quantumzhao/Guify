@@ -3,11 +3,15 @@
            xmlns="urn:Guify.Namespace" 
            elementFormDefault="qualified" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:simpleType name="ValidValues">
+    <xs:element name="Extension">
+        <xs:complexType>
+            <xs:attribute name="Extensions" use="required"></xs:attribute>
+            <xs:attribute name="DisplayName" type="xs:string" use="required"></xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="ExtensionType">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="string" />
-            <xs:enumeration value="int" />
-            <xs:enumeration value="float" />
+            <xs:pattern value="[^\\\|]+(,\ ?.+)*"></xs:pattern>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

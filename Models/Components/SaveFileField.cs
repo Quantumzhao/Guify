@@ -1,8 +1,8 @@
 namespace Guify.Models.Components;
 
-class SaveFileBox : ComponentBase<string> {
+class SaveFileField : ComponentBase<string> {
 
-	public SaveFileBox(string defaultValue, string description, bool isRequired, string? longName
+	public SaveFileField(string defaultValue, string description, bool isRequired, string? longName
 	, string? shortName) : base(defaultValue, isRequired, longName, shortName, description) {
 
 		Value = defaultValue;
