@@ -15,7 +15,7 @@ namespace Guify.CLI
 
 		public static void RemoveEntry(string name)
 		{
-			var result = GetEntries().Where(e => e[0] != name).Select(e => e[0] + "," + e[1]);
+			var result = GetEntries().Where(e => e[0] != name).Select(e => e[0] + " <|> " + e[1]);
 			File.Create(CONFIG_PATH);
 			File.WriteAllLines(CONFIG_PATH, result);
 		}
@@ -25,7 +25,7 @@ namespace Guify.CLI
 			if (!File.Exists((CONFIG_PATH)))
 				throw new FileNotFoundException("the config file may be deleted, moved or renamed");
 
-			var entries = File.ReadAllLines(CONFIG_PATH)?.Select(l => l.Split(','));
+			var entries = File.ReadAllLines(CONFIG_PATH)?.Select(l => l.Split(" <|> "));
 
 			if (entries == null) throw new FileNotFoundException(
 				"the config file may be deleted, moved or renamed");

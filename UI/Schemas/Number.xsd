@@ -6,6 +6,7 @@
             <xs:complexContent>
                 <xs:extension base="componentBase">
                     <xs:attribute name="customDefault" type="numberType" use="optional"></xs:attribute>
+                    <xs:attribute name="isFloatNumber" type="xs:boolean" use="optional" default="true"></xs:attribute>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>

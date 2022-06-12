@@ -28,4 +28,4 @@ The following table is the recommended layout.
 | Flags (with short/long name) with path-to-file/directory argument | `SelectFolder`/`OpenFile`/`SaveFile`               |
 | Arguments with no flags                                      | `TextBox`, although users have to supply a comment |
 | Mutually exclusive flags                                     | `YesNo` within a `Group`                           |
-| Flags with choices                                           | `ListBox`                                          |
+| Flags with choices                                           | `PickVa`                                           |

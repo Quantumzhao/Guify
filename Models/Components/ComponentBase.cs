@@ -1,6 +1,9 @@
 namespace Guify.Models.Components;
 
-abstract class ComponentBase : ControlBase { }
+abstract class ComponentBase 
+{ 
+	public abstract string Compile();
+}
 
 abstract class ComponentBase<T> : ComponentBase
 {

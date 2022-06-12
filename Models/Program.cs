@@ -13,7 +13,7 @@ namespace Guify;
 class Program
 {
 	public static string RootCommand { get; private set; } = string.Empty;
-	public static Verb[] Pages = new Verb[0];
+	public static Root? Root { get; set; }
 
 	// Initialization code. Don't use any Avalonia, third-party APIs or any
 	// SynchronizationContext-reliant code before AppMain is called: things aren't initialized
@@ -63,20 +63,14 @@ class Program
 
 	private static void InitGUI()
 	{
-		Pages = XMLUtils.LoadFile(ConfigIO.FindPathEntry(RootCommand));
-	}
-
-	public static string Compile()
-	{
-		var currentPage = Pages.First(p => p.IsUsingThis);
-		if (currentPage == null) throw new ArgumentException("Impossible");
-
-		return currentPage.Compile();
+		Root = XMLUtils.LoadRoot(ConfigIO.FindPathEntry(RootCommand));
 	}
 
 	public static void Run()
 	{
-		var command = RootCommand + " " + Compile();
+		if (Root == null) throw new InvalidOperationException("Impossible");
+
+		var command = Root.Command + " " + Root.Compile();
 
 		ShellUtils.Bash(command);
 	}

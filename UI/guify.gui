@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root Command="guify" xmlns="urn:Guify.Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify.Namespace ./Schemas/Root.xsd">
-    <Verb Name="Add" Description="Add a new Guify UI file for a command">
-        <String Description="name of the command" Required="true" LongName="--name" ShortName="-n" />
-        <SelectFolder Description="path to the Guify UI file" Required="true" LongName="--path" ShortName="-p" />
-    </Verb>
-    <Verb Name="Remove" Description="Remove an associated Guify UI file">
-        <SelectFolder Description="name of the command" Required="true" LongName="--name" ShortName="-n" />
-    </Verb>
-</Root>
+<root command="guify" showHelp="--help" xmlns="urn:Guify.Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify.Namespace ./Schemas/Root.xsd">
+    <verb name="Add" description="Add a new Guify UI file for a command">
+        <string description="name of the command" required="true" longName="--name" shortName="-n" />
+        <selectFolder description="path to the Guify UI file" required="true" longName="--path" shortName="-p" />
+        <pickValue description="">
+            <candidate value="" />
+        </pickValue>
+    </verb>
+    <verb name="Remove" description="Remove an associated Guify UI file">
+        <selectFolder description="name of the command" required="true" longName="--name" shortName="-n" />
+    </verb>
+</root>

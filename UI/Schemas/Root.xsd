@@ -20,7 +20,7 @@
                 </xs:sequence>
             </xs:choice>
             <xs:attribute name="command" type="xs:string" use="required"></xs:attribute>
-            <xs:attribute name="help" use="optional" default="--help"></xs:attribute>
+            <xs:attribute name="showHelp" use="optional" default="--help"></xs:attribute>
         </xs:complexType>
     </xs:element>
 </xs:schema>

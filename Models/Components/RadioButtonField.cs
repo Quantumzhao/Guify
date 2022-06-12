@@ -10,7 +10,5 @@ namespace Guify.Models.Components
 		}
 
 		public override bool Value { get; set; }
-
-		public readonly List<Constraint> Constraints = new List<Constraint>();
 	}
 }

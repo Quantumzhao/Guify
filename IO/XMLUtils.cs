@@ -7,28 +7,51 @@ namespace Guify.IO;
 
 static class XMLUtils
 {
-	public const string SELECT_FOLDER_FIELD = "SelectFolder";
-	public const string STRING_FIELD = "String";
-	public const string YESNO_FIELD = "YesNo";
-	public const string NUMBER_FIELD = "Number";
-	public const string PICK_VALUE_FIELD = "PickValue";
-	public const string SAVE_FILE_FIELD = "SaveFile";
-	public const string NAME = "Name";
-	public const string DESCRIPTION = "Description";
-	public const string CUSTOM_DEFAULT = "CustomDefault";
-	public const string REQUIRED = "Required";
-	public const string LONG_NAME = "LongName";
-	public const string SHORT_NAME = "ShortName";
+	public const string SELECT_FOLDER_FIELD = "selectFolder";
+	public const string STRING_FIELD = "string";
+	public const string YESNO_FIELD = "yesNo";
+	public const string NUMBER_FIELD = "number";
+	public const string PICK_VALUE_FIELD = "pickValue";
+	public const string SAVE_FILE_FIELD = "saveFile";
+	public const string OPEN_FILE_FIELD = "openFile";
+	public const string NAME = "name";
+	public const string DESCRIPTION = "description";
+	public const string CUSTOM_DEFAULT = "customDefault";
+	public const string REQUIRED = "required";
+	public const string LONG_NAME = "longName";
+	public const string SHORT_NAME = "shortName";
+	public const string SHOW_HELP = "showHelp";
+	public const string COMMAND = "command";
+	public const string VERB = "verb";
+	public const string CANDIDATE = "candidate";
+	public const string VALUE = "value";
+	public const string IS_FLOAT_NUMBER = "isFloatNumber";
 
-	public static Verb[] LoadFile(string path)
+	public static Root LoadRoot(string path)
 	{
 		var doc = XDocument.Load(path);
 		if (doc == null) throw new ArgumentNullException("The file doesn't exist");
 
-		var ui = doc.Elements().First();
-		var es = ui.Elements().ToArray();
+		var root = doc.Elements().First();
+		var es = root.Elements().ToArray();
+		var help = root.Attribute(SHOW_HELP)?.Value;
+		var cmd = root.Attribute(COMMAND)?.Value;
 
-		return ui.Elements().Select(e => LoadVerb(e)).ToArray();
+		Verb[]? verbs = null;
+		ComponentBase[]? components = null;
+
+		if (root.Elements().All(e => e.Name != VERB))
+			verbs = root.Elements().Select(e => LoadVerb(e)).ToArray();
+		else if (root.Elements().Any(e => e.Name == VERB))
+			throw new InvalidOperationException(
+				"Normal components can't be at the same level as verbs");
+		else
+			components = root.Elements().Select(e => LoadElements(e)).ToArray();
+
+		if (cmd == null) throw new InvalidOperationException(
+			$"The .gui file {path} is not configured properly");
+
+		return new Root(cmd, help, verbs, components);
 	}
 
 	private static Verb LoadVerb(XElement element)
@@ -39,22 +62,26 @@ static class XMLUtils
 
 		if (name == null || comment == null)
 		{
-
 			throw new ArgumentNullException("verb or description is null");
 		}
 
 		return new Verb(name, comment, controls);
 	}
 
-	private static ControlBase LoadElements(XElement xml)
+	private static ComponentBase LoadElements(XElement xml)
 		=> xml.Name.LocalName switch
 		{
+			YESNO_FIELD => LoadYesNoField(xml),
 			SELECT_FOLDER_FIELD => LoadSelectFolderField(xml),
-			STRING_FIELD => LoadTextBox(xml),
+			STRING_FIELD => LoadStringField(xml),
+			NUMBER_FIELD => LoadNumberField(xml),
+			OPEN_FILE_FIELD => LoadOpenFileField(xml),
+			SAVE_FILE_FIELD => LoadSaveFileField(xml),
+			PICK_VALUE_FIELD => LoadPickValueField(xml),
 			var any => throw new ArgumentException($"{any} is not a valid component")
 		};
 
-	private static StringField LoadTextBox(XElement node)
+	private static StringField LoadStringField(XElement node)
 	{
 		var comment = node.GetDescription();
 		var defaultValue = node.GetDefaultValue();
@@ -85,6 +112,55 @@ static class XMLUtils
 		var shortName = node.GetShortName();
 
 		return new SelectFolderField(defaultValue, desc, isRequired, longName, shortName);
+	}
+
+	private static ComponentBase LoadYesNoField(XElement node)
+	{
+		throw new NotImplementedException();
+	}
+
+	private static ComponentBase LoadNumberField(XElement node)
+	{
+		var defaultValue = node.GetDefaultValue();
+		var desc = node.GetDescription();
+		var isRequired = node.GetIsRequired();
+		var longName = node.GetLongName();
+		var shortName = node.GetShortName();
+		
+		var isFloat = bool.Parse(node.Attribute(IS_FLOAT_NUMBER)?.Value ?? "false");
+		if (isFloat)
+			return new IntField(int.Parse(defaultValue), isRequired, longName, shortName, desc);
+		else
+			return new FloatField(float.Parse(defaultValue), isRequired, longName, shortName, desc);
+	}
+
+	private static SaveFileField LoadSaveFileField(XElement node)
+	{
+		var defaultValue = node.GetDefaultValue();
+		var desc = node.GetDescription();
+		var isRequired = node.GetIsRequired();
+		var longName = node.GetLongName();
+		var shortName = node.GetShortName();
+
+		return new SaveFileField(defaultValue, desc, isRequired, longName, shortName);
+	}
+
+	private static PickValueField LoadPickValueField(XElement node)
+	{
+		var defaultValue = node.GetDefaultValue();
+		var desc = node.GetDescription();
+		var isRequired = node.GetIsRequired();
+		var longName = node.GetLongName();
+		var shortName = node.GetShortName();
+		var candidates = node.Elements()
+							 .Where  (e => e.Name == CANDIDATE)
+							 .Select (c => c.Attribute(VALUE)?.Value)
+							 .Where  (c => !string.IsNullOrEmpty(c))
+							 .Select (c => c.FuckingToString())
+							 .ToArray();
+
+		return new PickValueField(
+			defaultValue, isRequired, longName, shortName, desc, candidates);
 	}
 
 	private static bool GetIsRequired(this XElement node)

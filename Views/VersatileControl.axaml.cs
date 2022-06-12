@@ -23,7 +23,7 @@ public partial class VersatileControl : UserControl
     {
         var dialog = new OpenFolderDialog();
         var lifeTime = App.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
-        if (lifeTime == null) throw new InvalidProgramException("Wait that's illegal");
+        if (lifeTime == null) throw new InvalidOperationException("Wait that's illegal");
         
         var result = await dialog.ShowAsync(lifeTime.MainWindow);
 
