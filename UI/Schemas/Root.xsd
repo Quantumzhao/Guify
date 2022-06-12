@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema targetNamespace="urn:Guify.Namespace" xmlns="urn:Guify.Namespace" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:include schemaLocation="./Verb.xsd" />
-    <xs:element name="Root">
+    <xs:element name="root">
         <xs:complexType>
             <xs:choice>
                 <xs:sequence minOccurs="1" maxOccurs="unbounded">
-                    <xs:element ref="Verb"></xs:element>
+                    <xs:element ref="verb"></xs:element>
                 </xs:sequence>
                 <xs:sequence minOccurs="0" maxOccurs="unbounded">
                     <xs:choice>
-                        <xs:element ref="YesNo"></xs:element>
-                        <xs:element ref="SelectFolder"></xs:element>
-                        <xs:element ref="String"></xs:element>
-                        <xs:element ref="Number"></xs:element>
-                        <xs:element ref="PickValue"></xs:element>
-                        <xs:element ref="SaveFile"></xs:element>
-                        <xs:element ref="OpenFile"></xs:element>
+                        <xs:element ref="yesNo"></xs:element>
+                        <xs:element ref="selectFolder"></xs:element>
+                        <xs:element ref="string"></xs:element>
+                        <xs:element ref="number"></xs:element>
+                        <xs:element ref="pickValue"></xs:element>
+                        <xs:element ref="saveFile"></xs:element>
+                        <xs:element ref="openFile"></xs:element>
                     </xs:choice>        
                 </xs:sequence>
             </xs:choice>
-            <xs:attribute name="Command" type="xs:string" use="required"></xs:attribute>
-            <xs:attribute name="Help" use="optional" default="--help"></xs:attribute>
+            <xs:attribute name="command" type="xs:string" use="required"></xs:attribute>
+            <xs:attribute name="help" use="optional" default="--help"></xs:attribute>
         </xs:complexType>
     </xs:element>
 </xs:schema>

@@ -7,16 +7,16 @@
     <xs:include schemaLocation="./PickValue.xsd"></xs:include>
     <xs:include schemaLocation="./SaveFile.xsd"></xs:include>
     <xs:include schemaLocation="./OpenFile.xsd"></xs:include>
-    <xs:complexType name="Container" abstract="true">
+    <xs:complexType name="container" abstract="true">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
             <xs:choice>
-                <xs:element ref="YesNo"></xs:element>
-                <xs:element ref="SelectFolder"></xs:element>
-                <xs:element ref="String"></xs:element>
-                <xs:element ref="Number"></xs:element>
-                <xs:element ref="PickValue"></xs:element>
-                <xs:element ref="SaveFile"></xs:element>
-                <xs:element ref="OpenFile"></xs:element>
+                <xs:element ref="yesNo"></xs:element>
+                <xs:element ref="selectFolder"></xs:element>
+                <xs:element ref="string"></xs:element>
+                <xs:element ref="number"></xs:element>
+                <xs:element ref="pickValue"></xs:element>
+                <xs:element ref="saveFile"></xs:element>
+                <xs:element ref="openFile"></xs:element>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>

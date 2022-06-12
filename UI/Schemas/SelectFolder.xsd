@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema targetNamespace="urn:Guify.Namespace" xmlns="urn:Guify.Namespace" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:include schemaLocation="./ComponentBase.xsd"></xs:include>
-    <xs:element name="SelectFolder">
+    <xs:element name="selectFolder">
         <xs:complexType>
             <xs:complexContent>
-                <xs:extension base="ComponentBase">
-                    <xs:attribute name="CustomDefault" type="xs:string" use="optional"></xs:attribute>
+                <xs:extension base="componentBase">
+                    <xs:attribute name="customDefault" type="xs:string" use="optional"></xs:attribute>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>

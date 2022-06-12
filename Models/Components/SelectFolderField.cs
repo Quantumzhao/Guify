@@ -1,6 +1,4 @@
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using JetBrains.Annotations;
 
 namespace Guify.Models.Components;
 
@@ -11,8 +9,7 @@ class SelectFolderField : ComponentBase<string>, INotifyPropertyChanged
 	public SelectFolderField(string defaultValue, string description, bool isRequired, string? longName
 		, string? shortName) : base(defaultValue, isRequired, longName, shortName, description)
 	{
-
-		Value = defaultValue;
+		_Value = defaultValue;
 	}
 
 	private string _Value;
