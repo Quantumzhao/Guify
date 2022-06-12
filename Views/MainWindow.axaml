@@ -9,7 +9,14 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="Guify"
         SizeToContent="WidthAndHeight"
-        TransparencyLevelHint="Blur"
+        TransparencyLevelHint="AcrylicBlur"
         Background="#C0FFFFFF">
-        <views:MainView />
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"></ColumnDefinition>
+      <ColumnDefinition Width="200"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <views:MainView Grid.Column="0"/>
+    <TextBlock Name="HelpTextBlock" Grid.Column="1"></TextBlock>
+  </Grid>
 </Window>

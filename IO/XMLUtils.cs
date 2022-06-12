@@ -26,6 +26,7 @@ static class XMLUtils
 	public const string CANDIDATE = "candidate";
 	public const string VALUE = "value";
 	public const string IS_FLOAT_NUMBER = "isFloatNumber";
+	public const string GROUP = "group";
 
 	public static Root LoadRoot(string path)
 	{
@@ -116,7 +117,18 @@ static class XMLUtils
 
 	private static ComponentBase LoadYesNoField(XElement node)
 	{
-		throw new NotImplementedException();
+		var defaultValue = bool.Parse(node.GetDefaultValue() ?? "false");
+		var desc = node.GetDescription();
+		var isRequired = node.GetIsRequired();
+		var longName = node.GetLongName();
+		var shortName = node.GetShortName();
+
+		var group = node.Attribute(GROUP)?.Value;
+		if (group == null)
+			return new CheckBoxField(defaultValue, isRequired, longName, shortName, desc);
+		else
+			return new RadioButtonField(defaultValue, isRequired, longName, shortName, desc
+				, group);
 	}
 
 	private static ComponentBase LoadNumberField(XElement node)

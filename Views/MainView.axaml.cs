@@ -21,7 +21,7 @@ namespace Guify.Views
         {
             // var tabControl = new TabControl();
             // tabControl.Items = pages;
-            MainTab.Items = Program.Pages;
+            //MainTab.Items = Program.Pages;
         }
         
         private void Execute(object? sender, RoutedEventArgs e)

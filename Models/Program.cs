@@ -45,10 +45,15 @@ class Program
 			})
 			.WithParsed<WrapperOptions>(o =>
 			{
-				if (o.Properties == null || o.Properties.Count() == 0) { }
-				else
-					RootCommand = string.Join(' ', args);
-				InitGUI();
+				if (o.Properties == null || o.Properties.Count() == 0)
+					throw new InvalidOperationException();
+
+				var ps = new LinkedList<string>(o.Properties);
+				var name = ps.First?.Value ?? string.Empty;
+				ps.RemoveFirst();
+
+				Root = XMLUtils.LoadRoot(ConfigIO.FindPathEntry(name));
+
 				BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 				// Console.WriteLine("here");
 				// ShellUtils.Bash("apt list");
@@ -60,11 +65,6 @@ class Program
 			.UsePlatformDetect()
 			.LogToTrace()
 			.UseReactiveUI();
-
-	private static void InitGUI()
-	{
-		Root = XMLUtils.LoadRoot(ConfigIO.FindPathEntry(RootCommand));
-	}
 
 	public static void Run()
 	{

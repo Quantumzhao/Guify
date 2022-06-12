@@ -1,13 +1,10 @@
 namespace Guify.Models.Components;
 
-class OpenFileField : ComponentBase<string>
+class OpenFileField : ComponentBase<string?>
 {
 	public OpenFileField(string defaultValue, bool isRequired, string description, string? longName
 		, string? shortName) : base(defaultValue, isRequired, longName, shortName, description)
 	{
 
-		Value = defaultValue;
 	}
-
-	public override string Value { get; set; }
 }

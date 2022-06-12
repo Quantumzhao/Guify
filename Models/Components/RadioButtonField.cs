@@ -1,14 +1,14 @@
 namespace Guify.Models.Components
 {
-	class RadioButtonField : ComponentBase<bool>
+	class RadioButtonField : ComponentBase<bool?>
 	{
-		public RadioButtonField(bool defaultValue, bool isRequired, string longName
-			, string shortName, string description) : base(defaultValue, isRequired, longName,
+		public RadioButtonField(bool defaultValue, bool isRequired, string? longName
+			, string? shortName, string description, string group) : base(defaultValue, isRequired, longName,
 			shortName, description)
 		{
-
+			Group = group;
 		}
 
-		public override bool Value { get; set; }
+		public string Group { get; init; }
 	}
 }

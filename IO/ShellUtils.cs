@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using System.IO;
+using Guify.Models;
 
 namespace Guify.IO;
 
@@ -8,7 +10,7 @@ class ShellUtils
 	{
 		var escapedArgs = cmd.Replace("\"", "\\\"");
 
-		var process = new Process()
+		using var process = new Process()
 		{
 			StartInfo = new ProcessStartInfo
 			{
@@ -28,4 +30,30 @@ class ShellUtils
 		//Console.WriteLine(process.StandardOutput.ReadToEnd());
 	}
 
+	public static string GetHelpInfo(Root root)
+	{
+		var escapedArgs = $"{root.Command.Replace("\"", "\\\"")} {root.helpCommand}";
+		//escapedArgs = "dotnet --help";
+
+		using var process = new Process()
+		{
+			StartInfo = new ProcessStartInfo
+			{
+				FileName = "/bin/bash",
+				Arguments = $"-c \"{escapedArgs}\"",
+				RedirectStandardOutput = false,
+				UseShellExecute = false,
+				CreateNoWindow = true
+			}
+		};
+
+		process.Start();
+		//var result = process.StandardOutput.ReadToEnd();
+		var newStream = new MemoryStream();
+		Console.OpenStandardOutput().CopyTo(newStream);
+		var result = (new StreamReader(newStream)).ReadToEnd();
+		process.WaitForExit();
+
+		return result;
+	}
 }
