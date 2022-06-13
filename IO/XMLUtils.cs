@@ -1,5 +1,6 @@
 using Guify.Models.Components;
 using Guify.Models;
+using static Guify.Models.Misc;
 using System.Xml.Linq;
 using System.Linq;
 
@@ -7,26 +8,27 @@ namespace Guify.IO;
 
 static class XMLUtils
 {
-	public const string SELECT_FOLDER_FIELD = "selectFolder";
-	public const string STRING_FIELD = "string";
-	public const string YESNO_FIELD = "yesNo";
-	public const string NUMBER_FIELD = "number";
-	public const string PICK_VALUE_FIELD = "pickValue";
-	public const string SAVE_FILE_FIELD = "saveFile";
-	public const string OPEN_FILE_FIELD = "openFile";
-	public const string NAME = "name";
-	public const string DESCRIPTION = "description";
-	public const string CUSTOM_DEFAULT = "customDefault";
-	public const string REQUIRED = "required";
-	public const string LONG_NAME = "longName";
-	public const string SHORT_NAME = "shortName";
-	public const string SHOW_HELP = "showHelp";
-	public const string COMMAND = "command";
-	public const string VERB = "verb";
-	public const string CANDIDATE = "candidate";
-	public const string VALUE = "value";
-	public const string IS_FLOAT_NUMBER = "isFloatNumber";
-	public const string GROUP = "group";
+	private const string SELECT_FOLDER_FIELD = "selectFolder";
+	private const string STRING_FIELD = "string";
+	private const string YESNO_FIELD = "yesNo";
+	private const string NUMBER_FIELD = "number";
+	private const string PICK_VALUE_FIELD = "pickValue";
+	private const string SAVE_FILE_FIELD = "saveFile";
+	private const string OPEN_FILE_FIELD = "openFile";
+
+	private const string NAME = "name";
+	private const string DESCRIPTION = "description";
+	private const string CUSTOM_DEFAULT = "customDefault";
+	private const string REQUIRED = "required";
+	private const string LONG_NAME = "longName";
+	private const string SHORT_NAME = "shortName";
+	private const string SHOW_HELP = "showHelp";
+	private const string COMMAND = "command";
+	private const string VERB = "verb";
+	private const string CANDIDATE = "candidate";
+	private const string VALUE = "value";
+	private const string IS_FLOAT_NUMBER = "isFloatNumber";
+	private const string GROUP = "group";
 
 	public static Root LoadRoot(string path)
 	{
@@ -42,12 +44,12 @@ static class XMLUtils
 		ComponentBase[]? components = null;
 
 		if (root.Elements().All(e => e.Name != VERB))
-			verbs = root.Elements().Select(e => LoadVerb(e)).ToArray();
+			verbs = root.Elements().Select(LoadVerb).ToArray();
 		else if (root.Elements().Any(e => e.Name == VERB))
 			throw new InvalidOperationException(
 				"Normal components can't be at the same level as verbs");
 		else
-			components = root.Elements().Select(e => LoadElements(e)).ToArray();
+			components = root.Elements().Select(LoadElements).ToArray();
 
 		if (cmd == null) throw new InvalidOperationException(
 			$"The .gui file {path} is not configured properly");
@@ -59,7 +61,7 @@ static class XMLUtils
 	{
 		var name = element.Attribute(NAME)?.Value;
 		var comment = element.GetDescription();
-		var controls = element.Elements().Select(e => LoadElements(e)).ToArray();
+		var controls = element.Elements().Select(LoadElements).ToArray();
 
 		if (name == null || comment == null)
 		{
@@ -141,9 +143,9 @@ static class XMLUtils
 		
 		var isFloat = bool.Parse(node.Attribute(IS_FLOAT_NUMBER)?.Value ?? "false");
 		if (isFloat)
-			return new IntField(int.Parse(defaultValue), isRequired, longName, shortName, desc);
+			return new IntField(defaultValue.ToInt(), isRequired, longName, shortName, desc);
 		else
-			return new FloatField(float.Parse(defaultValue), isRequired, longName, shortName, desc);
+			return new FloatField(defaultValue.ToFloat(), isRequired, longName, shortName, desc);
 	}
 
 	private static SaveFileField LoadSaveFileField(XElement node)
@@ -185,8 +187,8 @@ static class XMLUtils
 		else return desc;
 	}
 
-	private static string GetDefaultValue(this XElement node)
-		=> node.Attribute(CUSTOM_DEFAULT)?.Value ?? string.Empty;
+	private static string? GetDefaultValue(this XElement node)
+		=> node.Attribute(CUSTOM_DEFAULT)?.Value;
 
 	private static string? GetLongName(this XElement node)
 		=> node.Attribute(LONG_NAME)?.Value;

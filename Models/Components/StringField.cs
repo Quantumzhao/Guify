@@ -1,8 +1,8 @@
 namespace Guify.Models.Components;
 
-class StringField : ComponentBase<string>
+class StringField : ComponentBase<string?>
 {
-	public StringField(string defaultValue, string description, bool isRequired, string? longName
+	public StringField(string? defaultValue, string description, bool isRequired, string? longName
 		, string? shortName) : base(defaultValue, isRequired, longName, shortName, description)
 	{
 		

@@ -48,10 +48,7 @@ class ShellUtils
 		};
 
 		process.Start();
-		//var result = process.StandardOutput.ReadToEnd();
-		var newStream = new MemoryStream();
-		Console.OpenStandardOutput().CopyTo(newStream);
-		var result = (new StreamReader(newStream)).ReadToEnd();
+		var result = process.StandardOutput.ReadToEnd();
 		process.WaitForExit();
 
 		return result;

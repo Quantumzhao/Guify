@@ -8,18 +8,27 @@
   <ContentControl Content="{Binding}">
     <ContentControl.ContentTemplate>
       <dt:VersatileTemplateSelector>
-        <DataTemplate x:Key="YesNo">
+        <DataTemplate x:Key="CheckBoxTemplate">
           <CheckBox></CheckBox>
         </DataTemplate>
-        <DataTemplate x:Key="String">
+        <DataTemplate x:Key="StringTemplate">
           <TextBox></TextBox>
         </DataTemplate>
-        <DataTemplate x:Key="SelectFolder">
+        <DataTemplate x:Key="IntTemplate">
+          <NumericUpDown></NumericUpDown>
+        </DataTemplate>
+        <DataTemplate x:Key="FloatTemplate"></DataTemplate>
+        <DataTemplate x:Key="OpenFileTemplate"></DataTemplate>
+        <DataTemplate x:Key="PickValueTemplate"></DataTemplate>
+        <DataTemplate x:Key="RadioButtonTemplate"></DataTemplate>
+        <DataTemplate x:Key="SaveFileTemplate"></DataTemplate>
+        <DataTemplate x:Key="SelectFolderTemplate">
           <StackPanel>
             <Button Content="Browse" Click="BrowseFolder"></Button>
             <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
           </StackPanel>
         </DataTemplate>
+        
       </dt:VersatileTemplateSelector>
     </ContentControl.ContentTemplate>
   </ContentControl>

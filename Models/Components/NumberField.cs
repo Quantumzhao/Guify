@@ -2,7 +2,7 @@ namespace Guify.Models.Components;
 
 class IntField : ComponentBase<int?>
 {
-	public IntField(int defaultValue, bool isRequired, string? longName, string? shortName
+	public IntField(int? defaultValue, bool isRequired, string? longName, string? shortName
 		, string description) : base(defaultValue, isRequired, longName, shortName, description)
 	{
 		
@@ -13,7 +13,7 @@ class IntField : ComponentBase<int?>
 
 class FloatField : ComponentBase<float?>
 {
-	public FloatField(float defaultValue, bool isRequired, string? longName, string? shortName
+	public FloatField(float? defaultValue, bool isRequired, string? longName, string? shortName
 		, string description) : base(defaultValue, isRequired, longName, shortName, description)
 	{
 	}
