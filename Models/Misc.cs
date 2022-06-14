@@ -13,4 +13,10 @@ static class Misc {
 
 	public static bool? ToBool(this string? str)
 		=> str == null ? null : bool.Parse(str);
+	
+	public static string Flatten(this string[] strs)
+		=> string.Join(" [AND] ", strs);
+
+	public static string[] Expand(this string str)
+		=> str.Split(" [AND] ");
 }

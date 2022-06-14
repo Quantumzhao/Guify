@@ -10,7 +10,8 @@
         Title="Guify"
         SizeToContent="WidthAndHeight"
         TransparencyLevelHint="AcrylicBlur"
-        Background="#C0FFFFFF">
+        Background="#C0FFFFFF"
+        ExtendClientAreaToDecorationsHint="True">
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*"></ColumnDefinition>

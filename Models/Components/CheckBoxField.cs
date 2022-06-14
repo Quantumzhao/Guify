@@ -9,8 +9,6 @@ namespace Guify.Models.Components
 
 		}
 
-		public override bool? Value { get; set; }
-
 		public override string ValueToString()
 			=> (Value ?? false) ? "true" : "false";
 	}

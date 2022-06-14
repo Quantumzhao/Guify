@@ -4,9 +4,9 @@
         <yesNo description="yesno description" required="true" longName="--yesno" shortName="-o" />
         <yesNo description="yesno 2 description" required="true" group="y2" />
         <yesNo description="yesno 3" required="true" group="y3" />
-        <number description="number" isFloatNumber="true" longName="--float" shortName="-f" />
-        <number description="number 1" longName="--int" shortName="-i" />
-        <openFile description="open file" customDefaultDirectory="~" customDefaultFileName="text" longName="--openfile" shortName="-x">
+        <number description="number" longName="--float" shortName="-f" max="10" min="0" />
+        <number description="number 1" customDefault="10" longName="--int" shortName="-i" />
+        <openFile description="open file" customDefaultFolder="~" customDefaultFileName="text" longName="--openfile" shortName="-x">
             <extension afterDot="txt" displayName="Text File" />
         </openFile>
         <saveFile description="save file" customDefaultExtensionWithDot=".txt">

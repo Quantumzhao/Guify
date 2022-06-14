@@ -10,21 +10,29 @@
     <ContentControl.ContentTemplate>
       <dt:VersatileTemplateSelector>
         <DataTemplate x:Key="CheckBoxTemplate">
-          <CheckBox></CheckBox>
+          <CheckBox IsChecked="{Binding Path=Value, Mode=TwoWay}"></CheckBox>
         </DataTemplate>
         <DataTemplate x:Key="StringTemplate">
-          <TextBox></TextBox>
+          <TextBox Text="{Binding Path=Value, Mode=TwoWay}"></TextBox>
         </DataTemplate>
-        <DataTemplate x:Key="IntTemplate">
-          <NumericUpDown></NumericUpDown>
+        <DataTemplate x:Key="NumberTemplate">
+          <NumericUpDown Value="{Binding Path=Value, Mode=TwoWay}" 
+                         Maximum="{Binding Max}" 
+                         Minimum="{Binding Min}"></NumericUpDown>
         </DataTemplate>
-        <DataTemplate x:Key="FloatTemplate"></DataTemplate>
-        <DataTemplate x:Key="OpenFileTemplate"></DataTemplate>
+        <DataTemplate x:Key="OpenFileTemplate">
+          <StackPanel Orientation="Horizontal">
+            <Button Content="Browse" Click="OpenFile"></Button>
+            <TextBox Text="{Binding Value, Mode=TwoWay}" MaxWidth="100"></TextBox>
+          </StackPanel>
+        </DataTemplate>
         <DataTemplate x:Key="PickValueTemplate"></DataTemplate>
-        <DataTemplate x:Key="RadioButtonTemplate"></DataTemplate>
+        <DataTemplate x:Key="RadioButtonTemplate">
+          <RadioButton IsChecked="{Binding Path=Value, Mode=TwoWay}"></RadioButton>
+        </DataTemplate>
         <DataTemplate x:Key="SaveFileTemplate"></DataTemplate>
         <DataTemplate x:Key="SelectFolderTemplate">
-          <StackPanel>
+          <StackPanel Orientation="Horizontal">
             <Button Content="Browse" Click="BrowseFolder"></Button>
             <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
           </StackPanel>

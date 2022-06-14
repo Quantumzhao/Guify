@@ -5,13 +5,13 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="extension">
         <xs:complexType>
-            <xs:attribute name="afterDot" use="required"></xs:attribute>
+            <xs:attribute name="afterDot" use="required" type="extensionType"></xs:attribute>
             <xs:attribute name="displayName" type="xs:string" use="required"></xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:simpleType name="extensionType">
         <xs:restriction base="xs:string">
-            <xs:pattern value="[^\\\|]+(,\ ?.+)*"></xs:pattern>
+            <xs:pattern value=".+(\ \[ADD\]\ .+)*"></xs:pattern>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

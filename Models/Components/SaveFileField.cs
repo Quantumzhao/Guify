@@ -9,20 +9,4 @@ class SaveFileField : ComponentBase<string?>, INotifyPropertyChanged {
 
 		Value = defaultValue;
 	}
-
-	public event PropertyChangedEventHandler? PropertyChanged;
-
-	private string? _Value;
-	public override string? Value 
-	{ 
-		get => _Value;
-		set
-		{
-			if (_Value != value)
-			{
-				_Value = value;
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Value)));
-			}
-		}
-	}
 }

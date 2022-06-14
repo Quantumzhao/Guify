@@ -15,7 +15,6 @@ static class XMLUtils
 	private const string PICK_VALUE_FIELD = "pickValue";
 	private const string SAVE_FILE_FIELD = "saveFile";
 	private const string OPEN_FILE_FIELD = "openFile";
-
 	private const string NAME = "name";
 	private const string DESCRIPTION = "description";
 	private const string CUSTOM_DEFAULT = "customDefault";
@@ -29,6 +28,14 @@ static class XMLUtils
 	private const string VALUE = "value";
 	private const string IS_FLOAT_NUMBER = "isFloatNumber";
 	private const string GROUP = "group";
+	private const string MAX = "max";
+	private const string MIN = "min";
+	private const string MULTIPLE = "multiple";
+	private const string CUSTOM_DEFAULT_FOLDER = "customDefaultFolder";
+	private const string CUSTOM_DEFAULT_FILE_NAME = "customDefaultFileName";
+	private const string EXTENSION = "extension";
+	private const string AFTER_DOT = "afterDot";
+	private const string DISPLAY_NAME = "displayName";
 
 	public static Root LoadRoot(string path)
 	{
@@ -97,13 +104,21 @@ static class XMLUtils
 
 	private static OpenFileField LoadOpenFileField(XElement node)
 	{
-		var defaultValue = node.GetDefaultValue();
 		var desc = node.GetDescription();
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();
 		var shortName = node.GetShortName();
+		var allowMultiple = node.Attribute(MULTIPLE)?.Value.ToBool() ?? false;
+		var customDefaultFolder = node.Attribute(CUSTOM_DEFAULT_FOLDER)?.Value;
+		var customDefaultFileName = node.Attribute(CUSTOM_DEFAULT_FILE_NAME)?.Value;
+		var extensions = node.Elements().Select(e => 
+			(e.Attribute(AFTER_DOT)?.Value, e.Attribute(DISPLAY_NAME)?.Value) switch
+			{
+				(string afterDot, string name) => (afterDot: afterDot.Expand(), displayName: name),
+				_ => throw new ArgumentException()
+			}).ToArray();
 
-		return new OpenFileField(defaultValue, isRequired, desc, longName, shortName);
+		return new OpenFileField(customDefaultFileName, customDefaultFolder, extensions, allowMultiple, isRequired, desc, longName, shortName);
 	}
 
 	private static SelectFolderField LoadSelectFolderField(XElement node)
@@ -140,12 +155,11 @@ static class XMLUtils
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();
 		var shortName = node.GetShortName();
+		var max = node.Attribute(MAX)?.Value.ToFloat();
+		var min = node.Attribute(MIN)?.Value.ToFloat();
 		
-		var isFloat = bool.Parse(node.Attribute(IS_FLOAT_NUMBER)?.Value ?? "false");
-		if (isFloat)
-			return new IntField(defaultValue.ToInt(), isRequired, longName, shortName, desc);
-		else
-			return new FloatField(defaultValue.ToFloat(), isRequired, longName, shortName, desc);
+		return new NumberField(
+			defaultValue.ToFloat(), max, min, isRequired, longName, shortName, desc);
 	}
 
 	private static SaveFileField LoadSaveFileField(XElement node)

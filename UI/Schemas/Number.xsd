@@ -5,20 +5,11 @@
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="componentBase">
-                    <xs:attribute name="customDefault" type="numberType" use="optional"></xs:attribute>
-                    <xs:attribute name="isFloatNumber" type="xs:boolean" use="optional" default="true"></xs:attribute>
+                    <xs:attribute name="customDefault" type="xs:float" use="optional"></xs:attribute>
+                    <xs:attribute name="max" type="xs:float" use="optional"></xs:attribute>
+                    <xs:attribute name="min" type="xs:float" use="optional"></xs:attribute>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>
     </xs:element>
-    <xs:simpleType name="numberType">
-        <xs:union>
-            <xs:simpleType>
-                <xs:restriction base="xs:float"></xs:restriction>
-            </xs:simpleType>
-            <xs:simpleType>
-                <xs:restriction base="xs:integer"></xs:restriction>
-            </xs:simpleType>
-        </xs:union>
-    </xs:simpleType>
 </xs:schema>

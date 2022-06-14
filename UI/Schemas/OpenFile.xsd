@@ -9,7 +9,7 @@
                     <xs:sequence minOccurs="0" maxOccurs="unbounded">
                         <xs:element ref="extension"></xs:element>
                     </xs:sequence>
-                    <xs:attribute name="customDefaultDirectory" type="xs:string" use="optional" />
+                    <xs:attribute name="customDefaultFolder" type="xs:string" use="optional" />
                     <xs:attribute name="customDefaultFileName" type="xs:string" use="optional"></xs:attribute>
                     <xs:attribute name="multiple" type="xs:boolean" use="optional"></xs:attribute>
                 </xs:extension>
