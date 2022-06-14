@@ -1,7 +1,7 @@
 ﻿namespace Guify.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase
-    {
-        public string Greeting => "Welcome to Avalonia!";
-    }
+	public class MainWindowViewModel : ViewModelBase
+	{
+		public string Greeting => "Welcome to Avalonia!";
+	}
 }

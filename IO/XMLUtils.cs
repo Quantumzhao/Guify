@@ -198,7 +198,7 @@ static class XMLUtils
 		var longName = node.GetLongName();
 		var shortName = node.GetShortName();
 		var candidates = node.Elements()
-							 .Where  (e => e.Name == CANDIDATE)
+							 .Where  (e => e.Name.LocalName == CANDIDATE)
 							 .Select (c => c.Attribute(VALUE)?.Value)
 							 .Where  (c => !string.IsNullOrEmpty(c))
 							 .Select (c => c.FuckingToString())

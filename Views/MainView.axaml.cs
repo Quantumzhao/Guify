@@ -10,16 +10,11 @@ using System.Linq;
 
 namespace Guify.Views
 {
-    public partial class MainView : UserControl
-    {
-        public MainView()
-        {
-            InitializeComponent();
-        }
-        
-        private void Execute(object? sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-    }
+	public partial class MainView : UserControl
+	{
+		public MainView()
+		{
+			InitializeComponent();
+		}
+	}
 }

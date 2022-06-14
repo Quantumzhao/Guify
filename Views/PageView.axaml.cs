@@ -4,11 +4,11 @@ using Avalonia.Markup.Xaml;
 
 namespace Guify.Views
 {
-    public partial class PageView : UserControl
-    {
-        public PageView()
-        {
-            InitializeComponent();
-        }
-    }
+	public partial class PageView : UserControl
+	{
+		public PageView()
+		{
+			InitializeComponent();
+		}
+	}
 }

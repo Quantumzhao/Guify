@@ -35,8 +35,7 @@ namespace Guify.CLI
 		public static string FindPathEntry(string name)
 		{
 			var queryResult = GetEntries().FirstOrDefault(e => e[0] == name);
-			if (queryResult == null) throw new ArgumentNullException(
-				Program.RootCommand);
+			if (queryResult == null) throw new ArgumentNullException();
 			else return queryResult[1];
 		}
 	}

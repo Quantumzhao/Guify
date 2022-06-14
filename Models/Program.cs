@@ -12,7 +12,7 @@ namespace Guify;
 
 class Program
 {
-	public static string RootCommand { get; private set; } = string.Empty;
+	public static string Postfix { get; private set; } = string.Empty;
 	public static Root? Root { get; set; }
 
 	// Initialization code. Don't use any Avalonia, third-party APIs or any
@@ -51,6 +51,7 @@ class Program
 				var ps = new LinkedList<string>(o.Properties);
 				var name = ps.First?.Value ?? string.Empty;
 				ps.RemoveFirst();
+				Postfix = string.Join(' ', ps);
 
 				Root = XMLUtils.LoadRoot(ConfigIO.FindPathEntry(name));
 
@@ -70,7 +71,7 @@ class Program
 	{
 		if (Root == null) throw new InvalidOperationException("Impossible");
 
-		var command = Root.Command + " " + Root.Compile();
+		var command = $"{Root.Command} {Root.Compile()} {Postfix}";
 
 		ShellUtils.Bash(command);
 	}

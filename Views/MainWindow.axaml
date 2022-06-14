@@ -29,7 +29,8 @@
               HorizontalAlignment="Stretch"
               HorizontalContentAlignment="Center"
               Margin="10"
-              Grid.Row="1">
+              Grid.Row="1"
+              Click="Execute">
         Execute
       </Button>
     </Grid>
