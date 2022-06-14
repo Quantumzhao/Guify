@@ -8,6 +8,8 @@ namespace Guify.IO;
 
 static class XMLUtils
 {
+
+#region XMLLabels
 	private const string SELECT_FOLDER_FIELD = "selectFolder";
 	private const string STRING_FIELD = "string";
 	private const string YESNO_FIELD = "yesNo";
@@ -15,6 +17,11 @@ static class XMLUtils
 	private const string PICK_VALUE_FIELD = "pickValue";
 	private const string SAVE_FILE_FIELD = "saveFile";
 	private const string OPEN_FILE_FIELD = "openFile";
+	private const string INFIX = "infix";
+	private const string SEPARATOR = "separator";
+#endregion
+
+#region XMLAttributes
 	private const string NAME = "name";
 	private const string DESCRIPTION = "description";
 	private const string CUSTOM_DEFAULT = "customDefault";
@@ -36,6 +43,7 @@ static class XMLUtils
 	private const string EXTENSION = "extension";
 	private const string AFTER_DOT = "afterDot";
 	private const string DISPLAY_NAME = "displayName";
+#endregion
 
 	public static Root LoadRoot(string path)
 	{
@@ -88,6 +96,8 @@ static class XMLUtils
 			OPEN_FILE_FIELD => LoadOpenFileField(xml),
 			SAVE_FILE_FIELD => LoadSaveFileField(xml),
 			PICK_VALUE_FIELD => LoadPickValueField(xml),
+			INFIX => LoadInfix(xml),
+			SEPARATOR => new Separator(),
 			var any => throw new ArgumentException($"{any} is not a valid component")
 		};
 
@@ -110,7 +120,7 @@ static class XMLUtils
 		var shortName = node.GetShortName();
 		var allowMultiple = node.Attribute(MULTIPLE)?.Value.ToBool() ?? false;
 		var customDefaultFolder = node.Attribute(CUSTOM_DEFAULT_FOLDER)?.Value;
-		var customDefaultFileName = node.Attribute(CUSTOM_DEFAULT_FILE_NAME)?.Value;
+		var customDefaultFileName = node.Attribute(CUSTOM_DEFAULT_FILE_NAME)?.Value?.Expand();
 		var extensions = node.Elements().Select(e => 
 			(e.Attribute(AFTER_DOT)?.Value, e.Attribute(DISPLAY_NAME)?.Value) switch
 			{
@@ -164,13 +174,20 @@ static class XMLUtils
 
 	private static SaveFileField LoadSaveFileField(XElement node)
 	{
-		var defaultValue = node.GetDefaultValue();
 		var desc = node.GetDescription();
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();
 		var shortName = node.GetShortName();
+		var customDefaultFileName = node.Attribute(CUSTOM_DEFAULT_FILE_NAME)?.Value;
+		var customDefaultFolder = node.Attribute(CUSTOM_DEFAULT_FOLDER)?.Value;
+		var extensions = node.Elements().Select(e => 
+			(e.Attribute(AFTER_DOT)?.Value, e.Attribute(DISPLAY_NAME)?.Value) switch
+			{
+				(string afterDot, string name) => (afterDot: afterDot.Expand(), displayName: name),
+				_ => throw new ArgumentException()
+			}).ToArray();
 
-		return new SaveFileField(defaultValue, desc, isRequired, longName, shortName);
+		return new SaveFileField(customDefaultFileName, customDefaultFolder, extensions, desc, isRequired, longName, shortName);
 	}
 
 	private static PickValueField LoadPickValueField(XElement node)
@@ -189,6 +206,13 @@ static class XMLUtils
 
 		return new PickValueField(
 			defaultValue, isRequired, longName, shortName, desc, candidates);
+	}
+
+	private static Infix LoadInfix(XElement node)
+	{
+		var value = node.Attribute(VALUE)?.Value;
+		if (value == null) throw new ArgumentNullException();
+		else return new Infix(value);
 	}
 
 	private static bool GetIsRequired(this XElement node)

@@ -44,7 +44,7 @@ public partial class VersatileControl : UserControl
 
         if (result != null && DataContext is OpenFileField o)
         {
-            o.Value = result.Flatten();
+            o.Value = result;
         }
     }
 }

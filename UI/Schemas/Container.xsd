@@ -7,6 +7,8 @@
     <xs:include schemaLocation="./PickValue.xsd"></xs:include>
     <xs:include schemaLocation="./SaveFile.xsd"></xs:include>
     <xs:include schemaLocation="./OpenFile.xsd"></xs:include>
+    <xs:include schemaLocation="./infix.xsd"></xs:include>
+    <xs:include schemaLocation="./separator.xsd"></xs:include>
     <xs:complexType name="container" abstract="true">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
             <xs:choice>
@@ -17,6 +19,8 @@
                 <xs:element ref="pickValue"></xs:element>
                 <xs:element ref="saveFile"></xs:element>
                 <xs:element ref="openFile"></xs:element>
+                <xs:element ref="infix"></xs:element>
+                <xs:element ref="separator"></xs:element>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>

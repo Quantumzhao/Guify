@@ -28,7 +28,7 @@
         </DataTemplate>
         <DataTemplate x:Key="PickValueTemplate"></DataTemplate>
         <DataTemplate x:Key="RadioButtonTemplate">
-          <RadioButton IsChecked="{Binding Path=Value, Mode=TwoWay}"></RadioButton>
+          <RadioButton IsChecked="{Binding Path=Value, Mode=TwoWay}" GroupName="{Binding Group}"></RadioButton>
         </DataTemplate>
         <DataTemplate x:Key="SaveFileTemplate"></DataTemplate>
         <DataTemplate x:Key="SelectFolderTemplate">
@@ -36,6 +36,10 @@
             <Button Content="Browse" Click="BrowseFolder"></Button>
             <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
           </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="InfixTemplate"></DataTemplate>
+        <DataTemplate x:Key="SeparatorTemplate">
+          
         </DataTemplate>
       </dt:VersatileTemplateSelector>
     </ContentControl.ContentTemplate>

@@ -16,6 +16,8 @@
                         <xs:element ref="pickValue"></xs:element>
                         <xs:element ref="saveFile"></xs:element>
                         <xs:element ref="openFile"></xs:element>
+                        <xs:element ref="infix"></xs:element>
+                        <xs:element ref="separator"></xs:element>
                     </xs:choice>        
                 </xs:sequence>
             </xs:choice>

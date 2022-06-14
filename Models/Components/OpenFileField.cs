@@ -1,20 +1,26 @@
+using System.Linq;
+
 namespace Guify.Models.Components;
 
-class OpenFileField : ComponentBase<string?>
+class OpenFileField : FieldBase<string[]?>
 {
-	public OpenFileField(string? customDefaultFileName, string? customDefaultFolder, 
+	public OpenFileField(string[]? customDefaultFileName, string? customDefaultFolder, 
 		(string[], string)[]? extensions, bool? allowMultiple, bool isRequired, string description
-		, string? longName, string? shortName) : base(customDefaultFileName + customDefaultFileName
+		, string? longName, string? shortName) : base(
+			customDefaultFileName?.Select(d => customDefaultFolder + d).ToArray()
 		, isRequired, longName, shortName, description)
 	{
 		CustomDefaultFileName = customDefaultFileName;
 		CustomDefaultFolder = customDefaultFolder;
 		AllowMultiple = allowMultiple ?? false;
-		Extensions = extensions ?? new (string[], string)[0];
+		Extensions = extensions ?? Array.Empty<(string[], string)>();
 	}
 
-	public (string[] afterDot, string displayName)[] Extensions { get; set; }
-	public bool AllowMultiple { get; set; }
+	public (string[] afterDot, string displayName)[] Extensions { get; init; }
+	public bool AllowMultiple { get; init; }
 	public string? CustomDefaultFolder { get; init; }
-	public string? CustomDefaultFileName { get; init; }
+	public string[]? CustomDefaultFileName { get; init; }
+
+	public override string ValueToString()
+		=> string.Join(' ', Value ?? Array.Empty<string>());
 }

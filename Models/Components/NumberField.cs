@@ -1,7 +1,7 @@
 using System.ComponentModel;
 namespace Guify.Models.Components;
 
-class NumberField : ComponentBase<float?>
+class NumberField : FieldBase<float?>
 {
 
 	public NumberField(float? defaultValue, float? max, float? min, bool isRequired

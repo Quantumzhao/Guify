@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:Guify.Namespace" xmlns="urn:Guify.Namespace" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="infix">
+        <xs:complexType>
+            <xs:attribute name="value" type="xs:string" use="required"></xs:attribute>
+        </xs:complexType>    
+    </xs:element>
+</xs:schema>
