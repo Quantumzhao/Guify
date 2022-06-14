@@ -2,44 +2,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dt="clr-namespace:Guify.Views.DataTemplates"
              xmlns:views="clr-namespace:Guify.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Guify.Views.MainView"
-             Initialized="OnMainViewLoaded"
-             DataContext="{Binding}">
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*"></RowDefinition>
-      <RowDefinition Height="Auto"></RowDefinition>
-    </Grid.RowDefinitions>
-    <TabControl Name="MainTab" Grid.Row="0">
-      <!--                               Header                                    -->
-      <TabControl.ItemTemplate>
-        <DataTemplate>
-          <StackPanel Orientation="Vertical">
-            <TextBlock Text="{Binding Name}" 
-                       TextWrapping="Wrap"
-                       HorizontalAlignment="Stretch"/>
-          </StackPanel>
+             x:Class="Guify.Views.MainView">
+  <ContentControl Content="{Binding}">
+    <ContentControl.ContentTemplate>
+      <dt:TopLevelTemplateSelector>
+        <DataTemplate x:Key="SingletonTemplate">
+          <views:PageView></views:PageView>
         </DataTemplate>
-      </TabControl.ItemTemplate>
-      <!--                              Content                                     -->
-      <TabControl.ContentTemplate>
-        <DataTemplate>
-          <ScrollViewer>
-            <views:PageView />
-          </ScrollViewer>
+        <DataTemplate x:Key="VerbsTemplate">
+          <TabControl Name="MainTab" Items="{Binding}">
+            <!--                               Header                                    -->
+            <TabControl.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Vertical">
+                  <TextBlock Text="{Binding Name}"
+                             TextWrapping="Wrap"
+                             HorizontalAlignment="Stretch"/>
+                </StackPanel>
+              </DataTemplate>
+            </TabControl.ItemTemplate>
+            <!--                              Content                                     -->
+            <TabControl.ContentTemplate>
+              <DataTemplate>
+                <ScrollViewer>
+                  <StackPanel Orientation="Vertical">
+                    <Border>
+                      <TextBlock Text="{Binding Description}"></TextBlock>
+                    </Border>
+                    <views:PageView/>
+                  </StackPanel>
+                </ScrollViewer>
+              </DataTemplate>
+            </TabControl.ContentTemplate>
+          </TabControl>
         </DataTemplate>
-      </TabControl.ContentTemplate>
-    </TabControl>
-    <Button Click="Execute" 
-            Height="50" 
-            VerticalContentAlignment="Center" 
-            HorizontalAlignment="Stretch"
-            HorizontalContentAlignment="Center"
-            Margin="10"
-            Grid.Row="1">
-      Execute
-    </Button>
-  </Grid>
+      </dt:TopLevelTemplateSelector>
+    </ContentControl.ContentTemplate>
+  </ContentControl>
 </UserControl>

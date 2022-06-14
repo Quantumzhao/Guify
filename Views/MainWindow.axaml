@@ -16,7 +16,22 @@
       <ColumnDefinition Width="*"></ColumnDefinition>
       <ColumnDefinition Width="200"></ColumnDefinition>
     </Grid.ColumnDefinitions>
-    <views:MainView Grid.Column="0"/>
+    <Grid Grid.Column="0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"></RowDefinition>
+        <RowDefinition Height="Auto"></RowDefinition>
+      </Grid.RowDefinitions>
+      <views:MainView x:Name="MainView" Grid.Row="0"/>
+      <!-- <TextBlock x:Name="debug"></TextBlock> -->
+      <Button Height="50" 
+              VerticalContentAlignment="Center" 
+              HorizontalAlignment="Stretch"
+              HorizontalContentAlignment="Center"
+              Margin="10"
+              Grid.Row="1">
+        Execute
+      </Button>
+    </Grid>
     <TextBlock Name="HelpTextBlock" Grid.Column="1"></TextBlock>
   </Grid>
 </Window>

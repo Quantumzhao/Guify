@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:dt="using:Guify.Views.DataTemplates"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             Width="200"
              x:Class="Guify.Views.VersatileControl" DataContext="{Binding}">
-  <ContentControl Content="{Binding}">
+  <ContentControl Content="{Binding}" HorizontalAlignment="Left">
     <ContentControl.ContentTemplate>
       <dt:VersatileTemplateSelector>
         <DataTemplate x:Key="CheckBoxTemplate">
@@ -28,7 +29,6 @@
             <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
           </StackPanel>
         </DataTemplate>
-        
       </dt:VersatileTemplateSelector>
     </ContentControl.ContentTemplate>
   </ContentControl>

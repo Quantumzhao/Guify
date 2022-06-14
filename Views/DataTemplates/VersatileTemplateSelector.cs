@@ -27,7 +27,6 @@ class VersatileTemplateSelector : IDataTemplate
 	public IControl Build(object param)
 		=> param switch
 		{
-			null => throw new ArgumentNullException(),
 			StringField => Templates[STRING_TEMPLATE].Build(param),
 			SelectFolderField => Templates[SELECT_FOLDER_TEMPLATE].Build(param),
 			CheckBoxField => Templates[CHECK_BOX_TEMPLATE].Build(param),

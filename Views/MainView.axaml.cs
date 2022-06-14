@@ -17,13 +17,6 @@ namespace Guify.Views
             InitializeComponent();
         }
         
-        public void OnMainViewLoaded(object sender, EventArgs args) 
-        {
-            // var tabControl = new TabControl();
-            // tabControl.Items = pages;
-            //MainTab.Items = Program.Pages;
-        }
-        
         private void Execute(object? sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();

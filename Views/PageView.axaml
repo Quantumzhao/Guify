@@ -5,42 +5,37 @@
              xmlns:views="clr-namespace:Guify.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Guify.Views.PageView">
-  <StackPanel>
-    <Border>
-      <TextBlock Text="{Binding Description}"></TextBlock>
-    </Border>
-    <ItemsControl Items="{Binding Items}">
-      <ItemsControl.ItemsPanel>
-        <ItemsPanelTemplate>
-          <StackPanel Orientation="Vertical"></StackPanel>
-        </ItemsPanelTemplate>
-      </ItemsControl.ItemsPanel>
-      <ItemsControl.ItemTemplate>
-        <DataTemplate>
-          <StackPanel Orientation="Horizontal">
-            <!--                           Start Description Area                          -->
-            <StackPanel Orientation="Vertical">
-              <TextBlock MaxWidth="200" MinWidth="50" Text="{Binding Description}"></TextBlock>
-              <ItemsControl Items="{Binding Flags}">
-                <ItemsControl.ItemsPanel>
-                  <ItemsPanelTemplate>
-                    <StackPanel Spacing="10"></StackPanel>
-                  </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                  <DataTemplate>
-                    <Border>
-                      <TextBlock Text="{Binding}"></TextBlock>
-                    </Border>
-                  </DataTemplate>
-                </ItemsControl.ItemTemplate>
-              </ItemsControl>
-            </StackPanel>
-            <!-- End Description Area. That's a lot for such a trivial component, isn't it? -->
-            <views:VersatileControl></views:VersatileControl>
+  <ItemsControl Items="{Binding Items}">
+    <ItemsControl.ItemsPanel>
+      <ItemsPanelTemplate>
+        <StackPanel Orientation="Vertical"></StackPanel>
+      </ItemsPanelTemplate>
+    </ItemsControl.ItemsPanel>
+    <ItemsControl.ItemTemplate>
+      <DataTemplate>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+          <!--                           Start Description Area                          -->
+          <StackPanel Orientation="Vertical">
+            <TextBlock MaxWidth="200" MinWidth="50" Text="{Binding Description}"></TextBlock>
+            <ItemsControl Items="{Binding Flags}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <StackPanel Spacing="10" Orientation="Horizontal"></StackPanel>
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Border Background="AliceBlue">
+                    <TextBlock Text="{Binding}"></TextBlock>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
           </StackPanel>
-        </DataTemplate>
-      </ItemsControl.ItemTemplate>
-    </ItemsControl>
-  </StackPanel>
+          <!-- End Description Area. That's a lot for such a trivial component, isn't it? -->
+          <views:VersatileControl></views:VersatileControl>
+        </StackPanel>
+      </DataTemplate>
+    </ItemsControl.ItemTemplate>
+  </ItemsControl>
 </UserControl>

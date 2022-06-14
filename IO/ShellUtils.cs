@@ -32,7 +32,7 @@ class ShellUtils
 
 	public static string GetHelpInfo(Root root)
 	{
-		var escapedArgs = $"{root.Command.Replace("\"", "\\\"")} {root.helpCommand}";
+		var escapedArgs = root.Command.Replace("\"", "\\\"") + " " + root.helpCommand;
 		//escapedArgs = "dotnet --help";
 
 		using var process = new Process()
@@ -41,7 +41,7 @@ class ShellUtils
 			{
 				FileName = "/bin/bash",
 				Arguments = $"-c \"{escapedArgs}\"",
-				RedirectStandardOutput = false,
+				RedirectStandardOutput = true,
 				UseShellExecute = false,
 				CreateNoWindow = true
 			}
