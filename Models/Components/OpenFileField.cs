@@ -21,6 +21,6 @@ class OpenFileField : FieldBase<string[]?>
 	public string? CustomDefaultFolder { get; init; }
 	public string[]? CustomDefaultFileName { get; init; }
 
-	public override string ValueToString()
-		=> string.Join(' ', Value ?? Array.Empty<string>());
+	public override string ValueToString(string[]? value)
+		=> string.Join(' ', value ?? Array.Empty<string>());
 }

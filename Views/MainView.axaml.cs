@@ -16,5 +16,15 @@ namespace Guify.Views
 		{
 			InitializeComponent();
 		}
+
+		private void UpdateVerbs(object? sender, SelectionChangedEventArgs e)
+		{
+			if (sender is not TabControl tab) return;
+
+			if (e.AddedItems.Count != 0 && e.AddedItems[0] is Verb newVerb) 
+				newVerb.IsUsingThis = true;
+			if (e.RemovedItems.Count != 0 && e.RemovedItems[0] is Verb oldVerb) 
+				oldVerb.IsUsingThis = false; 
+		}
 	}
 }

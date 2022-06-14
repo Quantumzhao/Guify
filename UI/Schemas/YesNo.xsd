@@ -7,6 +7,7 @@
                 <xs:extension base="componentBase">
                     <xs:attribute name="group" use="optional" type="xs:string"></xs:attribute>
                     <xs:attribute name="customDefault" use="optional" type="xs:boolean"></xs:attribute>
+                    <xs:attribute name="isFlag" use="optional" type="xs:boolean" default="false"></xs:attribute>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>

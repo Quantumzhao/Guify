@@ -13,7 +13,7 @@
           <views:PageView></views:PageView>
         </DataTemplate>
         <DataTemplate x:Key="VerbsTemplate">
-          <TabControl Name="MainTab" Items="{Binding}">
+          <TabControl Name="MainTab" Items="{Binding}" SelectionChanged="UpdateVerbs">
             <!--                               Header                                    -->
             <TabControl.ItemTemplate>
               <DataTemplate>

@@ -5,6 +5,7 @@ using Avalonia;
 using Avalonia.Interactivity;
 using Guify.Models;
 using Guify.Models.Components;
+using MessageBox.Avalonia;
 
 namespace Guify.Views;
 
@@ -37,5 +38,18 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		_ => throw new ArgumentException()
 	};
 
-	private void Execute(object? sender, RoutedEventArgs e) => Program.Run();
+	private void Execute(object? sender, RoutedEventArgs e)
+	{
+		try
+		{
+			Program.Run();
+		}
+		catch (WarningException we)
+		{
+			var msgBox = MessageBoxManager.GetMessageBoxStandardWindow(
+				"Missing Fields", "Some required fields are missing!!!");
+
+			msgBox.Show();
+		}
+	}
 }

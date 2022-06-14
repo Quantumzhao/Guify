@@ -12,6 +12,9 @@ class NumberField : FieldBase<float?>
 		var minimum = min ?? float.MinValue;
 
 		if (maximum < minimum) throw new ArgumentOutOfRangeException();
+
+		Max = maximum;
+		Min = minimum;
 	}
 
 

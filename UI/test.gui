@@ -6,7 +6,7 @@
         <yesNo description="yesno 3" required="true" group="y2" />
         <number description="number" longName="--float" shortName="-f" max="10" min="0" />
         <number description="number 1" customDefault="10" longName="--int" shortName="-i" />
-        <openFile description="open file" customDefaultFolder="~" customDefaultFileName="text" longName="--openfile" shortName="-x">
+        <openFile description="open file" customDefaultFolder="~/" customDefaultFileName="text" longName="--openfile" shortName="-x">
             <extension afterDot="txt" displayName="Text File" />
         </openFile>
         <saveFile description="save file" customDefaultExtensionWithDot=".txt">

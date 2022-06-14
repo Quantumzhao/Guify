@@ -73,6 +73,8 @@ class Program
 
 		var command = $"{Root.Command} {Root.Compile()} {Postfix}";
 
-		ShellUtils.Bash(command);
+		//ShellUtils.Bash(command);
+
+		Console.WriteLine(command);
 	}
 }

@@ -20,11 +20,11 @@ abstract class FieldBase<T> : ComponentBase, INotifyPropertyChanged
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
+	private bool UsingDefault = true;
+	private readonly string? LongName = null;
+	private readonly string? ShortName = null;
 
-	public readonly string? LongName = null;
-	public readonly string? ShortName = null;
 	public List<string> Flags { get; } = new List<string>();
-
 	public virtual T DefaultValue { get; init; }
 	public bool IsRequired { get; init; }
 	public string Description { get; init; }
@@ -35,6 +35,11 @@ abstract class FieldBase<T> : ComponentBase, INotifyPropertyChanged
 		get => _Value; 
 		set
 		{
+			// because binded control will automatically set any nullable struct to a non-null default
+			// therefore using null as default value is prone to change
+			// if (_Value?.Equals(DefaultValue) ?? DefaultValue == null) UsingDefault = true;
+			// else UsingDefault = false;
+
 			if (!(_Value?.Equals(value) ?? false))
 			{
 				_Value = value;
@@ -45,25 +50,29 @@ abstract class FieldBase<T> : ComponentBase, INotifyPropertyChanged
 
 	public override string Compile()
 	{
-		var flag = (LongName, ShortName) switch
-		{
-			(string l, _) => l,
-			(null, string s) => s,
-			_ => string.Empty
-		} + " ";
+		var flag = GetFlag();
 
 		if (IsRequired) 
 		{
-			if (!string.IsNullOrEmpty(Value?.ToString())) return flag + ValueToString();				
-			else throw new ArgumentNullException(nameof(Value)
+			if (!string.IsNullOrEmpty(Value?.ToString())) return $"{flag} {ValueToString(Value)}";				
+			else throw new WarningException(nameof(Value)
 				, $"Value of {GetName()} is required");
 		}
 		else
 		{
-			if (Value != null) return flag + Value.ToString();
-			else return DefaultValue?.ToString() ?? string.Empty;
+			if (Value != null) return $"{flag} {ValueToString(Value)}";
+			else if (DefaultValue != null) return $"{flag} {ValueToString(DefaultValue)}";
+			else return string.Empty;
 		}
 	}
+
+	protected string GetFlag() 
+		=> (LongName, ShortName) switch
+		{
+			(string l, _) => l,
+			(null, string s) => s,
+			_ => string.Empty
+		};
 
 	public string GetName()
 	{
@@ -72,5 +81,5 @@ abstract class FieldBase<T> : ComponentBase, INotifyPropertyChanged
 		else return Description[0..5] + "...";
 	}
 
-	public virtual string ValueToString() => Value?.ToString() ?? string.Empty;
+	public virtual string ValueToString(T value) => value?.ToString() ?? string.Empty;
 }

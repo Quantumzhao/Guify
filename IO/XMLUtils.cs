@@ -33,6 +33,7 @@ static class XMLUtils
 	private const string VERB = "verb";
 	private const string CANDIDATE = "candidate";
 	private const string VALUE = "value";
+	private const string CODE = "code";
 	private const string IS_FLOAT_NUMBER = "isFloatNumber";
 	private const string GROUP = "group";
 	private const string MAX = "max";
@@ -43,6 +44,7 @@ static class XMLUtils
 	private const string EXTENSION = "extension";
 	private const string AFTER_DOT = "afterDot";
 	private const string DISPLAY_NAME = "displayName";
+	private const string IS_FLAG = "isFlag";
 #endregion
 
 	public static Root LoadRoot(string path)
@@ -149,12 +151,13 @@ static class XMLUtils
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();
 		var shortName = node.GetShortName();
+		var isFlag = node.Attribute(IS_FLAG)?.Value?.ToBool();
 
 		var group = node.Attribute(GROUP)?.Value;
 		if (group == null)
-			return new CheckBoxField(defaultValue, isRequired, longName, shortName, desc);
+			return new CheckBoxField(defaultValue, isFlag, isRequired, longName, shortName, desc);
 		else
-			return new RadioButtonField(defaultValue, isRequired, longName, shortName, desc
+			return new RadioButtonField(defaultValue, isFlag, isRequired, longName, shortName, desc
 				, group);
 	}
 
@@ -210,7 +213,7 @@ static class XMLUtils
 
 	private static Infix LoadInfix(XElement node)
 	{
-		var value = node.Attribute(VALUE)?.Value;
+		var value = node.Attribute(CODE)?.Value;
 		if (value == null) throw new ArgumentNullException();
 		else return new Infix(value);
 	}
