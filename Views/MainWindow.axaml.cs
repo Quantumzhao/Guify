@@ -20,7 +20,6 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
 		HelpTextBlock.Text = HelpText;
 		MainView.DataContext = MainPageContent;
-		// debug.Text = MainPageContent.ToString();
 	}
 
 	public string HelpText { get; set; }
