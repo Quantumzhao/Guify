@@ -8,13 +8,14 @@
 
     <Application.Styles>
       <FluentTheme Mode="Dark"></FluentTheme>
+      <StyleInclude Source="avares://Guify/Views/Styles/TabControl.axaml"></StyleInclude>
       <Style Selector="TextBlock.Body">
         <Setter Property="FontFamily" Value="Segoe UI SemiLight"></Setter>
         <Setter Property="FontSize" Value="14"></Setter>
       </Style>
       <Style Selector="TextBlock.Title">
         <Setter Property="FontFamily" Value="Segoe UI"></Setter>
-        <Setter Property="FontSize" Value="40"></Setter>
+        <Setter Property="FontSize" Value="48"></Setter>
         <Setter Property="FontWeight" Value="ExtraLight"></Setter>
       </Style>
       <Style Selector="TextBlock.Code">
@@ -25,7 +26,7 @@
         <Setter Property="FontSize" Value="10"></Setter>
       </Style>
       <Style Selector="TextBlock.VerbDescription">
-        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontWeight" Value="Regular"></Setter>
       </Style>
     </Application.Styles>
   <Application.Resources>

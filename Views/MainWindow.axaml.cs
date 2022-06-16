@@ -19,17 +19,12 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		else HelpText = ShellUtils.GetHelpInfo(Program.Root);
 
 		HelpTextBlock.Text = HelpText;
+		MainTitle.Text = Program.Root?.Command ?? string.Empty;
 		MainView.DataContext = MainPageContent;
 	}
 
 	public string HelpText { get; set; }
-
-	private Root GetRoot() 
-	{
-		if (Program.Root == null) throw new ArgumentNullException();
-		else return Program.Root;
-	}
-
+	
 	public object MainPageContent => (Program.Root?.FlatItems, Program.Root?.Verbs) switch
 	{
 		(ComponentBase[] items, null) => items,

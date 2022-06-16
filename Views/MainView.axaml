@@ -6,8 +6,12 @@
              xmlns:views="clr-namespace:Guify.Views"
              xmlns:model="clr-namespace:Guify.Models"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:converter="clr-namespace:Guify.Views.Converters"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Guify.Views.MainView">
+  <UserControl.Resources>
+    <converter:ToUpperConverter x:Key="ToUpperConverter"></converter:ToUpperConverter>
+  </UserControl.Resources>
   <ContentControl Content="{Binding}">
     <ContentControl.ContentTemplate>
       <dt:TopLevelTemplateSelector>
@@ -19,8 +23,7 @@
             <!--                               Header                                    -->
             <TabControl.ItemTemplate>
               <DataTemplate DataType="model:Verb">
-                <TextBlock Classes="Title" Text="{Binding Name}"
-                           HorizontalAlignment="Stretch"/>
+                <TextBlock Text="{Binding Name, Converter={StaticResource ToUpperConverter}}"/>
               </DataTemplate>
             </TabControl.ItemTemplate>
             <!--                              Content                                     -->
@@ -29,10 +32,9 @@
                 <ScrollViewer>
                   <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" Margin="0 20 0 20" Spacing="10">
-                      <Rectangle Width="4" VerticalAlignment="Stretch" Fill="#C0FFFFFF"></Rectangle>
                       <TextBlock Classes="Body VerbDescription" 
                                  Text="{Binding Description}" 
-                                 VerticalAlignment="Center"></TextBlock>
+                                 VerticalAlignment="Center" TextWrapping="Wrap"></TextBlock>
                     </StackPanel>
                     <views:PageView HorizontalAlignment="Center"/>
                   </StackPanel>

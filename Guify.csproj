@@ -18,6 +18,7 @@
     <None Update="UI/**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <AvaloniaResource Include="**/*.xaml" />
   </ItemGroup>
   <ItemGroup>
     <!--This helps with theme dll-s trimming.
