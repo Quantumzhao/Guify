@@ -8,16 +8,20 @@
   <ItemsControl Items="{Binding Items}">
     <ItemsControl.ItemsPanel>
       <ItemsPanelTemplate>
-        <StackPanel Orientation="Vertical"></StackPanel>
+        <StackPanel Orientation="Vertical" Spacing="10"></StackPanel>
       </ItemsPanelTemplate>
     </ItemsControl.ItemsPanel>
     <ItemsControl.ItemTemplate>
       <DataTemplate>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
           <!--                           Start Description Area                          -->
-          <StackPanel Orientation="Vertical">
-            <TextBlock MaxWidth="200" MinWidth="50" Text="{Binding Description}"></TextBlock>
-            <ItemsControl Items="{Binding Flags}">
+          <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Classes="Body" 
+                       MaxWidth="200" 
+                       MinWidth="50" 
+                       Text="{Binding Description}" 
+                       HorizontalAlignment="Right"></TextBlock>
+            <ItemsControl Items="{Binding Flags}" HorizontalAlignment="Right">
               <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                   <StackPanel Spacing="10" Orientation="Horizontal"></StackPanel>
@@ -25,15 +29,14 @@
               </ItemsControl.ItemsPanel>
               <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                  <Border Background="AliceBlue">
-                    <TextBlock Text="{Binding}" FontFamily="Fira Code Medium"></TextBlock>
-                  </Border>
+                  <TextBlock Classes="Code Small" 
+                             Text="{Binding}"></TextBlock>
                 </DataTemplate>
               </ItemsControl.ItemTemplate>
             </ItemsControl>
           </StackPanel>
           <!-- End Description Area. That's a lot for such a trivial component, isn't it? -->
-          <views:VersatileControl></views:VersatileControl>
+          <views:VersatileControl VerticalAlignment="Center"></views:VersatileControl>
         </StackPanel>
       </DataTemplate>
     </ItemsControl.ItemTemplate>

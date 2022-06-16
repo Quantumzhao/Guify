@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root command="echo" xmlns="urn:Guify.Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify.Namespace ./Schemas/Root.xsd">
-    <verb name="Verb 1" description="description 1">
+    <verb name="synchronize" description="description 1">
         <yesNo description="yesno description" required="true" longName="--yesno" shortName="-o" />
         <yesNo description="yesno 2 description" required="true" group="y2" />
         <yesNo description="yesno 3" required="true" group="y2" />

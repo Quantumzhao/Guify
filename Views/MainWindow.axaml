@@ -10,7 +10,7 @@
         Title="Guify"
         SizeToContent="WidthAndHeight"
         TransparencyLevelHint="AcrylicBlur"
-        Background="#C0FFFFFF"
+        Background="#40000000"
         ExtendClientAreaToDecorationsHint="True">
   <Grid>
     <Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
               Margin="10"
               Grid.Row="1"
               Click="Execute">
-        Execute
+        <TextBlock Classes="Body" Text="Execute"></TextBlock>
       </Button>
     </Grid>
     

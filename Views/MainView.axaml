@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:dt="clr-namespace:Guify.Views.DataTemplates"
              xmlns:views="clr-namespace:Guify.Views"
+             xmlns:model="clr-namespace:Guify.Models"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Guify.Views.MainView">
   <ContentControl Content="{Binding}">
@@ -12,27 +14,27 @@
         <DataTemplate x:Key="SingletonTemplate">
           <views:PageView></views:PageView>
         </DataTemplate>
-        <DataTemplate x:Key="VerbsTemplate">
-          <TabControl Name="MainTab" Items="{Binding}" SelectionChanged="UpdateVerbs">
+        <DataTemplate x:Key="VerbsTemplate" DataType="sys:Array">
+          <TabControl Items="{Binding}" SelectionChanged="UpdateVerbs">
             <!--                               Header                                    -->
             <TabControl.ItemTemplate>
-              <DataTemplate>
-                <StackPanel Orientation="Vertical">
-                  <TextBlock Text="{Binding Name}"
-                             TextWrapping="Wrap"
-                             HorizontalAlignment="Stretch"/>
-                </StackPanel>
+              <DataTemplate DataType="model:Verb">
+                <TextBlock Classes="Title" Text="{Binding Name}"
+                           HorizontalAlignment="Stretch"/>
               </DataTemplate>
             </TabControl.ItemTemplate>
             <!--                              Content                                     -->
             <TabControl.ContentTemplate>
-              <DataTemplate>
+              <DataTemplate DataType="model:Verb">
                 <ScrollViewer>
                   <StackPanel Orientation="Vertical">
-                    <Border>
-                      <TextBlock Text="{Binding Description}"></TextBlock>
-                    </Border>
-                    <views:PageView/>
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 20" Spacing="10">
+                      <Rectangle Width="4" VerticalAlignment="Stretch" Fill="#C0FFFFFF"></Rectangle>
+                      <TextBlock Classes="Body VerbDescription" 
+                                 Text="{Binding Description}" 
+                                 VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <views:PageView HorizontalAlignment="Center"/>
                   </StackPanel>
                 </ScrollViewer>
               </DataTemplate>

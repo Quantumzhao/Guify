@@ -2,11 +2,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:Guify"
              x:Class="Guify.App">
-    <Application.DataTemplates>
-        <local:ViewLocator/>
+  <Application.DataTemplates>
+    <local:ViewLocator/>
     </Application.DataTemplates>
 
     <Application.Styles>
-        <FluentTheme Mode="Light"/>
+      <FluentTheme Mode="Dark"></FluentTheme>
+      <Style Selector="TextBlock.Body">
+        <Setter Property="FontFamily" Value="Segoe UI SemiLight"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+      </Style>
+      <Style Selector="TextBlock.Title">
+        <Setter Property="FontFamily" Value="Segoe UI"></Setter>
+        <Setter Property="FontSize" Value="40"></Setter>
+        <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+      </Style>
+      <Style Selector="TextBlock.Code">
+        <Setter Property="FontFamily" Value="Cascadia Code, Bold"></Setter>
+        <Setter Property="FontSize" Value="10"></Setter>
+      </Style>
+      <Style Selector="TextBlock.Code.Small">
+        <Setter Property="FontSize" Value="10"></Setter>
+      </Style>
+      <Style Selector="TextBlock.VerbDescription">
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+      </Style>
     </Application.Styles>
+  <Application.Resources>
+  </Application.Resources>
 </Application>
