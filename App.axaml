@@ -26,7 +26,8 @@
         <Setter Property="FontSize" Value="10"></Setter>
       </Style>
       <Style Selector="TextBlock.VerbDescription">
-        <Setter Property="FontWeight" Value="Regular"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontFamily" Value="Segoe UI"></Setter>
       </Style>
     </Application.Styles>
   <Application.Resources>

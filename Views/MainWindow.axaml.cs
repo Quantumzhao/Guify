@@ -19,7 +19,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		else HelpText = ShellUtils.GetHelpInfo(Program.Root);
 
 		HelpTextBlock.Text = HelpText;
-		MainTitle.Text = Program.Root?.Command ?? string.Empty;
+		MainTitle.Text = Program.ProfileName ?? string.Empty;
 		MainView.DataContext = MainPageContent;
 	}
 
@@ -38,7 +38,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		{
 			Program.Run();
 		}
-		catch (WarningException we)
+		catch (WarningException)
 		{
 			var msgBox = MessageBoxManager.GetMessageBoxStandardWindow(
 				"Missing Fields", "Some required fields are missing!!!");

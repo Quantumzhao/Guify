@@ -14,6 +14,7 @@ class Program
 {
 	public static string Postfix { get; private set; } = string.Empty;
 	public static Root? Root { get; set; }
+	public static string? ProfileName { get; set; }
 
 	// Initialization code. Don't use any Avalonia, third-party APIs or any
 	// SynchronizationContext-reliant code before AppMain is called: things aren't initialized
@@ -49,11 +50,11 @@ class Program
 					throw new InvalidOperationException();
 
 				var ps = new LinkedList<string>(o.Properties);
-				var name = ps.First?.Value ?? string.Empty;
+				ProfileName = ps.First?.Value ?? string.Empty;
 				ps.RemoveFirst();
 				Postfix = string.Join(' ', ps);
 
-				Root = XMLUtils.LoadRoot(ConfigIO.FindPathEntry(name));
+				Root = XMLUtils.LoadRoot(ConfigIO.FindPathEntry(ProfileName));
 
 				BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 				// Console.WriteLine("here");
