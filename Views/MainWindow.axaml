@@ -25,7 +25,7 @@
         <RowDefinition Height="*"></RowDefinition>
         <RowDefinition Height="Auto"></RowDefinition>
       </Grid.RowDefinitions>
-      <StackPanel Grid.Row="0" Orientation="Horizontal">
+      <StackPanel Grid.Row="0" Orientation="Horizontal" IsVisible="False">
         <Rectangle Fill="Gray" VerticalAlignment="Stretch" Width="8" Margin="0 12 24 8"></Rectangle>
         <TextBlock x:Name="MainTitle" Classes="Title"></TextBlock>
       </StackPanel>
@@ -51,14 +51,14 @@
         <RowDefinition Height="*"></RowDefinition>
         <RowDefinition Height="50"></RowDefinition>
       </Grid.RowDefinitions>
-      <Rectangle Grid.Row="0" 
-                 Grid.RowSpan="3" 
-                 Grid.Column="0" 
-                 Fill="Black" 
-                 Width="1" 
-                 VerticalAlignment="Stretch" 
-                 HorizontalAlignment="Left"
-                 Margin="0 20 0 20"></Rectangle>
+      <!-- <Rectangle Grid.Row="0"  -->
+      <!--            Grid.RowSpan="3"  -->
+      <!--            Grid.Column="0"  -->
+      <!--            Fill="#80FFFFFF"  -->
+      <!--            Width="1"  -->
+      <!--            VerticalAlignment="Stretch"  -->
+      <!--            HorizontalAlignment="Left" -->
+      <!--            Margin="0 20 0 20"></Rectangle> -->
       <TextBlock Name="HelpTextBlock"></TextBlock>
     </Grid>
   </Grid>

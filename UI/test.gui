@@ -6,6 +6,8 @@
         <yesNo description="yesno 3" required="true" group="y2" />
         <number description="number" longName="--float" shortName="-f" max="10" min="0" />
         <number description="number 1" customDefault="10" longName="--int" shortName="-i" />
+        <infix code="command" />
+        <separator label="name1"></separator>
         <openFile description="open file" customDefaultFolder="~/" customDefaultFileName="text" longName="--openfile" shortName="-x">
             <extension afterDot="txt" displayName="Text File" />
         </openFile>
@@ -13,7 +15,7 @@
             <extension afterDot="txt" displayName="Text File" />
         </saveFile>
     </verb>
-    <verb name="Verb 2" description="Remove an associated Guify UI file">
+    <verb name="Verb2" description="Remove an associated Guify UI file">
         <string description="string description" required="true" longName="--string" shortName="-s" />
         <selectFolder description="path to the Guify UI file" required="true" longName="--path" shortName="-p" />
         <pickValue description="pick value">

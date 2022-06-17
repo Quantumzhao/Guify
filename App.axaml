@@ -1,14 +1,16 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:Guify"
+             xmlns:converter="clr-namespace:Guify.Views.Converters"
              x:Class="Guify.App">
   <Application.DataTemplates>
     <local:ViewLocator/>
     </Application.DataTemplates>
 
     <Application.Styles>
-      <FluentTheme Mode="Dark"></FluentTheme>
+      <FluentTheme Mode="Dark" DensityStyle="Compact"></FluentTheme>
       <StyleInclude Source="avares://Guify/Views/Styles/TabControl.axaml"></StyleInclude>
+      <StyleInclude Source="avares://Guify/Views/Styles/CheckBox.axaml"></StyleInclude>
       <Style Selector="TextBlock.Body">
         <Setter Property="FontFamily" Value="Segoe UI SemiLight"></Setter>
         <Setter Property="FontSize" Value="14"></Setter>
@@ -20,16 +22,18 @@
       </Style>
       <Style Selector="TextBlock.Code">
         <Setter Property="FontFamily" Value="Cascadia Code, Bold"></Setter>
+      </Style>
+      <Style Selector="TextBlock.Small">
         <Setter Property="FontSize" Value="10"></Setter>
       </Style>
-      <Style Selector="TextBlock.Code.Small">
-        <Setter Property="FontSize" Value="10"></Setter>
-      </Style>
-      <Style Selector="TextBlock.VerbDescription">
-        <Setter Property="FontWeight" Value="Bold"></Setter>
+      <Style Selector="TextBlock.Label">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontWeight" Value="Black"></Setter>
         <Setter Property="FontFamily" Value="Segoe UI"></Setter>
+        <Setter Property="Foreground" Value="#C0FFFFFF"></Setter>
       </Style>
     </Application.Styles>
   <Application.Resources>
+    <converter:CaseConverter x:Key="CaseConverter"></converter:CaseConverter>
   </Application.Resources>
 </Application>

@@ -5,28 +5,31 @@
              xmlns:dt="using:Guify.Views.DataTemplates"
              xmlns:comp="using:Guify.Models.Components"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             Width="200"
              x:Class="Guify.Views.VersatileControl" DataContext="{Binding}">
   <ContentControl Content="{Binding}" HorizontalAlignment="Left">
     <ContentControl.ContentTemplate>
-      <dt:VersatileTemplateSelector>
+      <dt:FieldTemplateSelector>
         <DataTemplate x:Key="CheckBoxTemplate" DataType="comp:CheckBoxField">
           <CheckBox IsChecked="{Binding Path=Value, Mode=TwoWay}"></CheckBox>
         </DataTemplate>
+        
         <DataTemplate x:Key="StringTemplate" DataType="comp:StringField">
           <TextBox Text="{Binding Path=Value, Mode=TwoWay}"></TextBox>
         </DataTemplate>
+        
         <DataTemplate x:Key="NumberTemplate" DataType="comp:NumberField">
           <NumericUpDown Value="{Binding Path=Value, Mode=TwoWay}" 
                          Maximum="{Binding Max}" 
                          Minimum="{Binding Min}"></NumericUpDown>
         </DataTemplate>
+        
         <DataTemplate x:Key="OpenFileTemplate" DataType="comp:OpenFileField">
           <StackPanel Orientation="Horizontal">
             <Button Content="Browse" Click="OpenFile"></Button>
             <TextBox Text="{Binding Value, Mode=TwoWay}" MaxWidth="100"></TextBox>
           </StackPanel>
         </DataTemplate>
+        
         <DataTemplate x:Key="PickValueTemplate" DataType="comp:PickValueField">
           <ComboBox Items="{Binding Candidates}" 
                     SelectedItem="{Binding Value, Mode=OneWayToSource}">
@@ -37,23 +40,22 @@
             </ComboBox.ItemTemplate>
           </ComboBox>
         </DataTemplate>
+        
         <DataTemplate x:Key="RadioButtonTemplate" DataType="comp:RadioButtonField">
           <RadioButton IsChecked="{Binding Path=Value, Mode=TwoWay}" 
                        GroupName="{Binding Group}" 
                        Content="{Binding Value, Mode=TwoWay}"></RadioButton>
         </DataTemplate>
+        
         <DataTemplate x:Key="SaveFileTemplate"></DataTemplate>
+        
         <DataTemplate x:Key="SelectFolderTemplate" DataType="comp:SelectFolderField">
           <StackPanel Orientation="Horizontal">
             <Button Content="Browse" Click="BrowseFolder"></Button>
             <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
           </StackPanel>
         </DataTemplate>
-        <DataTemplate x:Key="InfixTemplate"></DataTemplate>
-        <DataTemplate x:Key="SeparatorTemplate">
-          
-        </DataTemplate>
-      </dt:VersatileTemplateSelector>
+      </dt:FieldTemplateSelector>
     </ContentControl.ContentTemplate>
   </ContentControl>
 </UserControl>

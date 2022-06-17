@@ -13,31 +13,7 @@
     </ItemsControl.ItemsPanel>
     <ItemsControl.ItemTemplate>
       <DataTemplate>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
-          <!--                           Start Description Area                          -->
-          <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-            <TextBlock Classes="Body" 
-                       MaxWidth="200" 
-                       MinWidth="50" 
-                       Text="{Binding Description}" 
-                       HorizontalAlignment="Right"></TextBlock>
-            <ItemsControl Items="{Binding Flags}" HorizontalAlignment="Right">
-              <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                  <StackPanel Spacing="10" Orientation="Horizontal"></StackPanel>
-                </ItemsPanelTemplate>
-              </ItemsControl.ItemsPanel>
-              <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                  <TextBlock Classes="Code Small" 
-                             Text="{Binding}"></TextBlock>
-                </DataTemplate>
-              </ItemsControl.ItemTemplate>
-            </ItemsControl>
-          </StackPanel>
-          <!-- End Description Area. That's a lot for such a trivial component, isn't it? -->
-          <views:VersatileControl VerticalAlignment="Center"></views:VersatileControl>
-        </StackPanel>
+        <views:FieldControl></views:FieldControl>
       </DataTemplate>
     </ItemsControl.ItemTemplate>
   </ItemsControl>

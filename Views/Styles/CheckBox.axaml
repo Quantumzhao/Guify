@@ -1,0 +1,15 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Style Selector="CheckBox[IsChecked=True] /template/ Border#border">
+    <Setter Property="IsVisible" Value="False"></Setter>
+  </Style>
+  <Style Selector="CheckBox /template/ Path#checkMark">
+    <Setter Property="IsVisible" Value="True"/>
+  </Style>
+  <Style Selector="CheckBox:checked /template/ Rectangle#indeterminateMark">
+    <Setter Property="IsVisible" Value="False"/>
+  </Style>
+  <Style Selector="CheckBox">
+    <Setter Property="Foreground" Value="White"></Setter>
+  </Style>
+</Styles>

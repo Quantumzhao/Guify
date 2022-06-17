@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:Guify.Views"
+             xmlns:dt="clr-namespace:Guify.Views.DataTemplates"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Guify.Views.FieldControl">
+  <ContentControl Content="{Binding}">
+    <ContentControl.ContentTemplate>
+      <dt:ComponentTemplateSelector>
+        <DataTemplate x:Key="InfixTemplate">
+        </DataTemplate>
+        
+        <DataTemplate x:Key="SeparatorTemplate">
+          <TextBlock Classes="Label" 
+                     Text="{Binding Label, Converter={StaticResource CaseConverter}, ConverterParameter=true}"
+                     Margin="0 24 0 0"></TextBlock>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="FieldTemplate">
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="10">
+            <!--                           Start Description Area                          -->
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+              <TextBlock Classes="Body" 
+                         Width="200"
+                         HorizontalAlignment="Left"
+                         Text="{Binding Description}"></TextBlock>
+              <ItemsControl Items="{Binding Flags}" HorizontalAlignment="Left">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <StackPanel Spacing="10" Orientation="Horizontal"></StackPanel>
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <TextBlock Classes="Code Small" Text="{Binding}"></TextBlock>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </StackPanel>
+            <!-- End Description Area. That's a lot for such a trivial component, isn't it? -->
+            <views:VersatileControl VerticalAlignment="Center"></views:VersatileControl>
+          </StackPanel>
+        </DataTemplate>
+      </dt:ComponentTemplateSelector>
+    </ContentControl.ContentTemplate>
+  </ContentControl>
+</UserControl>

@@ -45,6 +45,7 @@ static class XMLUtils
 	private const string AFTER_DOT = "afterDot";
 	private const string DISPLAY_NAME = "displayName";
 	private const string IS_FLAG = "isFlag";
+	private const string LABEL = "label";
 #endregion
 
 	public static Root LoadRoot(string path)
@@ -99,7 +100,7 @@ static class XMLUtils
 			SAVE_FILE_FIELD => LoadSaveFileField(xml),
 			PICK_VALUE_FIELD => LoadPickValueField(xml),
 			INFIX => LoadInfix(xml),
-			SEPARATOR => new Separator(),
+			SEPARATOR => LoadSeparator(xml),
 			var any => throw new ArgumentException($"{any} is not a valid component")
 		};
 
@@ -216,6 +217,12 @@ static class XMLUtils
 		var value = node.Attribute(CODE)?.Value;
 		if (value == null) throw new ArgumentNullException();
 		else return new Infix(value);
+	}
+
+	private static Separator LoadSeparator(XElement node)
+	{
+		var label = node.Attribute(LABEL)?.Value ?? string.Empty;
+		return new Separator(label);
 	}
 
 	private static bool GetIsRequired(this XElement node)

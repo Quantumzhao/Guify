@@ -1,9 +1,9 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Style Selector="TabItem">
-    <Setter Property="Margin" Value="0 0 10 0"/>
+    <Setter Property="Margin" Value="0 0 10 -4"/>
     <Setter Property="Padding" Value="0"/>
-    <Setter Property="MinHeight" Value="14"></Setter>
+    <Setter Property="MinHeight" Value="40"></Setter>
   </Style>
   <Style Selector="TabItem /template/ Border#PART_SelectedPipe">
       <Setter Property="IsVisible" Value="False" />
@@ -13,8 +13,8 @@
     </Style>
     <Style Selector="TabItem > TextBlock">
       <Setter Property="FontFamily" Value="Segoe UI"></Setter>
-      <Setter Property="FontWeight" Value="Black"></Setter>
-      <Setter Property="FontSize" Value="14"></Setter>
+      <Setter Property="FontWeight" Value="Light"></Setter>
+      <Setter Property="FontSize" Value="30"></Setter>
       <Setter Property="Margin" Value="0 -10 0 -10"></Setter>
     </Style>
 </Styles>

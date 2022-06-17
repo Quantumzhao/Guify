@@ -4,14 +4,11 @@ using Avalonia.Markup.Xaml;
 
 namespace Guify.Views;
 
-public partial class TestStyle : Window
+public partial class FieldControl : UserControl
 {
-    public TestStyle()
+    public FieldControl()
     {
         InitializeComponent();
-#if DEBUG
-        this.AttachDevTools();
-#endif
     }
 
     private void InitializeComponent()

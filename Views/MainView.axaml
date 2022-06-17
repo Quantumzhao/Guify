@@ -6,12 +6,8 @@
              xmlns:views="clr-namespace:Guify.Views"
              xmlns:model="clr-namespace:Guify.Models"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:converter="clr-namespace:Guify.Views.Converters"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Guify.Views.MainView">
-  <UserControl.Resources>
-    <converter:ToUpperConverter x:Key="ToUpperConverter"></converter:ToUpperConverter>
-  </UserControl.Resources>
   <ContentControl Content="{Binding}">
     <ContentControl.ContentTemplate>
       <dt:TopLevelTemplateSelector>
@@ -23,20 +19,26 @@
             <!--                               Header                                    -->
             <TabControl.ItemTemplate>
               <DataTemplate DataType="model:Verb">
-                <TextBlock Text="{Binding Name, Converter={StaticResource ToUpperConverter}}"/>
+                <TextBlock Text="{Binding Name, Converter={StaticResource CaseConverter}, ConverterParameter=false}"/>
               </DataTemplate>
             </TabControl.ItemTemplate>
             <!--                              Content                                     -->
             <TabControl.ContentTemplate>
               <DataTemplate DataType="model:Verb">
-                <ScrollViewer>
+                <ScrollViewer Margin="-10 0 0 0">
                   <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal" Margin="0 20 0 20" Spacing="10">
-                      <TextBlock Classes="Body VerbDescription" 
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0 20"
+                                HorizontalAlignment="Left"
+                                Spacing="10">
+                      <TextBlock Classes="Label" 
+                                 Text="DESCRIPTION:"
+                                 Padding="0 3 0 0"></TextBlock>
+                      <TextBlock Classes="Body" 
                                  Text="{Binding Description}" 
-                                 VerticalAlignment="Center" TextWrapping="Wrap"></TextBlock>
+                                 TextWrapping="Wrap"></TextBlock>
                     </StackPanel>
-                    <views:PageView HorizontalAlignment="Center"/>
+                    <views:PageView HorizontalAlignment="Left"/>
                   </StackPanel>
                 </ScrollViewer>
               </DataTemplate>
