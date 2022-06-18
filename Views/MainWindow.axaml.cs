@@ -16,14 +16,14 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		InitializeComponent();
 
 		if (Program.Root == null) throw new ArgumentNullException();
-		else HelpText = ShellUtils.GetHelpInfo(Program.Root);
+		// else HelpText = ShellUtils.GetHelpInfo(Program.Root);
 
-		HelpTextBlock.Text = HelpText;
+		// HelpTextBlock.Text = HelpText;
 		MainTitle.Text = Program.ProfileName ?? string.Empty;
 		MainView.DataContext = MainPageContent;
 	}
 
-	public string HelpText { get; set; }
+	// public string HelpText { get; set; }
 	
 	public object MainPageContent => (Program.Root?.FlatItems, Program.Root?.Verbs) switch
 	{
