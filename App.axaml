@@ -11,6 +11,8 @@
       <FluentTheme Mode="Dark" DensityStyle="Compact"></FluentTheme>
       <StyleInclude Source="avares://Guify/Views/Styles/TabControl.axaml"></StyleInclude>
       <StyleInclude Source="avares://Guify/Views/Styles/CheckBox.axaml"></StyleInclude>
+      <StyleInclude Source="avares://Guify/Views/Styles/RadioButton.axaml"></StyleInclude>
+      <StyleInclude Source="avares://Guify/Views/Styles/TextBox.axaml"></StyleInclude>
       <Style Selector="TextBlock.Body">
         <Setter Property="FontFamily" Value="Segoe UI SemiLight"></Setter>
         <Setter Property="FontSize" Value="14"></Setter>
