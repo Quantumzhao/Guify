@@ -11,9 +11,7 @@
         SizeToContent="WidthAndHeight"
         TransparencyLevelHint="AcrylicBlur"
         Background="#A02c000a"
-        ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaChromeHints="NoChrome"
-        ExtendClientAreaTitleBarHeightHint="40">
+        ExtendClientAreaToDecorationsHint="True">
   <Grid Margin="0 8 0 0" ColumnDefinitions="*, Auto">
     <Grid Grid.Column="0" RowDefinitions="Auto,*,Auto">
       <StackPanel Grid.Row="0" Orientation="Horizontal" IsVisible="False">

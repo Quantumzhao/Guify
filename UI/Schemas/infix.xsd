@@ -3,6 +3,6 @@
     <xs:element name="infix">
         <xs:complexType>
             <xs:attribute name="code" type="xs:string" use="required"></xs:attribute>
-        </xs:complexType>    
+        </xs:complexType>
     </xs:element>
 </xs:schema>
