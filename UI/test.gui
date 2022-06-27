@@ -8,12 +8,8 @@
         <number description="number 1" customDefault="10" longName="--int" shortName="-i" />
         <infix code="command" />
         <separator label="name1"></separator>
-        <openFile description="open file" customDefaultFolder="~/" customDefaultFileName="text" longName="--openfile" shortName="-x">
-            <extension afterDot="txt" displayName="Text File" />
-        </openFile>
-        <saveFile description="save file" customDefaultExtensionWithDot=".txt">
-            <extension afterDot="txt" displayName="Text File" />
-        </saveFile>
+        <openFile description="open file" customDefaultFolder="~/" customDefaultFileName="text" longName="--openfile" shortName="-x" />
+        <saveFile description="save file" customDefaultExtensionWithDot=".txt"/>
     </verb>
     <verb name="Verb2" description="Remove an associated Guify UI file">
         <string description="string description" required="true" longName="--string" shortName="-s" />

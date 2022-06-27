@@ -17,7 +17,6 @@ class NumberField : FieldBase<float?>
 		Min = minimum;
 	}
 
-
-	public float Max { get; set; }
-	public float Min { get; set; }
+	public float Max { get; init; }
+	public float Min { get; init; }
 }

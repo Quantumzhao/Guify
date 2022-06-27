@@ -34,16 +34,12 @@ static class XMLUtils
 	private const string CANDIDATE = "candidate";
 	private const string VALUE = "value";
 	private const string CODE = "code";
-	private const string IS_FLOAT_NUMBER = "isFloatNumber";
 	private const string GROUP = "group";
 	private const string MAX = "max";
 	private const string MIN = "min";
 	private const string MULTIPLE = "multiple";
 	private const string CUSTOM_DEFAULT_FOLDER = "customDefaultFolder";
 	private const string CUSTOM_DEFAULT_FILE_NAME = "customDefaultFileName";
-	private const string EXTENSION = "extension";
-	private const string AFTER_DOT = "afterDot";
-	private const string DISPLAY_NAME = "displayName";
 	private const string IS_FLAG = "isFlag";
 	private const string LABEL = "label";
 #endregion
@@ -124,14 +120,8 @@ static class XMLUtils
 		var allowMultiple = node.Attribute(MULTIPLE)?.Value.ToBool() ?? false;
 		var customDefaultFolder = node.Attribute(CUSTOM_DEFAULT_FOLDER)?.Value;
 		var customDefaultFileName = node.Attribute(CUSTOM_DEFAULT_FILE_NAME)?.Value?.Expand();
-		var extensions = node.Elements().Select(e => 
-			(e.Attribute(AFTER_DOT)?.Value, e.Attribute(DISPLAY_NAME)?.Value) switch
-			{
-				(string afterDot, string name) => (afterDot: afterDot.Expand(), displayName: name),
-				_ => throw new ArgumentException()
-			}).ToArray();
 
-		return new OpenFileField(customDefaultFileName, customDefaultFolder, extensions, allowMultiple, isRequired, desc, longName, shortName);
+		return new OpenFileField(customDefaultFileName, customDefaultFolder, allowMultiple, isRequired, desc, longName, shortName);
 	}
 
 	private static SelectFolderField LoadSelectFolderField(XElement node)
@@ -184,14 +174,8 @@ static class XMLUtils
 		var shortName = node.GetShortName();
 		var customDefaultFileName = node.Attribute(CUSTOM_DEFAULT_FILE_NAME)?.Value;
 		var customDefaultFolder = node.Attribute(CUSTOM_DEFAULT_FOLDER)?.Value;
-		var extensions = node.Elements().Select(e => 
-			(e.Attribute(AFTER_DOT)?.Value, e.Attribute(DISPLAY_NAME)?.Value) switch
-			{
-				(string afterDot, string name) => (afterDot: afterDot.Expand(), displayName: name),
-				_ => throw new ArgumentException()
-			}).ToArray();
 
-		return new SaveFileField(customDefaultFileName, customDefaultFolder, extensions, desc, isRequired, longName, shortName);
+		return new SaveFileField(customDefaultFileName, customDefaultFolder, desc, isRequired, longName, shortName);
 	}
 
 	private static PickValueField LoadPickValueField(XElement node)
