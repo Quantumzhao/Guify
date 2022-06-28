@@ -42,6 +42,7 @@ static class XMLUtils
 	private const string CUSTOM_DEFAULT_FILE_NAME = "customDefaultFileName";
 	private const string IS_FLAG = "isFlag";
 	private const string LABEL = "label";
+	private const string REUSABLE = "reusable";
 #endregion
 
 	public static Root LoadRoot(string path)
@@ -53,6 +54,7 @@ static class XMLUtils
 		var es = root.Elements().ToArray();
 		var help = root.Attribute(SHOW_HELP)?.Value;
 		var cmd = root.Attribute(COMMAND)?.Value;
+		var reusable = root.Attribute(REUSABLE)?.Value?.ToBool();
 
 		Verb[]? verbs = null;
 		ComponentBase[]? components = null;
@@ -68,7 +70,7 @@ static class XMLUtils
 		if (cmd == null) throw new InvalidOperationException(
 			$"The .gui file {path} is not configured properly");
 
-		return new Root(cmd, help, verbs, components);
+		return new Root(cmd, help, reusable, verbs, components);
 	}
 
 	private static Verb LoadVerb(XElement element)

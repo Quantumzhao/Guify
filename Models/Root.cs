@@ -5,7 +5,7 @@ namespace Guify.Models;
 
 	class Root
 	{
-		public Root(string command, string? help, Verb[]? verbs = null, ComponentBase[]? components = null)
+		public Root(string command, string? help, bool? isReusable, Verb[]? verbs = null, ComponentBase[]? components = null)
 		{
 			if (verbs != null) Verbs = verbs;
 			else if (components != null) FlatItems = components;
@@ -13,12 +13,14 @@ namespace Guify.Models;
 
 			Command = command;
 			helpCommand = help;
+			IsReusable = isReusable ?? false;
 		}
 
 		public Verb[]? Verbs { get; init; }
 		public string Command { get; init; }
 		public string? helpCommand { get; init; }
 		public ComponentBase[]? FlatItems { get; init; }
+		public bool IsReusable { get; init; }
 
 		public string Compile()
 		{
