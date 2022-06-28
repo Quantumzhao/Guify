@@ -52,7 +52,6 @@ static class XMLUtils
 
 		var root = doc.Elements().First();
 		var es = root.Elements().ToArray();
-		var help = root.Attribute(SHOW_HELP)?.Value;
 		var cmd = root.Attribute(COMMAND)?.Value;
 		var reusable = root.Attribute(REUSABLE)?.Value?.ToBool();
 
@@ -70,7 +69,7 @@ static class XMLUtils
 		if (cmd == null) throw new InvalidOperationException(
 			$"The .gui file {path} is not configured properly");
 
-		return new Root(cmd, help, reusable, verbs, components);
+		return new Root(cmd, reusable, verbs, components);
 	}
 
 	private static Verb LoadVerb(XElement element)

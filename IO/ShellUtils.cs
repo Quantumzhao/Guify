@@ -32,7 +32,7 @@ class ShellUtils
 
 	public static string GetHelpInfo(Root root)
 	{
-		var escapedArgs = root.Command.Replace("\"", "\\\"") + " " + root.helpCommand;
+		var escapedArgs = root.Command.Replace("\"", "\\\"");
 		//escapedArgs = "dotnet --help";
 
 		using var process = new Process()
