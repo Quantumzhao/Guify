@@ -74,7 +74,7 @@ class Program
 
 		var command = $"{Root.Command} {Root.Compile()} {Postfix}";
 
-		//ShellUtils.Bash(command);
+		ShellUtils.Bash("echo here && read name");
 
 		Console.WriteLine(command);
 	}
