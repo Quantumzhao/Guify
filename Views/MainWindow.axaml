@@ -19,14 +19,14 @@
         <TextBlock x:Name="MainTitle" Classes="Title"></TextBlock>
       </StackPanel>
       <views:MainView x:Name="MainView" Grid.Row="1" Margin="32 4 0 0"/>
-      <Button Height="50" 
-              VerticalContentAlignment="Center" 
-              HorizontalAlignment="Stretch"
+      <Button Classes="Normal"
+              VerticalAlignment="Center" 
               HorizontalContentAlignment="Center"
-              Margin="40 10 10 10"
+              HorizontalAlignment="Stretch"
+              Margin="20"
               Grid.Row="2"
               Click="Execute">
-        <TextBlock Classes="Body" Text="Execute"></TextBlock>
+        <TextBlock Text="EXECUTE"></TextBlock>
       </Button>
     </Grid>
     

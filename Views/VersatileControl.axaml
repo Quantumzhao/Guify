@@ -32,7 +32,9 @@
         
         <DataTemplate x:Key="PickValueTemplate" DataType="comp:PickValueField">
           <ComboBox Items="{Binding Candidates}" 
-                    SelectedItem="{Binding Value, Mode=OneWayToSource}">
+                    SelectedItem="{Binding Value, Mode=TwoWay}"
+                    MinHeight="20"
+                    VerticalAlignment="Center">
             <ComboBox.ItemTemplate>
               <DataTemplate>
                 <TextBlock Text="{Binding}"></TextBlock>
@@ -50,9 +52,11 @@
         <DataTemplate x:Key="SaveFileTemplate"></DataTemplate>
         
         <DataTemplate x:Key="SelectFolderTemplate" DataType="comp:SelectFolderField">
-          <StackPanel Orientation="Horizontal">
-            <Button Content="Browse" Click="BrowseFolder"></Button>
+          <StackPanel Orientation="Horizontal" Spacing="10">
             <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
+            <Button Classes="QuickAction" Width="32" Height="32" Click="BrowseFolder">
+              <TextBlock Text="&#xE0FB;" Padding="-1 -1 0 0"></TextBlock>
+            </Button>
           </StackPanel>
         </DataTemplate>
       </dt:FieldTemplateSelector>

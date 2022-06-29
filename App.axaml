@@ -15,7 +15,9 @@
       <StyleInclude Source="avares://Guify/Views/Styles/RadioButton.axaml"></StyleInclude>
       <StyleInclude Source="avares://Guify/Views/Styles/TextBox.axaml"></StyleInclude>
       <StyleInclude Source="avares://Guify/Views/Styles/ScrollBar.axaml"></StyleInclude>
-      <StyleInclude Source="avares://Guify/Views/Styles/ListBox.axaml"></StyleInclude>
+      <StyleInclude Source="avares://Guify/Views/Styles/ComboBox.axaml"></StyleInclude>
+      <StyleInclude Source="avares://Guify/Views/Styles/NumericUpDown.axaml"></StyleInclude>
+      <StyleInclude Source="avares://Guify/Views/Styles/Button.axaml"></StyleInclude>
       
       <Style Selector="TextBlock.Body">
         <Setter Property="FontFamily" Value="Segoe UI SemiLight"></Setter>
