@@ -2,11 +2,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Style Selector="RadioButton /template/ Ellipse#CheckOuterEllipse">
     <Setter Property="StrokeThickness" Value="1"></Setter>
-    <Setter Property="Stroke" Value="White"></Setter>
+    <Setter Property="Stroke" Value="{DynamicResource NormalForeground}"></Setter>
     <Setter Property="Fill" Value="Transparent"></Setter>
   </Style>
   <Style Selector="RadioButton:pointerover /template/ Ellipse#CheckOuterEllipse">
-    <Setter Property="Fill" Value="Transparent"></Setter>
-    <Setter Property="Stroke" Value="White"></Setter>
+    <Setter Property="Fill" Value="{DynamicResource TransparentBackground}"></Setter>
+    <Setter Property="Stroke" Value="{DynamicResource NormalForeground}"></Setter>
   </Style>
 </Styles>

@@ -3,11 +3,11 @@
   <Style Selector="TextBox:empty /template/ Border#PART_BorderElement">
     <Setter Property="CornerRadius" Value="0"></Setter>
     <Setter Property="BorderThickness" Value="0 0 0 1"></Setter>
-    <Setter Property="Background" Value="Transparent"></Setter>
+    <Setter Property="Background" Value="{DynamicResource TransparentBackground}"></Setter>
   </Style>
   <Style Selector="TextBox:not(:empty) /template/ Border#PART_BorderElement">
     <Setter Property="CornerRadius" Value="0"></Setter>
     <Setter Property="BorderThickness" Value="0 0 0 1"></Setter>
-    <Setter Property="Background" Value="Transparent"></Setter>
+    <Setter Property="Background" Value="{DynamicResource TransparentBackground}"></Setter>
   </Style>
 </Styles>

@@ -38,11 +38,22 @@
         <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="FontWeight" Value="Black"></Setter>
         <Setter Property="FontFamily" Value="Segoe UI"></Setter>
-        <Setter Property="Foreground" Value="#C0FFFFFF"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
+      </Style>
+      <Style Selector="TextBlock.Asterisk">
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="FontWeight" Value="Black"></Setter>
+        <Setter Property="FontFamily" Value="Segoe UI"></Setter>
       </Style>
     </Application.Styles>
   <Application.Resources>
     <converter:CaseConverter x:Key="CaseConverter"></converter:CaseConverter>
     <converter:ScrollValueConverter x:Key="ScrollValueConverter"></converter:ScrollValueConverter>
+    <converter:AsteriskConverter x:Key="AsteriskConverter"></converter:AsteriskConverter>
+    <SolidColorBrush x:Key="NormalForeground" Color="White"></SolidColorBrush>
+    <SolidColorBrush x:Key="SubtleForeground" Color="#C0FFFFFF"></SolidColorBrush>
+    <SolidColorBrush x:Key="SubtleBackground" Color="#10FFFFFF"></SolidColorBrush>
+    <SolidColorBrush x:Key="TransparentBackground" Color="Transparent"></SolidColorBrush>
+    <SolidColorBrush x:Key="Alert" Color="IndianRed"></SolidColorBrush>
   </Application.Resources>
 </Application>
