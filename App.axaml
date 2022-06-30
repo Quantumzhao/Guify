@@ -43,5 +43,6 @@
     </Application.Styles>
   <Application.Resources>
     <converter:CaseConverter x:Key="CaseConverter"></converter:CaseConverter>
+    <converter:ScrollValueConverter x:Key="ScrollValueConverter"></converter:ScrollValueConverter>
   </Application.Resources>
 </Application>

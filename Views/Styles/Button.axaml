@@ -16,7 +16,7 @@
     <Setter Property="FontWeight" Value="Black"></Setter>
     <Setter Property="FontFamily" Value="Segoe UI"></Setter>
     <Setter Property="Foreground" Value="#C0FFFFFF"></Setter>
-    <Setter Property="Margin" Value="20"></Setter>
+    <Setter Property="Margin" Value="16"></Setter>
   </Style>
   
   <!-- small circular button -->

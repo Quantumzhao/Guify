@@ -25,7 +25,22 @@
             <!--                              Content                                     -->
             <TabControl.ContentTemplate>
               <DataTemplate DataType="model:Verb">
-                <ScrollViewer Margin="-10 0 0 0">
+                <ScrollViewer Name="PART_ScrollViewer" Margin="-10 0 0 0" >
+                  <ScrollViewer.OpacityMask>
+                    <LinearGradientBrush StartPoint="50%,0%" EndPoint="50%,100%" >                   
+                      <GradientStop Offset="0">
+                        <GradientStop.Color>
+                          <MultiBinding Mode="OneWay" Converter="{StaticResource ScrollValueConverter}">
+                            <Binding Path="$self" Mode="OneWay"></Binding>
+                            <Binding Path="$self.Offset.Y" Mode="OneWay"></Binding>
+                          </MultiBinding>
+                        </GradientStop.Color>
+                      </GradientStop>
+                      <GradientStop Color="#FFFFFFFF" Offset="0.25"></GradientStop>
+                      <GradientStop Color="#FFFFFFFF" Offset="0.75"></GradientStop>
+                      <GradientStop Color="#00FFFFFF" Offset="1" />
+                    </LinearGradientBrush>
+                  </ScrollViewer.OpacityMask>
                   <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" 
                                 Margin="0 20"

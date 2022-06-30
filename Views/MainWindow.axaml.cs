@@ -11,6 +11,8 @@ namespace Guify.Views;
 
 public partial class MainWindow : Window, INotifyPropertyChanged
 {
+	public static MainWindow? Instance;
+
 	public MainWindow()
 	{
 		InitializeComponent();
@@ -19,8 +21,10 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		// else HelpText = ShellUtils.GetHelpInfo(Program.Root);
 
 		// HelpTextBlock.Text = HelpText;
-		MainTitle.Text = Program.ProfileName ?? string.Empty;
+		// MainTitle.Text = Program.ProfileName ?? string.Empty;
 		MainView.DataContext = MainPageContent;
+
+		Instance = this;
 	}
 
 	// public string HelpText { get; set; }
