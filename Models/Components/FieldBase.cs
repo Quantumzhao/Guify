@@ -2,7 +2,19 @@ using System.ComponentModel;
 
 namespace Guify.Models.Components;
 
-abstract class FieldBase<T> : ComponentBase, INotifyPropertyChanged
+abstract class FieldBase : ComponentBase, INotifyPropertyChanged
+{
+	public event PropertyChangedEventHandler? PropertyChanged;
+
+	public abstract bool IsValueChanged { get; }
+	public abstract bool IsRequired { get; init; }
+	public abstract void Reset();
+
+	public void InvokePropertyChanged(PropertyChangedEventArgs e) 
+		=> PropertyChanged?.Invoke(this, e);
+}
+
+abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 {
 	public FieldBase(T defaultValue, bool isRequired, string? longName, string? shortName, string description)
 	{
@@ -18,15 +30,13 @@ abstract class FieldBase<T> : ComponentBase, INotifyPropertyChanged
 		if (shortName != null) Flags.Add((shortName));
 	}
 
-	public event PropertyChangedEventHandler? PropertyChanged;
-
-	public bool IsValueChanged => !(_Value?.Equals(DefaultValue) ?? DefaultValue is null);
+	public override bool IsValueChanged => !(_Value?.Equals(DefaultValue) ?? DefaultValue is null);
 	private readonly string? LongName = null;
 	private readonly string? ShortName = null;
 
 	public List<string> Flags { get; } = new List<string>();
 	public virtual T DefaultValue { get; init; }
-	public bool IsRequired { get; init; }
+	public override bool IsRequired { get; init; }
 	public string Description { get; init; }
 
 	private T _Value;
@@ -43,8 +53,8 @@ abstract class FieldBase<T> : ComponentBase, INotifyPropertyChanged
 			if (!(_Value?.Equals(value) ?? false))
 			{
 				_Value = value;
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Value)));
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsValueChanged)));
+				InvokePropertyChanged(new PropertyChangedEventArgs(nameof(Value)));
+				InvokePropertyChanged(new PropertyChangedEventArgs(nameof(IsValueChanged)));
 			}
 		}
 	}

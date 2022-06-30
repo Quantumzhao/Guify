@@ -47,4 +47,12 @@ public partial class VersatileControl : UserControl
 			o.Value = result;
 		}
 	}
+
+	private void SetAllFalse(object? sender, RoutedEventArgs e)
+	{
+		var rb = sender as RadioButton;
+		if (rb == null) return;
+		
+		rb.IsChecked = true;
+	}
 }

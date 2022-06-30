@@ -138,7 +138,7 @@ static class XMLUtils
 
 	private static ComponentBase LoadYesNoField(XElement node)
 	{
-		var defaultValue = bool.Parse(node.GetDefaultValue() ?? "false");
+		var defaultValue = node.GetDefaultValue().ToBool();
 		var desc = node.GetDescription();
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();

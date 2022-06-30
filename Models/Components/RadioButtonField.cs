@@ -3,7 +3,7 @@ namespace Guify.Models.Components
 {
 	class RadioButtonField : FieldBase<bool?>, INotifyPropertyChanged
 	{
-		public RadioButtonField(bool defaultValue, bool? isFlag, bool isRequired, string? longName
+		public RadioButtonField(bool? defaultValue, bool? isFlag, bool isRequired, string? longName
 			, string? shortName, string description, string group) : base(defaultValue, isRequired, longName,
 			shortName, description)
 		{

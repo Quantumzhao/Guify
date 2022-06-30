@@ -5,6 +5,4 @@ namespace Guify.Models.Components;
 abstract class ComponentBase 
 { 
 	public abstract string Compile();
-
-	public virtual void Reset() { }
 }

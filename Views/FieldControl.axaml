@@ -21,6 +21,14 @@
         <DataTemplate x:Key="FieldTemplate">
           <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="10">
             <!--                           Start Description Area                          -->
+            <TextBlock Classes="Asterisk" Text="*" Padding="0 4 0 0">
+              <TextBlock.Foreground>
+                <MultiBinding Mode="OneWay" Converter="{StaticResource AsteriskConverter}">
+                  <Binding Path="IsValueChanged" Mode="OneWay"></Binding>
+                  <Binding Path="IsRequired"></Binding>
+                </MultiBinding>
+              </TextBlock.Foreground>
+            </TextBlock>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
               <TextBlock Classes="Body" 
                          Width="200"

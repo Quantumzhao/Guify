@@ -45,8 +45,8 @@
         
         <DataTemplate x:Key="RadioButtonTemplate" DataType="comp:RadioButtonField">
           <RadioButton IsChecked="{Binding Path=Value, Mode=TwoWay}" 
-                       GroupName="{Binding Group}" 
-                       Content="{Binding Value, Mode=TwoWay}"></RadioButton>
+                       GroupName="{Binding Path=Group}"
+                       Checked="SetAllFalse"></RadioButton>
         </DataTemplate>
         
         <DataTemplate x:Key="SaveFileTemplate"></DataTemplate>

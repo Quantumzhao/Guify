@@ -13,6 +13,8 @@ public class ScrollValueConverter : IMultiValueConverter
 {
 	private static int _Flag = 1;
 
+	public static readonly ScrollValueConverter Instance = new();
+
 	public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
 	{
 		var res = (values[0], values[1]) switch

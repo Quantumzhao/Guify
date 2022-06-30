@@ -19,5 +19,5 @@ public partial class FieldControl : UserControl
     }
 
     private void Reset(object? sender, RoutedEventArgs e)
-        => (DataContext as ComponentBase)?.Reset();
+        => (DataContext as FieldBase)?.Reset();
 }
