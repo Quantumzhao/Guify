@@ -54,8 +54,8 @@
         <DataTemplate x:Key="SelectFolderTemplate" DataType="comp:SelectFolderField">
           <StackPanel Orientation="Horizontal" Spacing="10">
             <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
-            <Button Classes="QuickAction" Width="32" Height="32" Click="BrowseFolder">
-              <TextBlock Text="&#xE0FB;" Padding="-1 -1 0 0"></TextBlock>
+            <Button Classes="QuickAction" Click="BrowseFolder">
+              <TextBlock Text="&#xE0FB;" FontSize="16" Padding="-1 -1 0 0"></TextBlock>
             </Button>
           </StackPanel>
         </DataTemplate>

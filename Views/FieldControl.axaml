@@ -41,6 +41,9 @@
             </StackPanel>
             <!-- End Description Area. That's a lot for such a trivial component, isn't it? -->
             <views:VersatileControl VerticalAlignment="Center"></views:VersatileControl>
+            <Button Classes="QuickAction" IsVisible="{Binding IsValueChanged, Mode=OneWay}" Click="Reset">
+              <TextBlock Text="&#xE10E;"></TextBlock>
+            </Button>
           </StackPanel>
         </DataTemplate>
       </dt:ComponentTemplateSelector>

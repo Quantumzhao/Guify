@@ -20,7 +20,7 @@ abstract class FieldBase<T> : ComponentBase, INotifyPropertyChanged
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
-	private bool UsingDefault = true;
+	public bool IsValueChanged => !(_Value?.Equals(DefaultValue) ?? DefaultValue is null);
 	private readonly string? LongName = null;
 	private readonly string? ShortName = null;
 
@@ -44,6 +44,7 @@ abstract class FieldBase<T> : ComponentBase, INotifyPropertyChanged
 			{
 				_Value = value;
 				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Value)));
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsValueChanged)));
 			}
 		}
 	}
@@ -65,6 +66,8 @@ abstract class FieldBase<T> : ComponentBase, INotifyPropertyChanged
 			else return string.Empty;
 		}
 	}
+
+	public override void Reset() => Value = DefaultValue;
 
 	protected string GetFlag() 
 		=> (LongName, ShortName) switch

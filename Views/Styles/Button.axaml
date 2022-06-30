@@ -21,21 +21,24 @@
   
   <!-- small circular button -->
   <Style Selector="Button.QuickAction">
-    <Setter Property="BorderThickness" Value="1"></Setter>
-    <Setter Property="BorderBrush" Value="#C0FFFFFF"></Setter>
+    <!-- <Setter Property="BorderThickness" Value="1"></Setter> -->
+    <!-- <Setter Property="BorderBrush" Value="#C0FFFFFF"></Setter> -->
     <Setter Property="CornerRadius" Value="20"></Setter>
     <Setter Property="Padding" Value="0"></Setter>
     <Setter Property="Background" Value="Transparent"></Setter>
+    <Setter Property="Width" Value="32"></Setter>
+    <Setter Property="Height" Value="32"></Setter>
   </Style>
   <Style Selector="Button.QuickAction:pointerover /template/ ContentPresenter">
-    <Setter Property="BorderThickness" Value="1"></Setter>
-    <Setter Property="BorderBrush" Value="#C0FFFFFF"></Setter>
-    <!-- <Setter Property="CornerRadius" Value="20"></Setter> -->
+    <!-- <Setter Property="BorderThickness" Value="1"></Setter> -->
+    <!-- <Setter Property="BorderBrush" Value="#C0FFFFFF"></Setter> -->
     <Setter Property="Background" Value="#10FFFFFF"></Setter>
   </Style>
   <Style Selector="Button.QuickAction > TextBlock">
     <Setter Property="FontFamily" Value="Segoe UI Symbol"></Setter>
-    <Setter Property="FontSize" Value="20"></Setter>
+    <Setter Property="FontSize" Value="14"></Setter>
     <Setter Property="Foreground" Value="#C0FFFFFF"></Setter>
+    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    <Setter Property="VerticalAlignment" Value="Center"></Setter>
   </Style>
 </Styles>
