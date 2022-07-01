@@ -58,13 +58,13 @@ static class XMLUtils
 		Verb[]? verbs = null;
 		ComponentBase[]? components = null;
 
-		if (root.Elements().All(e => e.Name != VERB))
+		var e = root.Elements().ToList();
+		if (root.Elements().All(e => e.Name.LocalName == VERB))
 			verbs = root.Elements().Select(LoadVerb).ToArray();
-		else if (root.Elements().Any(e => e.Name == VERB))
-			throw new InvalidOperationException(
-				"Normal components can't be at the same level as verbs");
-		else
-			components = root.Elements().Select(LoadElements).ToArray();
+		// else if (root.Elements().Any(e => e.Name != VERB))
+		// 	throw new InvalidOperationException(
+		// 		"Normal components can't be at the same level as verbs");
+		else components = root.Elements().Select(LoadElements).ToArray();
 
 		if (cmd == null) throw new InvalidOperationException(
 			$"The .gui file {path} is not configured properly");
@@ -75,12 +75,12 @@ static class XMLUtils
 	private static Verb LoadVerb(XElement element)
 	{
 		var name = element.Attribute(NAME)?.Value;
-		var comment = element.GetDescription();
+		var comment = element.Attribute(DESCRIPTION)?.Value ?? "No Description";
 		var controls = element.Elements().Select(LoadElements).ToArray();
 
-		if (name == null || comment == null)
+		if (name == null)
 		{
-			throw new ArgumentNullException("verb or description is null");
+			throw new ArgumentNullException(nameof(name), "verb name is null");
 		}
 
 		return new Verb(name, comment, controls);
@@ -98,6 +98,8 @@ static class XMLUtils
 			PICK_VALUE_FIELD => LoadPickValueField(xml),
 			INFIX => LoadInfix(xml),
 			SEPARATOR => LoadSeparator(xml),
+			VERB => throw new InvalidOperationException(
+				"Normal components can't be at the same level as verbs"),
 			var any => throw new ArgumentException($"{any} is not a valid component")
 		};
 

@@ -30,7 +30,7 @@ class Program
 				}
 				else
 				{
-					ConfigIO.AddUI(o.Path);
+					ConfigIO.AddUI(o.Path, o.IsLink is true);
 				}
 			})
 			.WithParsed<RemoveUIOptions>(o =>
@@ -82,8 +82,14 @@ class Program
 
 		var command = $"{Root.Command} {Root.Compile()} {Postfix}";
 
-		ShellUtils.Bash("echo here && read name");
+		ShellUtils.Bash(command);
 
 		Console.WriteLine(command);
+
+		if (!Root.IsReusable) 
+		{
+			Console.WriteLine("Done.");
+			Environment.Exit(0);
+		}
 	}
 }

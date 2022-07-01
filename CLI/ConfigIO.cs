@@ -17,11 +17,12 @@ namespace Guify.CLI
 
 		public static string CombineName(string name) => GetUIDirectory() + "/" + name;
 
-		public static void AddUI(string pathWithName)
+		public static void AddUI(string pathWithName, bool isLink)
 		{
 			// EnforcePath();
 			var file = new FileInfo(pathWithName);
-			File.Copy(pathWithName, CombineName(file.Name));
+			if (isLink) File.CreateSymbolicLink(CombineName(file.Name), pathWithName);
+			else File.Copy(pathWithName, CombineName(file.Name));
 		}
 
 		public static void RemoveUI(string name)

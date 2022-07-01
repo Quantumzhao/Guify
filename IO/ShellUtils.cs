@@ -9,8 +9,7 @@ class ShellUtils
 {
 	public static async void Bash(string cmd)
 	{
-		cmd = "echo input && read name && echo $name && read n && echo $n";
-
+		var flag = true;
 		var escapedArgs = cmd.Replace("\"", "\\\"");
 
 		using var process = new Process()
@@ -24,14 +23,15 @@ class ShellUtils
 				RedirectStandardOutput = true,
 			}
 		};
-		
+
+		process.Disposed += (s, e) => flag = false;
 		
 		var thread = new Thread(() => {
-			while (true)
+			while (flag)
 			{
 				Thread.Sleep(100);
 
-				if (!process.StandardOutput.EndOfStream)
+				if (flag && !process.StandardOutput.EndOfStream)
 				{
 					Console.WriteLine(process.StandardOutput.ReadLine());
 				}
@@ -46,7 +46,7 @@ class ShellUtils
 		// };
 		//  string result = process.StandardOutput.ReadToEnd();
 		await process.WaitForExitAsync();
-		thread.Interrupt();
+		flag = false;
 		// Console.WriteLine(process.StandardOutput.ReadToEnd());
 	}
 }

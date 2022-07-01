@@ -7,6 +7,9 @@ namespace Guify.CLI
 	{
 		[Option('p', "path", HelpText = "path of the Guify UI file", Required = true)]
 		public string? Path { get; set; }
+
+		[Option('l', "make-link", HelpText = "Create a symbolic link")]
+		public bool IsLink { get; set; }
 	}
 
 	[Verb("remove", HelpText = "Remove a Guify UI file")]
