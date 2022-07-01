@@ -5,13 +5,17 @@
     <Nullable>enable</Nullable>
     <RepositoryUrl>https://github.com/Quantumzhao/Guify</RepositoryUrl>
     <Authors>Quantumzhao</Authors>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Company>Quantum</Company>
 	<!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
 	<TrimMode>copyused</TrimMode>
 	<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
 	<Authors>Quantumzhao</Authors>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+  </PropertyGroup>  
   <ItemGroup>
     <Folder Include="Models/" />
     <AvaloniaResource Include="Assets/**" />

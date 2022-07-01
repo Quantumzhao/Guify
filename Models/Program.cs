@@ -21,7 +21,8 @@ class Program
 	// yet and stuff might break.
 	[STAThread]
 	public static void Main(string[] args)
-		=> Parser.Default.ParseArguments<AddUIOptions, RemoveUIOptions, WrapperOptions>(args)
+		=> Parser.Default.ParseArguments
+			<AddUIOptions, RemoveUIOptions, WrapperOptions, ListUIOptions>(args)
 			.WithParsed<AddUIOptions>(o =>
 			{
 				if (o.Path == null)
