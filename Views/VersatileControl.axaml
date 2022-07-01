@@ -14,7 +14,9 @@
         </DataTemplate>
         
         <DataTemplate x:Key="StringTemplate" DataType="comp:StringField">
-          <TextBox Text="{Binding Path=Value, Mode=TwoWay}"></TextBox>
+          <TextBox Text="{Binding Path=Value, Mode=TwoWay}" 
+                   TextWrapping="Wrap" 
+                   AcceptsReturn="True" MaxWidth="200"></TextBox>
         </DataTemplate>
         
         <DataTemplate x:Key="NumberTemplate" DataType="comp:NumberField">
@@ -24,9 +26,11 @@
         </DataTemplate>
         
         <DataTemplate x:Key="OpenFileTemplate" DataType="comp:OpenFileField">
-          <StackPanel Orientation="Horizontal">
-            <Button Content="Browse" Click="OpenFile"></Button>
-            <TextBox Text="{Binding Value, Mode=TwoWay}" MaxWidth="100"></TextBox>
+          <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
+            <Button Classes="QuickAction" Click="BrowseFolder">
+              <TextBlock Text="&#xE1A5;" Padding="-1 -1 0 0"></TextBlock>
+            </Button>
           </StackPanel>
         </DataTemplate>
         
@@ -45,17 +49,23 @@
         
         <DataTemplate x:Key="RadioButtonTemplate" DataType="comp:RadioButtonField">
           <RadioButton IsChecked="{Binding Path=Value, Mode=TwoWay}" 
-                       GroupName="{Binding Path=Group}"
-                       Checked="SetAllFalse"></RadioButton>
+                       GroupName="{Binding Path=Group}"></RadioButton>
         </DataTemplate>
         
-        <DataTemplate x:Key="SaveFileTemplate"></DataTemplate>
+        <DataTemplate x:Key="SaveFileTemplate">
+          <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
+            <Button Classes="QuickAction" Click="BrowseFolder">
+              <TextBlock Text="&#xE19C;" Padding="-1 -1 0 0"></TextBlock>
+            </Button>
+          </StackPanel>
+        </DataTemplate>
         
         <DataTemplate x:Key="SelectFolderTemplate" DataType="comp:SelectFolderField">
           <StackPanel Orientation="Horizontal" Spacing="10">
             <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
             <Button Classes="QuickAction" Click="BrowseFolder">
-              <TextBlock Text="&#xE0FB;" FontSize="16" Padding="-1 -1 0 0"></TextBlock>
+              <TextBlock Text="&#xE197;" Padding="-1 -1 0 0"></TextBlock>
             </Button>
           </StackPanel>
         </DataTemplate>

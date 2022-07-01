@@ -10,13 +10,14 @@ abstract class FieldBase : ComponentBase, INotifyPropertyChanged
 	public abstract bool IsRequired { get; init; }
 	public abstract void Reset();
 
-	public void InvokePropertyChanged(PropertyChangedEventArgs e) 
-		=> PropertyChanged?.Invoke(this, e);
+	public void InvokePropertyChanged(string propertyName) 
+		=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }
 
 abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 {
-	public FieldBase(T defaultValue, bool isRequired, string? longName, string? shortName, string description)
+	public FieldBase(T defaultValue, bool isRequired, string? longName, string? shortName
+		, string description)
 	{
 		DefaultValue = defaultValue;
 		_Value = defaultValue;
@@ -39,8 +40,8 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 	public override bool IsRequired { get; init; }
 	public string Description { get; init; }
 
-	private T _Value;
-	public T Value
+	protected T _Value;
+	public virtual T Value
 	{
 		get => _Value; 
 		set
@@ -53,8 +54,8 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 			if (!(_Value?.Equals(value) ?? false))
 			{
 				_Value = value;
-				InvokePropertyChanged(new PropertyChangedEventArgs(nameof(Value)));
-				InvokePropertyChanged(new PropertyChangedEventArgs(nameof(IsValueChanged)));
+				InvokePropertyChanged(nameof(Value));
+				InvokePropertyChanged(nameof(IsValueChanged));
 			}
 		}
 	}

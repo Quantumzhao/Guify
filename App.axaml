@@ -50,6 +50,7 @@
     <converter:CaseConverter x:Key="CaseConverter"></converter:CaseConverter>
     <converter:ScrollValueConverter x:Key="ScrollValueConverter"></converter:ScrollValueConverter>
     <converter:AsteriskConverter x:Key="AsteriskConverter"></converter:AsteriskConverter>
+    <converter:ResetConverter x:Key="ResetConverter"></converter:ResetConverter>
     <SolidColorBrush x:Key="NormalForeground" Color="White"></SolidColorBrush>
     <SolidColorBrush x:Key="SubtleForeground" Color="#C0FFFFFF"></SolidColorBrush>
     <SolidColorBrush x:Key="SubtleBackground" Color="#10FFFFFF"></SolidColorBrush>

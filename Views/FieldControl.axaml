@@ -49,7 +49,13 @@
             </StackPanel>
             <!-- End Description Area. That's a lot for such a trivial component, isn't it? -->
             <views:VersatileControl VerticalAlignment="Center"></views:VersatileControl>
-            <Button Classes="QuickAction" IsVisible="{Binding IsValueChanged, Mode=OneWay}" Click="Reset">
+            <Button Classes="QuickAction" Click="Reset">
+              <Button.IsVisible>
+                <MultiBinding Mode="OneWay" Converter="{StaticResource ResetConverter}">
+                  <Binding Path=""></Binding>
+                  <Binding Path="IsValueChanged" Mode="OneWay"></Binding>
+                </MultiBinding>
+              </Button.IsVisible>
               <TextBlock Text="&#xE10E;"></TextBlock>
             </Button>
           </StackPanel>

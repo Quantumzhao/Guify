@@ -20,12 +20,12 @@ public class ScrollValueConverter : IMultiValueConverter
 		var res = (values[0], values[1]) switch
 		{
 			(ScrollViewer s, double n) when n <= 1 => Colors.White,
-			(ScrollViewer s, double n) => Colors.Transparent,
-			_ => throw new ArgumentException()
+			_ => Colors.Transparent,
+			// _ => null
 		};
 
-		// MainWindow.Instance.Height += _Flag;
-		// _Flag *= -1;
+		MainWindow.Instance.Height += 1;
+		MainWindow.Instance.Height -= 1;
 
 		return res;
 	}
