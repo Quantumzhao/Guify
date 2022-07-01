@@ -3,6 +3,10 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <RepositoryUrl>https://github.com/Quantumzhao/Guify</RepositoryUrl>
+    <Authors>Quantumzhao</Authors>
+    <Version>0.1.0</Version>
+    <Company>Quantum</Company>
 	<!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
 	<TrimMode>copyused</TrimMode>
 	<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
@@ -35,9 +39,5 @@
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="MessageBox.Avalonia" Version="2.0.1" />
 	<PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
-  </ItemGroup>
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Resources\Brushes.axaml" />
-    <UpToDateCheckInput Remove="Views\Resources\Index.axaml" />
   </ItemGroup>
 </Project>

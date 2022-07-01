@@ -60,6 +60,9 @@ namespace Guify.Models.Components
 			=> value ? "true" : "false";
 
 		public override bool IsValueChanged
-			=> Value || AllGroups[Group].Any(r => r.Value);
+			=> Value != DefaultValue || AllGroups[Group].Any(r => r.Value != r.DefaultValue);
+
+		public override void Reset()
+			=> AllGroups[Group].ForEach(r => r.Value = r.DefaultValue);
 	}
 }

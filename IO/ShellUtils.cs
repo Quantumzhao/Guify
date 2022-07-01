@@ -30,7 +30,7 @@ class ShellUtils
 		var thread = new Thread(() => {
 			while (flag)
 			{
-				Thread.Sleep(100);
+				Thread.Sleep(500);
 
 				if (flag && !process.StandardOutput.EndOfStream)
 				{

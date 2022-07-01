@@ -11,8 +11,25 @@ namespace Guify.Models.Components
 
 		public bool IsFlag { get; init; }
 
+		public override bool? Value 
+		{ 
+			get => base.Value; 
+			set
+			{
+				if (_Value is null && value is false) base.Value = true;
+				else base.Value = value;
+			}
+		}
+
 		public override string Compile()
-			=> IsFlag ? GetFlag() : base.Compile();
+		{
+			if (IsFlag)
+			{
+				if (Value ?? false) return GetFlag();
+				else return string.Empty;
+			}
+			else return base.Compile();
+		}
 
 		public override string ValueToString(bool? value)
 			=> (value ?? false) ? "true" : "false";

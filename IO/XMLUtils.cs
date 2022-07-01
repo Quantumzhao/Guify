@@ -146,7 +146,7 @@ static class XMLUtils
 
 	private static ComponentBase LoadYesNoField(XElement node)
 	{
-		var defaultValue = node.GetDefaultValue().ToBool() ?? false;
+		var defaultValue = node.GetDefaultValue().ToBool();
 		var desc = node.GetDescription();
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();
@@ -159,8 +159,8 @@ static class XMLUtils
 			return new CheckBoxField(
 				defaultValue, isFlag, isRequired, longName, shortName, desc, connector);
 		else
-			return new RadioButtonField(defaultValue, isFlag, isRequired, longName, shortName, desc
-				, group, connector);
+			return new RadioButtonField(defaultValue ?? false, isFlag, isRequired, longName
+				, shortName, desc, group, connector);
 	}
 
 	private static ComponentBase LoadNumberField(XElement node)

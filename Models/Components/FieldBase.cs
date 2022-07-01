@@ -48,11 +48,6 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 		get => _Value; 
 		set
 		{
-			// because binded control will automatically set any nullable struct to a non-null default
-			// therefore using null as default value is prone to change
-			// if (_Value?.Equals(DefaultValue) ?? DefaultValue == null) UsingDefault = true;
-			// else UsingDefault = false;
-
 			if (!(_Value?.Equals(value) ?? false))
 			{
 				_Value = value;
@@ -68,14 +63,14 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 
 		if (IsRequired) 
 		{
-			if (Value is not null) return string.Join(' ', flag, Value);
+			if (Value is not null) return string.Join(Connector, flag, Value);
 			else throw new WarningException(nameof(Value)
 				, $"Value of {GetName()} is required");
 		}
 		else
 		{
-			if (Value is not null) return string.Join(' ', flag, ValueToString(Value));
-			else if (DefaultValue != null) return string.Join(' ', flag, ValueToString(DefaultValue));
+			if (Value is not null) return string.Join(Connector, flag, ValueToString(Value));
+			else if (DefaultValue != null) return string.Join(Connector, flag, ValueToString(DefaultValue));
 			else return string.Empty;
 		}
 	}
