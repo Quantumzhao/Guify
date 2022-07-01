@@ -21,6 +21,7 @@ class ShellUtils
 				UseShellExecute = false,
 				CreateNoWindow = true,
 				RedirectStandardOutput = true,
+				RedirectStandardError = true,
 			}
 		};
 

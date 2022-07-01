@@ -5,8 +5,8 @@ class NumberField : FieldBase<float?>
 {
 
 	public NumberField(float? defaultValue, float? max, float? min, bool isRequired
-		, string? longName, string? shortName, string description) : base(defaultValue, isRequired
-		, longName, shortName, description)
+		, string? longName, string? shortName, string description, bool useEqualConnector) 
+		: base(defaultValue, isRequired, longName, shortName, description, useEqualConnector)
 	{
 		var maximum = max ?? float.MaxValue;
 		var minimum = min ?? float.MinValue;

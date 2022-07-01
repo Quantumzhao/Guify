@@ -7,9 +7,9 @@ class OpenFileField : FieldBase<string[]?>
 {
 	public OpenFileField(string? customDefaultFileName, string? customDefaultFolder, 
 		bool? allowMultiple, bool isRequired, string description
-		, string? longName, string? shortName) : base(
+		, string? longName, string? shortName, bool useEqualConnector) : base(
 			new[] { Path.Join(customDefaultFolder, customDefaultFileName) }
-		, isRequired, longName, shortName, description)
+		, isRequired, longName, shortName, description, useEqualConnector)
 	{
 		CustomDefaultFileName = customDefaultFileName;
 		CustomDefaultFolder = customDefaultFolder;

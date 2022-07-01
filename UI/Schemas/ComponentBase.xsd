@@ -5,5 +5,6 @@
         <xs:attribute name="required" type="xs:boolean" use="optional"></xs:attribute>
         <xs:attribute name="longName" type="xs:string" use="optional"></xs:attribute>
         <xs:attribute name="shortName" type="xs:string" use="optional"></xs:attribute>
+        <xs:attribute name="useEqualConnector" type="xs:boolean" use="optional"></xs:attribute>
     </xs:complexType>
 </xs:schema>

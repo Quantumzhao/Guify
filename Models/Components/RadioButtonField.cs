@@ -7,9 +7,9 @@ namespace Guify.Models.Components
 		private static readonly Dictionary<string, List<RadioButtonField>> AllGroups = new();
 
 		public RadioButtonField(bool defaultValue, bool? isFlag, bool isRequired, string? longName
-			, string? shortName, string description, string group) 
+			, string? shortName, string description, string group, bool useEqualConnector) 
 			: base(defaultValue, isRequired, longName,
-			shortName, description)
+			shortName, description, useEqualConnector)
 		{
 			Group = group;
 			IsFlag = isFlag ?? true;

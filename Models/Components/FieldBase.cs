@@ -8,6 +8,7 @@ abstract class FieldBase : ComponentBase, INotifyPropertyChanged
 
 	public abstract bool IsValueChanged { get; }
 	public abstract bool IsRequired { get; init; }
+	protected char Connector = ' ';
 	public abstract void Reset();
 
 	public void InvokePropertyChanged(string propertyName) 
@@ -17,7 +18,7 @@ abstract class FieldBase : ComponentBase, INotifyPropertyChanged
 abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 {
 	public FieldBase(T defaultValue, bool isRequired, string? longName, string? shortName
-		, string description)
+		,string description, bool useEqualConnector)
 	{
 		DefaultValue = defaultValue;
 		_Value = defaultValue;
@@ -29,6 +30,7 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 
 		if (longName != null) Flags.Add(longName);
 		if (shortName != null) Flags.Add((shortName));
+		if (useEqualConnector) Connector = '=';
 	}
 
 	public override bool IsValueChanged => !(_Value?.Equals(DefaultValue) ?? DefaultValue is null);
@@ -66,14 +68,14 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 
 		if (IsRequired) 
 		{
-			if (!string.IsNullOrEmpty(Value?.ToString())) return $"{flag} {ValueToString(Value)}";				
+			if (Value is not null) return string.Join(' ', flag, Value);
 			else throw new WarningException(nameof(Value)
 				, $"Value of {GetName()} is required");
 		}
 		else
 		{
-			if (Value != null) return $"{flag} {ValueToString(Value)}";
-			else if (DefaultValue != null) return $"{flag} {ValueToString(DefaultValue)}";
+			if (Value is not null) return string.Join(' ', flag, ValueToString(Value));
+			else if (DefaultValue != null) return string.Join(' ', flag, ValueToString(DefaultValue));
 			else return string.Empty;
 		}
 	}

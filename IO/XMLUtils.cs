@@ -43,6 +43,7 @@ static class XMLUtils
 	private const string IS_FLAG = "isFlag";
 	private const string LABEL = "label";
 	private const string REUSABLE = "reusable";
+	private const string USE_EQUAL_CONNECTOR = "useEqualConnector";
 #endregion
 
 	public static Root LoadRoot(string path)
@@ -110,8 +111,9 @@ static class XMLUtils
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();
 		var shortName = node.GetShortName();
+		var connector = node.GetConnector();
 
-		return new StringField(defaultValue, comment, isRequired, longName, shortName);
+		return new StringField(defaultValue, comment, isRequired, longName, shortName, connector);
 	}
 
 	private static OpenFileField LoadOpenFileField(XElement node)
@@ -123,8 +125,10 @@ static class XMLUtils
 		var allowMultiple = node.Attribute(MULTIPLE)?.Value.ToBool() ?? false;
 		var customDefaultFolder = node.Attribute(CUSTOM_DEFAULT_FOLDER)?.Value;
 		var customDefaultFileName = node.Attribute(CUSTOM_DEFAULT_FILE_NAME)?.Value;
+		var connector = node.GetConnector();
 
-		return new OpenFileField(customDefaultFileName, customDefaultFolder, allowMultiple, isRequired, desc, longName, shortName);
+		return new OpenFileField(customDefaultFileName, customDefaultFolder, allowMultiple
+			, isRequired, desc, longName, shortName, connector);
 	}
 
 	private static SelectFolderField LoadSelectFolderField(XElement node)
@@ -134,8 +138,10 @@ static class XMLUtils
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();
 		var shortName = node.GetShortName();
+		var connector = node.GetConnector();
 
-		return new SelectFolderField(defaultValue, desc, isRequired, longName, shortName);
+		return new SelectFolderField(
+			defaultValue, desc, isRequired, longName, shortName, connector);
 	}
 
 	private static ComponentBase LoadYesNoField(XElement node)
@@ -146,13 +152,15 @@ static class XMLUtils
 		var longName = node.GetLongName();
 		var shortName = node.GetShortName();
 		var isFlag = node.Attribute(IS_FLAG)?.Value?.ToBool();
+		var connector = node.GetConnector();
 
 		var group = node.Attribute(GROUP)?.Value;
 		if (group == null)
-			return new CheckBoxField(defaultValue, isFlag, isRequired, longName, shortName, desc);
+			return new CheckBoxField(
+				defaultValue, isFlag, isRequired, longName, shortName, desc, connector);
 		else
 			return new RadioButtonField(defaultValue, isFlag, isRequired, longName, shortName, desc
-				, group);
+				, group, connector);
 	}
 
 	private static ComponentBase LoadNumberField(XElement node)
@@ -164,9 +172,10 @@ static class XMLUtils
 		var shortName = node.GetShortName();
 		var max = node.Attribute(MAX)?.Value.ToFloat();
 		var min = node.Attribute(MIN)?.Value.ToFloat();
-		
+		var connector = node.GetConnector();
+
 		return new NumberField(
-			defaultValue.ToFloat(), max, min, isRequired, longName, shortName, desc);
+			defaultValue.ToFloat(), max, min, isRequired, longName, shortName, desc, connector);
 	}
 
 	private static SaveFileField LoadSaveFileField(XElement node)
@@ -177,8 +186,10 @@ static class XMLUtils
 		var shortName = node.GetShortName();
 		var customDefaultFileName = node.Attribute(CUSTOM_DEFAULT_FILE_NAME)?.Value;
 		var customDefaultFolder = node.Attribute(CUSTOM_DEFAULT_FOLDER)?.Value;
+		var connector = node.GetConnector();
 
-		return new SaveFileField(customDefaultFileName, customDefaultFolder, desc, isRequired, longName, shortName);
+		return new SaveFileField(customDefaultFileName, customDefaultFolder, desc, isRequired
+			, longName, shortName, connector);
 	}
 
 	private static PickValueField LoadPickValueField(XElement node)
@@ -188,6 +199,7 @@ static class XMLUtils
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();
 		var shortName = node.GetShortName();
+		var connector = node.GetConnector();
 		var candidates = node.Elements()
 							 .Where  (e => e.Name.LocalName == CANDIDATE)
 							 .Select (c => c.Attribute(VALUE)?.Value)
@@ -196,7 +208,7 @@ static class XMLUtils
 							 .ToArray();
 
 		return new PickValueField(
-			defaultValue, isRequired, longName, shortName, desc, candidates);
+			defaultValue, isRequired, longName, shortName, desc, candidates, connector);
 	}
 
 	private static Infix LoadInfix(XElement node)
@@ -230,4 +242,7 @@ static class XMLUtils
 
 	private static string? GetShortName(this XElement node)
 		=> node.Attribute(SHORT_NAME)?.Value;
+
+	private static bool GetConnector(this XElement node)
+		=> node.Attribute(USE_EQUAL_CONNECTOR)?.Value?.ToBool() ?? false;
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root command="dotnet publish" reusable="true" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ./Schemas/Root.xsd">
+<root command="dotnet" reusable="true" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ./Schemas/Root.xsd">
     <verb name="publish">
         <infix code="--configuration Release" />
         <pickValue description="Platforms &amp; Architecture" longName="--runtime " shortName="-r">
@@ -8,9 +8,9 @@
             <candidate value="osx-x64" />
         </pickValue>
         <separator label="Optimizations" />
-        <yesNo description="ReadyToRun: less startup time" longName="-p:PublishReadyToRun" isFlag="false" />
+        <yesNo description="ReadyToRun: less startup time" longName="-p:PublishReadyToRun" isFlag="false" useEqualConnector="true" />
         <yesNo description="Self Contained" longName="--self-contained" isFlag="false" />
-        <yesNo description="Trim Assembly" longName="-p:PublishTrimmed" isFlag="false" />
+        <yesNo description="Trim Assembly" longName="-p:PublishTrimmed" isFlag="false" useEqualConnector="true" />
 
     </verb>
 </root>
