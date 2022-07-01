@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root command="/home/quantum/Documents/repos/Guify/bin/Debug/net6/Guify" xmlns="urn:Guify.Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify.Namespace ./Schemas/Root.xsd">
+<root command="/home/quantum/Documents/repos/Guify/bin/Debug/net6/Guify" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ./Schemas/Root.xsd">
     <verb name="Add" description="Add a new Guify UI file for a command">
         <string description="name of the command" required="true" longName="--name" shortName="-n" />
         <selectFolder description="path to the Guify UI file" required="true" longName="--path" shortName="-p" />
