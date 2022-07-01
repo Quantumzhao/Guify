@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root command="dotnet publish" reusable="true" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ./Schemas/Root.xsd">
+    <verb name="publish">
+        <infix code="--configuration Release" />
+        <pickValue description="Platforms &amp; Architecture" longName="--runtime " shortName="-r">
+            <candidate value="win-x64" />
+            <candidate value="linux-x64" />
+            <candidate value="osx-x64" />
+        </pickValue>
+        <separator label="Optimizations" />
+        <yesNo description="ReadyToRun: less startup time" longName="-p:PublishReadyToRun" isFlag="false" />
+        <yesNo description="Self Contained" longName="--self-contained" isFlag="false" />
+        <yesNo description="Trim Assembly" longName="-p:PublishTrimmed" isFlag="false" />
+
+    </verb>
+</root>
