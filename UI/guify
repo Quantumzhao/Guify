@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root command="/home/quantum/Documents/repos/Guify/bin/Debug/net6.0/Guify" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ./Schemas/Root.xsd">
+<root command="guify" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ./Schemas/Root.xsd">
     <verb name="add" description="Add a new Guify UI file for a command">
         <openFile description="path to an existing UI file. It should have no extensions. " required="true" longName="--path" shortName="-p" />
         <separator label="Advanced" />
-        <yesNo description="Copy file" group="moveOpt" customDefault="true" />
-        <yesNo description="Create a symbolic link" group="moveOpt" shortName="-l" longName="--make-link" />
+        <yesNo required="true" description="Copy file" group="moveOpt" customDefault="true" />
+        <yesNo required="true" description="Create a symbolic link" group="moveOpt" shortName="-l" longName="--make-link" />
     </verb>
     <verb name="remove" description="Remove a saved UI file">
         <openFile multiple="true" description="name of the command" required="true" longName="--path" shortName="-p" />

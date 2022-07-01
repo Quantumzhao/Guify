@@ -25,6 +25,20 @@ class ShellUtils
 			}
 		};
 
+		// process.ErrorDataReceived += (s, e) => 
+		// {
+		// 	Console.WriteLine($"{cmd} failed with the following error");
+
+		// 	var c = Console.ForegroundColor;
+		// 	Console.ForegroundColor = ConsoleColor.Red;
+		// 	Console.WriteLine(e.Data);
+		// 	Console.ForegroundColor = c;
+
+		// 	process.Dispose();
+
+		// 	Console.WriteLine("Process Disposed due to error. ");
+		// };
+
 		process.Disposed += (s, e) => flag = false;
 		
 		var thread = new Thread(() => {
@@ -34,7 +48,7 @@ class ShellUtils
 
 				if (flag && !process.StandardOutput.EndOfStream)
 				{
-					Console.WriteLine(process.StandardOutput.ReadLine());
+					Console.WriteLine(process.StandardOutput.ReadToEnd());
 				}
 			}
 		});
@@ -42,12 +56,17 @@ class ShellUtils
 		process.Start();
 		thread.Start();
 
-		// process.Exited += (o, e) => {
-		// 	process.Dispose();
-		// };
-		//  string result = process.StandardOutput.ReadToEnd();
+		process.Exited += (o, e) => {
+			Console.WriteLine(process.StandardOutput.ReadToEnd());
+			// if (flag) process.Dispose();
+			var code = process.ExitCode;
+			process.Dispose();
+			flag = false;
+
+			Console.WriteLine($"Process exited with code {code}");
+		};
+		// string result = process.StandardOutput.ReadToEnd();
 		await process.WaitForExitAsync();
 		flag = false;
-		// Console.WriteLine(process.StandardOutput.ReadToEnd());
 	}
 }
