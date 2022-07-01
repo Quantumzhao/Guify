@@ -10,7 +10,7 @@
     <xs:include schemaLocation="./infix.xsd"></xs:include>
     <xs:include schemaLocation="./Separator.xsd"></xs:include>
     <xs:complexType name="container" abstract="true">
-        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:choice>
                 <xs:element ref="yesNo"></xs:element>
                 <xs:element ref="selectFolder"></xs:element>

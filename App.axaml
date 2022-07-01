@@ -29,7 +29,8 @@
         <Setter Property="FontWeight" Value="ExtraLight"></Setter>
       </Style>
       <Style Selector="TextBlock.Code">
-        <Setter Property="FontFamily" Value="Cascadia Code, Bold"></Setter>
+        <Setter Property="FontFamily" Value="Cascadia Code"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
       </Style>
       <Style Selector="TextBlock.Small">
         <Setter Property="FontSize" Value="10"></Setter>
@@ -45,6 +46,14 @@
         <Setter Property="FontWeight" Value="Black"></Setter>
         <Setter Property="FontFamily" Value="Segoe UI"></Setter>
       </Style>
+      <Style Selector="TextBlock.DisplayValue">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="TextAlignment" Value="Right"></Setter>
+        <Setter Property="FontFamily" Value="Cascadia Code"></Setter>
+        <Setter Property="MaxWidth" Value="150"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
+      </Style>
     </Application.Styles>
   <Application.Resources>
     <converter:CaseConverter x:Key="CaseConverter"></converter:CaseConverter>
@@ -56,5 +65,10 @@
     <SolidColorBrush x:Key="SubtleBackground" Color="#10FFFFFF"></SolidColorBrush>
     <SolidColorBrush x:Key="TransparentBackground" Color="Transparent"></SolidColorBrush>
     <SolidColorBrush x:Key="Alert" Color="IndianRed"></SolidColorBrush>
+    <LinearGradientBrush x:Key="DisplayMask" StartPoint="0%,50%" EndPoint="100%,50%" >
+      <GradientStop Color="#00FFFFFF" Offset="0"></GradientStop>
+      <GradientStop Color="#FFFFFFFF" Offset="0.25"></GradientStop>
+      <GradientStop Color="#FFFFFFFF" Offset="1" />
+    </LinearGradientBrush>
   </Application.Resources>
 </Application>

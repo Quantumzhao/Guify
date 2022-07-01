@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root command="echo" xmlns="urn:Guify.Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify.Namespace ./Schemas/Root.xsd">
+<root command="echo" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ./Schemas/Root.xsd">
     <verb name="synchronize" description="description 1">
-        <yesNo description="yesno description" required="true" longName="--yesno" shortName="-o" />
+        <yesNo description="However, it is advisable to notice that, surprisingly, it is indeed a very long description. " required="true" longName="--yesno" shortName="-o" />
         <yesNo description="yesno 2 description" required="true" group="y2" />
         <yesNo description="yesno 3" required="true" group="y2" />
         <number description="number" longName="--float" shortName="-f" max="10" min="0" />
         <number description="number 1" customDefault="10" longName="--int" shortName="-i" />
         <infix code="command" />
         <separator label="name1"></separator>
-        <openFile description="open file" customDefaultFolder="~/" customDefaultFileName="text" longName="--openfile" shortName="-x" />
+        <openFile multiple="true" description="open file" customDefaultFolder="~/" customDefaultFileName="text" longName="--openfile" shortName="-x" />
         <saveFile description="save file" customDefaultExtensionWithDot=".txt"/>
     </verb>
     <verb name="Verb2" description="Remove an associated Guify UI file">

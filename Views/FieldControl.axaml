@@ -33,6 +33,7 @@
               <TextBlock Classes="Body" 
                          Width="200"
                          HorizontalAlignment="Left"
+                         TextWrapping="Wrap"
                          Text="{Binding Description}"></TextBlock>
               <ItemsControl Items="{Binding Flags}" HorizontalAlignment="Left">
                 <ItemsControl.ItemsPanel>

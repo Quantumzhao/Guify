@@ -1,3 +1,6 @@
+// stfu MainWindow.Instance can't be null!
+#pragma warning disable CS8618
+
 using System.ComponentModel;
 using Avalonia.Controls;
 using Guify.IO;
@@ -11,7 +14,7 @@ namespace Guify.Views;
 
 public partial class MainWindow : Window, INotifyPropertyChanged
 {
-	public static MainWindow? Instance;
+	public static MainWindow Instance;
 
 	public MainWindow()
 	{

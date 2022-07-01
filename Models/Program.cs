@@ -24,25 +24,33 @@ class Program
 		=> Parser.Default.ParseArguments<AddUIOptions, RemoveUIOptions, WrapperOptions>(args)
 			.WithParsed<AddUIOptions>(o =>
 			{
-				if (o.Name == null || o.Path == null)
+				if (o.Path == null)
 				{
-					throw new ArgumentNullException("name or path is null");
+					throw new ArgumentNullException(nameof(o.Path), "path is empty");
 				}
 				else
 				{
-					ConfigIO.AddEntry(o.Name, o.Path);
+					ConfigIO.AddUI(o.Path);
 				}
 			})
 			.WithParsed<RemoveUIOptions>(o =>
 			{
 				if (o.Name == null)
 				{
-					throw new ArgumentNullException("name is null");
+					throw new ArgumentNullException("name is empty");
 				}
 				else
 				{
-					ConfigIO.RemoveEntry(o.Name);
+					ConfigIO.RemoveUI(o.Name);
 				}
+			})
+			.WithParsed<ListUIOptions>(o =>
+			{
+				IEnumerable<string> names;
+				if (o.Substring == null) names = ConfigIO.GetEntries();
+				else names = ConfigIO.GetEntries().Where(n => n.Contains(o.Substring));
+
+				foreach (var n in names) Console.WriteLine(n);
 			})
 			.WithParsed<WrapperOptions>(o =>
 			{
@@ -54,7 +62,7 @@ class Program
 				ps.RemoveFirst();
 				Postfix = string.Join(' ', ps);
 
-				Root = XMLUtils.LoadRoot(ConfigIO.FindPathEntry(ProfileName));
+				Root = XMLUtils.LoadRoot(ConfigIO.CombineName(ProfileName));
 
 				BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 				// Console.WriteLine("here");

@@ -23,10 +23,8 @@ public partial class VersatileControl : UserControl
 	private async void BrowseFolder(object? sender, RoutedEventArgs e)
 	{
 		var dialog = new OpenFolderDialog();
-		var lifeTime = App.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
-		if (lifeTime == null) throw new InvalidOperationException("Wait that's illegal");
 		
-		var result = await dialog.ShowAsync(lifeTime.MainWindow);
+		var result = await dialog.ShowAsync(MainWindow.Instance);
 
 		if (result != null && DataContext is SelectFolderField s)
 		{
@@ -36,15 +34,34 @@ public partial class VersatileControl : UserControl
 
 	private async void OpenFile(object? sender, RoutedEventArgs e)
 	{
+		if ((sender as IControl)?.DataContext is not OpenFileField of) return;
+
 		var dialog = new OpenFileDialog();
-		var lifeTime = App.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
-		if (lifeTime == null) throw new InvalidOperationException("Wait that's illegal");
+		dialog.Directory = of.CustomDefaultFolder;
+		dialog.InitialFileName = of.CustomDefaultFileName;
+		dialog.AllowMultiple = of.AllowMultiple;
 		
-		var result = await dialog.ShowAsync(lifeTime.MainWindow);
+		var result = await dialog.ShowAsync(MainWindow.Instance);
 
 		if (result != null && DataContext is OpenFileField o)
 		{
 			o.Value = result;
+		}
+	}
+
+	private async void SaveFile(object? sender, RoutedEventArgs e)
+	{
+		if ((sender as IControl)?.DataContext is not SaveFileField sf) return;
+
+		var dialog = new SaveFileDialog();
+		dialog.Directory = sf.CustomDefaultFolder;
+		dialog.InitialFileName = sf.CustomDefaultFileName;
+
+		var result = await dialog.ShowAsync(MainWindow.Instance);
+
+		if (result != null)
+		{
+			sf.Value = result;
 		}
 	}
 }

@@ -1,42 +1,41 @@
 using System.IO;
 using System.Linq;
+using static System.Environment;
 
 namespace Guify.CLI
 {
 	class ConfigIO
 	{
-		private const string CONFIG_PATH = "./CLI/config.cfg";
-		public static void AddEntry(string name, string path)
+		private static string GetUIDirectory()
 		{
-			if (!File.Exists(CONFIG_PATH)) File.Create(CONFIG_PATH);
-
-			File.AppendAllLines(CONFIG_PATH, new string[] { name + "," + path });
+			// Use DoNotVerify in case LocalApplicationData doesn’t exist.
+			string appData = Path.Combine(Environment.GetFolderPath(
+				SpecialFolder.LocalApplicationData, SpecialFolderOption.DoNotVerify), "guify");
+			// Ensure the directory and all its parents exist.
+			return Directory.CreateDirectory(appData).FullName;
 		}
 
-		public static void RemoveEntry(string name)
+		public static string CombineName(string name) => GetUIDirectory() + "/" + name;
+
+		public static void AddUI(string pathWithName)
 		{
-			var result = GetEntries().Where(e => e[0] != name).Select(e => e[0] + " <|> " + e[1]);
-			File.Create(CONFIG_PATH);
-			File.WriteAllLines(CONFIG_PATH, result);
+			// EnforcePath();
+			var file = new FileInfo(pathWithName);
+			File.Copy(pathWithName, CombineName(file.Name));
 		}
 
-		private static IEnumerable<string[]> GetEntries()
+		public static void RemoveUI(string name)
 		{
-			if (!File.Exists((CONFIG_PATH)))
-				throw new FileNotFoundException("the config file may be deleted, moved or renamed");
-
-			var entries = File.ReadAllLines(CONFIG_PATH)?.Select(l => l.Split(" <|> "));
-
-			if (entries == null) throw new FileNotFoundException(
-				"the config file may be deleted, moved or renamed");
-			else return entries;
+			File.Delete(CombineName(name));
 		}
 
-		public static string FindPathEntry(string name)
-		{
-			var queryResult = GetEntries().FirstOrDefault(e => e[0] == name);
-			if (queryResult == null) throw new ArgumentNullException();
-			else return queryResult[1];
-		}
+		public static string[] GetEntries() => Directory.GetFiles(GetUIDirectory());
+
+		// public static string FindPathEntry(string name)
+		// {
+		// 	var queryResult = GetEntries().FirstOrDefault(e => e[0] == name);
+		// 	if (queryResult == null) throw new ArgumentNullException();
+		// 	else return queryResult[1];
+		// }
 	}
 }

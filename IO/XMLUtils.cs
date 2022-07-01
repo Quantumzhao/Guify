@@ -120,7 +120,7 @@ static class XMLUtils
 		var shortName = node.GetShortName();
 		var allowMultiple = node.Attribute(MULTIPLE)?.Value.ToBool() ?? false;
 		var customDefaultFolder = node.Attribute(CUSTOM_DEFAULT_FOLDER)?.Value;
-		var customDefaultFileName = node.Attribute(CUSTOM_DEFAULT_FILE_NAME)?.Value?.Expand();
+		var customDefaultFileName = node.Attribute(CUSTOM_DEFAULT_FILE_NAME)?.Value;
 
 		return new OpenFileField(customDefaultFileName, customDefaultFolder, allowMultiple, isRequired, desc, longName, shortName);
 	}
@@ -138,7 +138,7 @@ static class XMLUtils
 
 	private static ComponentBase LoadYesNoField(XElement node)
 	{
-		var defaultValue = node.GetDefaultValue().ToBool();
+		var defaultValue = node.GetDefaultValue().ToBool() ?? false;
 		var desc = node.GetDescription();
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();

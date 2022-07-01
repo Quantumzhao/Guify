@@ -27,8 +27,21 @@
         
         <DataTemplate x:Key="OpenFileTemplate" DataType="comp:OpenFileField">
           <StackPanel Orientation="Horizontal" Spacing="10">
-            <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
-            <Button Classes="QuickAction" Click="BrowseFolder">
+            <ItemsControl Items="{Binding Value, Mode=OneWay}" 
+                          VerticalAlignment="Center" 
+                          OpacityMask="{DynamicResource DisplayMask}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <StackPanel Orientation="Vertical" Spacing="2"></StackPanel>
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <TextBlock Classes="DisplayValue" Text="{Binding Mode=OneWay}"></TextBlock>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button Classes="QuickAction" Click="OpenFile">
               <TextBlock Text="&#xE1A5;" Padding="-1 -1 0 0"></TextBlock>
             </Button>
           </StackPanel>
@@ -37,7 +50,7 @@
         <DataTemplate x:Key="PickValueTemplate" DataType="comp:PickValueField">
           <ComboBox Items="{Binding Candidates}" 
                     SelectedItem="{Binding Value, Mode=TwoWay}"
-                    MinHeight="20"
+                    MinHeight="32"
                     VerticalAlignment="Center">
             <ComboBox.ItemTemplate>
               <DataTemplate>
@@ -54,8 +67,10 @@
         
         <DataTemplate x:Key="SaveFileTemplate">
           <StackPanel Orientation="Horizontal" Spacing="10">
-            <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
-            <Button Classes="QuickAction" Click="BrowseFolder">
+            <ContentControl OpacityMask="{DynamicResource DisplayMask}">
+              <TextBlock Classes="DisplayValue" Text="{Binding Value, Mode=OneWay}"></TextBlock>
+            </ContentControl>
+            <Button Classes="QuickAction" Click="SaveFile">
               <TextBlock Text="&#xE19C;" Padding="-1 -1 0 0"></TextBlock>
             </Button>
           </StackPanel>
@@ -63,7 +78,9 @@
         
         <DataTemplate x:Key="SelectFolderTemplate" DataType="comp:SelectFolderField">
           <StackPanel Orientation="Horizontal" Spacing="10">
-            <TextBox Text="{Binding Value, Mode=TwoWay}"></TextBox>
+            <ContentControl OpacityMask="{DynamicResource DisplayMask}">
+              <TextBlock Classes="DisplayValue" Text="{Binding Value, Mode=OneWay}"></TextBlock>
+            </ContentControl>
             <Button Classes="QuickAction" Click="BrowseFolder">
               <TextBlock Text="&#xE197;" Padding="-1 -1 0 0"></TextBlock>
             </Button>

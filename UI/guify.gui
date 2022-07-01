@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root command="/home/quantum/Documents/repos/Guify/bin/Debug/net6/Guify" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ./Schemas/Root.xsd">
     <verb name="Add" description="Add a new Guify UI file for a command">
-        <string description="name of the command" required="true" longName="--name" shortName="-n" />
-        <selectFolder description="path to the Guify UI file" required="true" longName="--path" shortName="-p" />
+        <openFile description="path to an existing UI file. It should have no extensions. " required="true" longName="--path" shortName="-p" />
+        <separator label="Optional" />
+        <yesNo description="Copy file" group="moveOpt" />
+        <yesNo description="Create a symbolic link" group="moveOpt" shortName="-l" longName="--make-link" />
     </verb>
-    <verb name="Remove" description="Remove an associated Guify UI file">
-        <selectFolder description="name of the command" required="true" longName="--name" shortName="-n" />
+    <verb name="Remove" description="Remove a saved UI file">
+        <openFile multiple="true" description="name of the command" required="true" longName="--path" shortName="-p" />
+    </verb>
+    <verb name="list" description="list all saved UIs">
+        <string description="show results containing this substring" longName="--substring" shortName="-s" />
     </verb>
 </root>
