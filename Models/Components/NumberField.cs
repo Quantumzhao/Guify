@@ -25,26 +25,30 @@ class NumberField : FieldBase<float?>
 	// representing the null value
 	public override float? Value 
 	{ 
-		get => base.Value; 
+		get => base.Value;
 		set
 		{
-			if (DefaultValue is not null)
-			{
-				base.Value = value;
-				return;
-			}
-			else if (value == null)
-			{
-				_IsUsingDefault = true;
-				base.Value = DefaultValue ?? 0;
+			// if (DefaultValue is not null)
+			// {
+			// 	base.Value = value;
+			// 	return;
+			// }
+			// else if (value == null)
+			// {
+			// 	_IsUsingDefault = true;
+			// 	base.Value = DefaultValue ?? 0;
 
-				if (_Value == 0) InvokePropertyChanged(nameof(IsValueChanged));
-			}
-			else
-			{
-				_IsUsingDefault = false;
-				base.Value = value;
-			}
+			// 	if (_Value == 0) InvokePropertyChanged(nameof(FulfillRequirement));
+			// }
+			// else
+			// {
+			// 	_IsUsingDefault = false;
+			// 	base.Value = value;
+			// }
+			if (value == DefaultValue) _IsUsingDefault = true;
+			else _IsUsingDefault = false;
+			
+			base.Value = value;
 		}
 	}
 
@@ -55,17 +59,11 @@ class NumberField : FieldBase<float?>
 	{
 		var flag = GetFlag();
 
-		if (IsRequired) 
-		{
-			if (!_IsUsingDefault) return string.Join(Connector, flag, Value);
-			else throw new WarningException(nameof(Value)
-				, $"Value of {GetName()} is required");
-		}
-		else
-		{
-			if (!_IsUsingDefault) return string.Join(Connector, flag, ValueToString(Value));
-			else if (DefaultValue != null) return string.Join(Connector, flag, ValueToString(DefaultValue));
-			else return string.Empty;
-		}
+		if (!_IsUsingDefault) return string.Join(Connector, flag, ValueToString(Value));
+		else if (DefaultValue != null) 
+			return string.Join(Connector, flag, ValueToString(DefaultValue));
+		else if (IsRequired) throw new WarningException(nameof(Value)
+			, $"Value of {GetName()} is required");
+		else return string.Empty;
 	}
 }

@@ -165,7 +165,7 @@ static class XMLUtils
 
 	private static ComponentBase LoadNumberField(XElement node)
 	{
-		var defaultValue = node.GetDefaultValue();
+		var defaultValue = node.GetDefaultValue().ToFloat();
 		var desc = node.GetDescription();
 		var isRequired = node.GetIsRequired();
 		var longName = node.GetLongName();
@@ -175,7 +175,7 @@ static class XMLUtils
 		var connector = node.GetConnector();
 
 		return new NumberField(
-			defaultValue.ToFloat(), max, min, isRequired, longName, shortName, desc, connector);
+			defaultValue, max, min, isRequired, longName, shortName, desc, connector);
 	}
 
 	private static SaveFileField LoadSaveFileField(XElement node)

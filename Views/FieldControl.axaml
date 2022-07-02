@@ -19,46 +19,57 @@
         </DataTemplate>
         
         <DataTemplate x:Key="FieldTemplate">
-          <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="10">
-            <!--                           Start Description Area                          -->
-            <TextBlock Classes="Asterisk" Text="*" Padding="0 4 0 0">
-              <TextBlock.Foreground>
-                <MultiBinding Mode="OneWay" Converter="{StaticResource AsteriskConverter}">
-                  <Binding Path="IsValueChanged" Mode="OneWay"></Binding>
-                  <Binding Path="IsRequired"></Binding>
-                </MultiBinding>
-              </TextBlock.Foreground>
-            </TextBlock>
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-              <TextBlock Classes="Body" 
-                         Width="200"
-                         HorizontalAlignment="Left"
-                         TextWrapping="Wrap"
-                         Text="{Binding Description}"></TextBlock>
-              <ItemsControl Items="{Binding Flags}" HorizontalAlignment="Left">
-                <ItemsControl.ItemsPanel>
-                  <ItemsPanelTemplate>
-                    <StackPanel Spacing="10" Orientation="Horizontal"></StackPanel>
-                  </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                  <DataTemplate>
-                    <TextBlock Classes="Code Small" Text="{Binding}"></TextBlock>
-                  </DataTemplate>
-                </ItemsControl.ItemTemplate>
-              </ItemsControl>
+          <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="FieldPanel" Orientation="Horizontal" HorizontalAlignment="Left" Spacing="10">
+              <!--                           Start Description Area                          -->
+              <TextBlock Classes="Asterisk" Text="*" Padding="0 4 0 0">
+                <TextBlock.Foreground>
+                  <MultiBinding Mode="OneWay" Converter="{StaticResource AsteriskConverter}">
+                    <Binding Path="FulfillRequirement" Mode="OneWay"></Binding>
+                    <Binding Path="IsRequired"></Binding>
+                  </MultiBinding>
+                </TextBlock.Foreground>
+              </TextBlock>
+              <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <TextBlock Classes="Body" 
+                           Width="200"
+                           HorizontalAlignment="Left"
+                           TextWrapping="Wrap"
+                           Text="{Binding Description}"></TextBlock>
+                <ItemsControl Items="{Binding Flags}" HorizontalAlignment="Left">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <StackPanel Spacing="10" Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <TextBlock Classes="Code Small" Text="{Binding}"></TextBlock>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </StackPanel>
+              <!-- End Description Area. That's a lot for such a trivial component, isn't it? -->
+              <views:VersatileControl VerticalAlignment="Center"></views:VersatileControl>
+              <Button Classes="QuickAction" Click="Reset">
+                <Button.IsVisible>
+                  <MultiBinding Mode="OneWay" Converter="{StaticResource ResetConverter}">
+                    <Binding Path=""></Binding>
+                    <Binding Path="IsValueChanged" Mode="OneWay"></Binding>
+                  </MultiBinding>
+                </Button.IsVisible>
+                <TextBlock Text="&#xE14A;"></TextBlock>
+              </Button>
             </StackPanel>
-            <!-- End Description Area. That's a lot for such a trivial component, isn't it? -->
-            <views:VersatileControl VerticalAlignment="Center"></views:VersatileControl>
-            <Button Classes="QuickAction" Click="Reset">
-              <Button.IsVisible>
-                <MultiBinding Mode="OneWay" Converter="{StaticResource ResetConverter}">
-                  <Binding Path=""></Binding>
-                  <Binding Path="IsValueChanged" Mode="OneWay"></Binding>
-                </MultiBinding>
-              </Button.IsVisible>
-              <TextBlock Text="&#xE10E;"></TextBlock>
-            </Button>
+            <ToggleButton Classes="QuickAction">
+              <!-- <Button.IsVisible> -->
+              <!--   <MultiBinding Mode="OneWay" Converter="{StaticResource ResetConverter}"> -->
+              <!--     <Binding Path=""></Binding> -->
+              <!--     <Binding Path="IsValueChanged" Mode="OneWay"></Binding> -->
+              <!--   </MultiBinding> -->
+              <!-- </Button.IsVisible> -->
+              <TextBlock Text="&#xE1C5;"></TextBlock>
+            </ToggleButton>
           </StackPanel>
         </DataTemplate>
       </dt:ComponentTemplateSelector>
