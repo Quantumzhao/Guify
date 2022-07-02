@@ -31,12 +31,16 @@ namespace Guify.Models.Components
 				{
 					_Value = value;
 					InvokePropertyChanged(nameof(Value));
-					InvokePropertyChanged(nameof(IsValueChanged));
+					InvokePropertyChanged(nameof(FulfillRequirement));
 
 					// Value is false -> true
 					if (value) AllGroups[Group].ForEach(r => 
 					{
-						if (r != this) r.InvokePropertyChanged(nameof(IsValueChanged)); 
+						if (r != this)
+						{
+							r.InvokePropertyChanged(nameof(FulfillRequirement));
+							// r.InvokePropertyChanged(nameof(IsValueChanged));
+						}
 					});
 					// otherwise (i.e. Value is true -> false) do nothing
 					// because the button b1 itself can't be set to false by itself, 
@@ -60,8 +64,16 @@ namespace Guify.Models.Components
 		public override string ValueToString(bool value)
 			=> value ? "true" : "false";
 
-		public override bool IsValueChanged
-			=> Value != DefaultValue || AllGroups[Group].Any(r => r.Value != r.DefaultValue);
+		public override bool FulfillRequirement
+		{
+			get
+			{
+				if (DefaultValue) return true;
+				else if (Value) return true;
+				else return AllGroups[Group].Any(r => r.Value != r.DefaultValue);
+			}
+		}
+			// => Value != DefaultValue || AllGroups[Group].Any(r => r.Value != r.DefaultValue);
 
 		// manually invoke the events because for a deselected option, 
 		// false (manually deselected by selecting other options)
@@ -70,14 +82,14 @@ namespace Guify.Models.Components
 		{
 			_Value = DefaultValue;
 			InvokePropertyChanged(nameof(Value));
-			InvokePropertyChanged(nameof(IsValueChanged));
+			InvokePropertyChanged(nameof(FulfillRequirement));
 
 			AllGroups[Group].ForEach(r => 
 			{
 				if (r == this) return;
 				r._Value = r.DefaultValue;
 				r.InvokePropertyChanged(nameof(Value));
-				r.InvokePropertyChanged(nameof(IsValueChanged));
+				r.InvokePropertyChanged(nameof(FulfillRequirement));
 			});
 		}
 	}

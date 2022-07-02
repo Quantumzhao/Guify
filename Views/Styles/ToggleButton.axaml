@@ -1,0 +1,28 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- small circular button -->
+  <Style Selector="ToggleButton.QuickAction">
+    <!-- <Setter Property="BorderThickness" Value="1"></Setter> -->
+    <!-- <Setter Property="BorderBrush" Value="#C0FFFFFF"></Setter> -->
+    <Setter Property="CornerRadius" Value="20"></Setter>
+    <Setter Property="Padding" Value="0"></Setter>
+    <Setter Property="Background" Value="{DynamicResource TransparentBackground}"></Setter>
+    <Setter Property="Width" Value="32"></Setter>
+    <Setter Property="Height" Value="32"></Setter>
+  </Style>
+  <Style Selector="ToggleButton.QuickAction:pointerover /template/ ContentPresenter">
+    <!-- <Setter Property="BorderThickness" Value="1"></Setter> -->
+    <!-- <Setter Property="BorderBrush" Value="#C0FFFFFF"></Setter> -->
+    <Setter Property="Background" Value="{DynamicResource SubtleBackground}"></Setter>
+  </Style>
+    <Style Selector="ToggleButton.QuickAction:checked /template/ ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource HighlightBackground}"></Setter>
+    </Style>
+  <Style Selector="ToggleButton.QuickAction > TextBlock">
+    <Setter Property="FontFamily" Value="Segoe UI Symbol"></Setter>
+    <Setter Property="FontSize" Value="14"></Setter>
+    <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
+    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+  </Style>
+</Styles>

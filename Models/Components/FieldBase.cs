@@ -7,6 +7,7 @@ abstract class FieldBase : ComponentBase, INotifyPropertyChanged
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	public abstract bool IsValueChanged { get; }
+	public abstract bool FulfillRequirement { get; }
 	public abstract bool IsRequired { get; init; }
 	protected char Connector = ' ';
 	public abstract void Reset();
@@ -42,6 +43,15 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 	public override bool IsRequired { get; init; }
 	public string Description { get; init; }
 
+	public override bool FulfillRequirement
+	{
+		get
+		{
+			if (!IsRequired || DefaultValue != null) return true;
+			else return Value != null;
+		}
+	}
+
 	protected T _Value;
 	public virtual T Value
 	{
@@ -52,6 +62,7 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 			{
 				_Value = value;
 				InvokePropertyChanged(nameof(Value));
+				InvokePropertyChanged(nameof(FulfillRequirement));
 				InvokePropertyChanged(nameof(IsValueChanged));
 			}
 		}

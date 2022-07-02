@@ -20,7 +20,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 	{
 		InitializeComponent();
 
-		if (Program.Root == null) throw new ArgumentNullException();
+		if (Program.Root == null) return;
 		// else HelpText = ShellUtils.GetHelpInfo(Program.Root);
 
 		// HelpTextBlock.Text = HelpText;

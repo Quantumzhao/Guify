@@ -18,6 +18,7 @@
       <StyleInclude Source="avares://Guify/Views/Styles/ComboBox.axaml"></StyleInclude>
       <StyleInclude Source="avares://Guify/Views/Styles/NumericUpDown.axaml"></StyleInclude>
       <StyleInclude Source="avares://Guify/Views/Styles/Button.axaml"></StyleInclude>
+      <StyleInclude Source="avares://Guify/Views/Styles/ToggleButton.axaml"></StyleInclude>
       
       <Style Selector="TextBlock.Body">
         <Setter Property="FontFamily" Value="Segoe UI SemiLight"></Setter>
@@ -64,6 +65,7 @@
     <SolidColorBrush x:Key="SubtleForeground" Color="#C0FFFFFF"></SolidColorBrush>
     <SolidColorBrush x:Key="SubtleBackground" Color="#10FFFFFF"></SolidColorBrush>
     <SolidColorBrush x:Key="TransparentBackground" Color="Transparent"></SolidColorBrush>
+    <SolidColorBrush x:Key="HighlightBackground" Color="#40FFFFFF"></SolidColorBrush>
     <SolidColorBrush x:Key="Alert" Color="IndianRed"></SolidColorBrush>
     <LinearGradientBrush x:Key="DisplayMask" StartPoint="0%,50%" EndPoint="100%,50%" >
       <GradientStop Color="#00FFFFFF" Offset="0"></GradientStop>
