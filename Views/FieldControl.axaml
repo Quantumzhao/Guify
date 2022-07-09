@@ -49,27 +49,11 @@
                   </ItemsControl.ItemTemplate>
                 </ItemsControl>
               </StackPanel>
+              <StackPanel Orientation="Vertical">
+                <views:VersatileControl VerticalAlignment="Center"></views:VersatileControl>
+              </StackPanel>
               <!-- End Description Area. That's a lot for such a trivial component, isn't it? -->
-              <views:VersatileControl VerticalAlignment="Center"></views:VersatileControl>
-              <Button Classes="QuickAction" Click="Reset">
-                <Button.IsVisible>
-                  <MultiBinding Mode="OneWay" Converter="{StaticResource ResetConverter}">
-                    <Binding Path=""></Binding>
-                    <Binding Path="IsValueChanged" Mode="OneWay"></Binding>
-                  </MultiBinding>
-                </Button.IsVisible>
-                <TextBlock Text="&#xE14A;"></TextBlock>
-              </Button>
             </StackPanel>
-            <ToggleButton Classes="QuickAction">
-              <!-- <Button.IsVisible> -->
-              <!--   <MultiBinding Mode="OneWay" Converter="{StaticResource ResetConverter}"> -->
-              <!--     <Binding Path=""></Binding> -->
-              <!--     <Binding Path="IsValueChanged" Mode="OneWay"></Binding> -->
-              <!--   </MultiBinding> -->
-              <!-- </Button.IsVisible> -->
-              <TextBlock Text="&#xE1C5;"></TextBlock>
-            </ToggleButton>
           </StackPanel>
         </DataTemplate>
       </dt:ComponentTemplateSelector>
