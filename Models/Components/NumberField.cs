@@ -1,10 +1,10 @@
 using System.ComponentModel;
 namespace Guify.Models.Components;
 
-class NumberField : FieldBase<float?>
+class NumberField : FieldBase<float>
 {
 
-	public NumberField(float? defaultValue, float? max, float? min, bool isRequired
+	public NumberField(float defaultValue, float? max, float? min, bool isRequired
 		, string? longName, string? shortName, string description, bool useEqualConnector) 
 		: base(defaultValue, isRequired, longName, shortName, description, useEqualConnector)
 	{
@@ -23,20 +23,17 @@ class NumberField : FieldBase<float?>
 	// number box cannot have null as a valid value, so if the default value is null, 
 	// i.e. don't care, there must be an extra flag storing the info that "0" is indeed 
 	// representing the null value
-	public override float? Value 
+	public override float Value 
 	{ 
 		get => base.Value; 
 		set
 		{
-			if (DefaultValue is not null)
-			{
-				base.Value = value;
-				return;
-			}
-			else if (value == null)
+			if (value == _Value) return;
+
+			if (value == DefaultValue)
 			{
 				_IsUsingDefault = true;
-				base.Value = DefaultValue ?? 0;
+				base.Value = DefaultValue;
 
 				if (_Value == 0) InvokePropertyChanged(nameof(IsValueChanged));
 			}
@@ -64,7 +61,7 @@ class NumberField : FieldBase<float?>
 		else
 		{
 			if (!_IsUsingDefault) return string.Join(Connector, flag, ValueToString(Value));
-			else if (DefaultValue != null) return string.Join(Connector, flag, ValueToString(DefaultValue));
+			else if (DefaultValue != float.PositiveInfinity) return string.Join(Connector, flag, ValueToString(DefaultValue));
 			else return string.Empty;
 		}
 	}
