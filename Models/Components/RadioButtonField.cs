@@ -27,25 +27,20 @@ namespace Guify.Models.Components
 			get => _Value; 
 			set
 			{
+				// because binded control will automatically set any nullable struct to a non-null default
+				// therefore using null as default value is prone to change
+				// if (_Value?.Equals(DefaultValue) ?? DefaultValue == null) UsingDefault = true;
+				// else UsingDefault = false;
+
 				if (_Value != value)
 				{
 					_Value = value;
 					InvokePropertyChanged(nameof(Value));
-					InvokePropertyChanged(nameof(FulfillRequirement));
-
-					// Value is false -> true
-					if (value) AllGroups[Group].ForEach(r => 
+					InvokePropertyChanged(nameof(IsValueChanged));
+					AllGroups[Group].ForEach(r => 
 					{
-						if (r != this)
-						{
-							r.InvokePropertyChanged(nameof(FulfillRequirement));
-							// r.InvokePropertyChanged(nameof(IsValueChanged));
-						}
+						if (r != this) r.InvokePropertyChanged(nameof(IsValueChanged)); 
 					});
-					// otherwise (i.e. Value is true -> false) do nothing
-					// because the button b1 itself can't be set to false by itself, 
-					// so there exist b2 such that b2 is set to true, which in turn
-					// propagates the change to b1
 				}
 			}
 		}
@@ -64,33 +59,10 @@ namespace Guify.Models.Components
 		public override string ValueToString(bool value)
 			=> value ? "true" : "false";
 
-		public override bool FulfillRequirement
-		{
-			get
-			{
-				if (DefaultValue) return true;
-				else if (Value) return true;
-				else return AllGroups[Group].Any(r => r.Value != r.DefaultValue);
-			}
-		}
-			// => Value != DefaultValue || AllGroups[Group].Any(r => r.Value != r.DefaultValue);
+		public override bool IsValueChanged
+			=> Value != DefaultValue || AllGroups[Group].Any(r => r.Value != r.DefaultValue);
 
-		// manually invoke the events because for a deselected option, 
-		// false (manually deselected by selecting other options)
-		// -> false (reset by Reset()) won't trigger Value.setter
 		public override void Reset()
-		{
-			_Value = DefaultValue;
-			InvokePropertyChanged(nameof(Value));
-			InvokePropertyChanged(nameof(FulfillRequirement));
-
-			AllGroups[Group].ForEach(r => 
-			{
-				if (r == this) return;
-				r._Value = r.DefaultValue;
-				r.InvokePropertyChanged(nameof(Value));
-				r.InvokePropertyChanged(nameof(FulfillRequirement));
-			});
-		}
+			=> AllGroups[Group].ForEach(r => r.Value = r.DefaultValue);
 	}
 }

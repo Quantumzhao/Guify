@@ -25,7 +25,7 @@ class NumberField : FieldBase<float>
 	// representing the null value
 	public override float Value 
 	{ 
-		get => base.Value;
+		get => base.Value; 
 		set
 		{
 			if (value == _Value) return;
@@ -35,22 +35,28 @@ class NumberField : FieldBase<float>
 				_IsUsingDefault = true;
 				base.Value = DefaultValue;
 
-			// 	if (_Value == 0) InvokePropertyChanged(nameof(FulfillRequirement));
-			// }
-			// else
-			// {
-			// 	_IsUsingDefault = false;
-			// 	base.Value = value;
-			// }
-			} else if (value == DefaultValue) _IsUsingDefault = true;
-			else _IsUsingDefault = false;
-			
-			base.Value = value;
+				if (_Value == 0) InvokePropertyChanged(nameof(IsValueChanged));
+			}
+			else
+			{
+				_IsUsingDefault = false;
+				base.Value = value;
+			}
 		}
 	}
 
 	private bool _IsUsingDefault = true;
 	public override bool IsValueChanged => !_IsUsingDefault;
+
+	public override bool FulfillRequirement
+	{
+		get
+		{
+			if (!IsRequired || DefaultValue != float.PositiveInfinity) return true;
+			else return Value != float.PositiveInfinity;
+		}
+	}
+
 
 	public override string Compile()
 	{
