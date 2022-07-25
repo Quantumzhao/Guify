@@ -4,29 +4,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:dt="using:Guify.Views.DataTemplates"
              xmlns:comp="using:Guify.Models.Components"
+             xmlns:views="using:Guify.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Guify.Views.VersatileControl" DataContext="{Binding}">
   <ContentControl Content="{Binding}" HorizontalAlignment="Left">
     <ContentControl.ContentTemplate>
       <dt:FieldTemplateSelector>
         <DataTemplate x:Key="CheckBoxTemplate" DataType="comp:CheckBoxField">
-          <CheckBox IsChecked="{Binding Path=Value, Mode=TwoWay}"></CheckBox>
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <CheckBox IsChecked="{Binding Path=Value, Mode=TwoWay}"></CheckBox>
+            <views:ActionControl></views:ActionControl>
+          </StackPanel>
         </DataTemplate>
         
         <DataTemplate x:Key="StringTemplate" DataType="comp:StringField">
-          <TextBox Text="{Binding Path=Value, Mode=TwoWay}" 
-                   TextWrapping="Wrap" 
-                   AcceptsReturn="True" MaxWidth="200"></TextBox>
+          <StackPanel Orientation="Vertical">
+            <TextBox Text="{Binding Path=Value, Mode=TwoWay}" 
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True" MaxWidth="200"></TextBox>
+            <views:ActionControl></views:ActionControl>
+          </StackPanel>
         </DataTemplate>
         
         <DataTemplate x:Key="NumberTemplate" DataType="comp:NumberField">
-          <NumericUpDown Value="{Binding Path=Value, Mode=TwoWay}" 
-                         Maximum="{Binding Max}" 
-                         Minimum="{Binding Min}"></NumericUpDown>
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <NumericUpDown Value="{Binding Path=Value, Mode=TwoWay}" 
+                           Maximum="{Binding Max}" 
+                           Minimum="{Binding Min}"></NumericUpDown>
+            <views:ActionControl></views:ActionControl>
+          </StackPanel>
         </DataTemplate>
         
         <DataTemplate x:Key="OpenFileTemplate" DataType="comp:OpenFileField">
-          <StackPanel Orientation="Horizontal" Spacing="10">
+          <StackPanel Orientation="Vertical" Spacing="4">
             <ItemsControl Items="{Binding Value, Mode=OneWay}" 
                           VerticalAlignment="Center" 
                           OpacityMask="{DynamicResource DisplayMask}">
@@ -41,49 +51,66 @@
                 </DataTemplate>
               </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Button Classes="QuickAction" Click="OpenFile">
-              <TextBlock Text="&#xE1A5;" Padding="-1 -1 0 0"></TextBlock>
-            </Button>
+            <StackPanel Orientation="Horizontal">
+              <Button Classes="QuickAction" Click="OpenFile">
+                <TextBlock Text="&#xE1A5;" Padding="-1 -1 0 0"></TextBlock>
+              </Button>
+              <views:ActionControl></views:ActionControl>
+            </StackPanel>
           </StackPanel>
         </DataTemplate>
         
         <DataTemplate x:Key="PickValueTemplate" DataType="comp:PickValueField">
-          <ComboBox Items="{Binding Candidates}" 
-                    SelectedItem="{Binding Value, Mode=TwoWay}"
-                    MinHeight="32"
-                    VerticalAlignment="Center">
-            <ComboBox.ItemTemplate>
-              <DataTemplate>
-                <TextBlock Text="{Binding}"></TextBlock>
-              </DataTemplate>
-            </ComboBox.ItemTemplate>
-          </ComboBox>
+          <StackPanel Orientation="Vertical" Spacing="4">
+            <ComboBox Items="{Binding Candidates}" 
+                      SelectedItem="{Binding Value, Mode=TwoWay}"
+                      MinHeight="32"
+                      VerticalAlignment="Center">
+              <ComboBox.ItemTemplate>
+                <DataTemplate>
+                  <TextBlock Text="{Binding}"></TextBlock>
+                </DataTemplate>
+              </ComboBox.ItemTemplate>
+            </ComboBox>
+            <StackPanel Orientation="Horizontal">
+              <views:ActionControl></views:ActionControl>
+            </StackPanel>
+          </StackPanel>
         </DataTemplate>
         
         <DataTemplate x:Key="RadioButtonTemplate" DataType="comp:RadioButtonField">
-          <RadioButton IsChecked="{Binding Path=Value, Mode=TwoWay}" 
-                       GroupName="{Binding Path=Group}"></RadioButton>
+          <StackPanel Orientation="Horizontal">
+            <RadioButton IsChecked="{Binding Path=Value, Mode=TwoWay}" 
+                         GroupName="{Binding Path=Group}"></RadioButton>
+            <views:ActionControl></views:ActionControl>
+          </StackPanel>
         </DataTemplate>
         
         <DataTemplate x:Key="SaveFileTemplate">
-          <StackPanel Orientation="Horizontal" Spacing="10">
+          <StackPanel Orientation="Vertical" Spacing="4">
             <ContentControl OpacityMask="{DynamicResource DisplayMask}">
               <TextBlock Classes="DisplayValue" Text="{Binding Value, Mode=OneWay}"></TextBlock>
             </ContentControl>
-            <Button Classes="QuickAction" Click="SaveFile">
-              <TextBlock Text="&#xE19C;" Padding="-1 -1 0 0"></TextBlock>
-            </Button>
+            <StackPanel Orientation="Horizontal">
+              <Button Classes="QuickAction" Click="SaveFile">
+                <TextBlock Text="&#xE19C;" Padding="-1 -1 0 0"></TextBlock>
+              </Button>
+              <views:ActionControl></views:ActionControl>
+            </StackPanel>
           </StackPanel>
         </DataTemplate>
         
         <DataTemplate x:Key="SelectFolderTemplate" DataType="comp:SelectFolderField">
-          <StackPanel Orientation="Horizontal" Spacing="10">
+          <StackPanel Orientation="Vertical" Spacing="4">
             <ContentControl OpacityMask="{DynamicResource DisplayMask}">
               <TextBlock Classes="DisplayValue" Text="{Binding Value, Mode=OneWay}"></TextBlock>
             </ContentControl>
-            <Button Classes="QuickAction" Click="BrowseFolder">
-              <TextBlock Text="&#xE197;" Padding="-1 -1 0 0"></TextBlock>
-            </Button>
+            <StackPanel Orientation="Horizontal">
+              <Button Classes="QuickAction" Click="BrowseFolder">
+                <TextBlock Text="&#xE197;" Padding="-1 -1 0 0"></TextBlock>
+              </Button>
+              <views:ActionControl></views:ActionControl>
+            </StackPanel>
           </StackPanel>
         </DataTemplate>
       </dt:FieldTemplateSelector>

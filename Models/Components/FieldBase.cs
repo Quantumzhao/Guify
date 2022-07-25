@@ -68,6 +68,20 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 		}
 	}
 
+	private bool _ShouldSkip;
+	public bool ShouldSkip
+	{
+		get => _ShouldSkip;
+		set
+		{
+			if (_ShouldSkip != value)
+			{
+				_ShouldSkip = value;
+				InvokePropertyChanged(nameof(ShouldSkip));
+			}
+		}
+	}
+
 	public override string Compile()
 	{
 		var flag = GetFlag();
