@@ -44,11 +44,10 @@ class ShellUtils
 		var thread = new Thread(() => {
 			while (flag)
 			{
-				Thread.Sleep(500);
-
-				if (flag && !process.StandardOutput.EndOfStream)
+				Thread.Sleep(100);
+				if (flag)
 				{
-					Console.WriteLine(process.StandardOutput.ReadToEnd());
+					Console.WriteLine(process.StandardOutput.ReadLine());
 				}
 			}
 		});
