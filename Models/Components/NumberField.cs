@@ -23,30 +23,30 @@ class NumberField : FieldBase<float>
 	// number box cannot have null as a valid value, so if the default value is null, 
 	// i.e. don't care, there must be an extra flag storing the info that "0" is indeed 
 	// representing the null value
-	public override float Value 
-	{ 
-		get => base.Value; 
-		set
-		{
-			if (value == _Value) return;
+	// public override float Value 
+	// { 
+	// 	get => base.Value; 
+	// 	set
+	// 	{
+	// 		if (value == _Value) return;
 
-			if (value == DefaultValue)
-			{
-				_IsUsingDefault = true;
-				base.Value = DefaultValue;
+	// 		if (value == DefaultValue)
+	// 		{
+	// 			_IsUsingDefault = true;
+	// 			base.Value = DefaultValue;
 
-				if (_Value == 0) InvokePropertyChanged(nameof(IsValueChanged));
-			}
-			else
-			{
-				_IsUsingDefault = false;
-				base.Value = value;
-			}
-		}
-	}
+	// 			// if (_Value == 0) InvokePropertyChanged(nameof(IsValueChanged));
+	// 		}
+	// 		else
+	// 		{
+	// 			_IsUsingDefault = false;
+	// 			base.Value = value;
+	// 		}
+	// 	}
+	// }
 
 	private bool _IsUsingDefault = true;
-	public override bool IsValueChanged => !_IsUsingDefault;
+	// public override bool IsValueChanged => !_IsUsingDefault;
 
 	public override bool FulfillRequirement
 	{

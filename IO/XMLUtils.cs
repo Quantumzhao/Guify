@@ -159,7 +159,7 @@ static class XMLUtils
 			return new CheckBoxField(
 				defaultValue, isFlag, isRequired, longName, shortName, desc, connector);
 		else
-			return new RadioButtonField(defaultValue ?? false, isFlag, isRequired, longName
+			return new RadioButtonField(defaultValue, isFlag, isRequired, longName
 				, shortName, desc, group, connector);
 	}
 

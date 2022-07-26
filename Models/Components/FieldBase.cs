@@ -34,6 +34,10 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 		if (useEqualConnector) Connector = '=';
 	}
 
+	//                         value
+	//                    null   non-null
+	// default     null   true   false
+	//   value non-null   false  ?? == ??
 	public override bool IsValueChanged => !(_Value?.Equals(DefaultValue) ?? DefaultValue is null);
 	private readonly string? LongName = null;
 	private readonly string? ShortName = null;
@@ -88,7 +92,7 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 
 		if (IsRequired) 
 		{
-			if (Value is not null) return string.Join(Connector, flag, Value);
+			if (Value is not null) return string.Join(Connector, flag, ValueToString(Value));
 			else throw new WarningException(nameof(Value)
 				, $"Value of {GetName()} is required");
 		}
