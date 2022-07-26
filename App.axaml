@@ -2,7 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:Guify"
              xmlns:converter="clr-namespace:Guify.Views.Converters"
-             x:Class="Guify.App">
+             x:Class="Guify.App"
+             x:CompileBindings="True">
   <Application.DataTemplates>
     <local:ViewLocator/>
     </Application.DataTemplates>

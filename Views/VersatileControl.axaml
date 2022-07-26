@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:dt="using:Guify.Views.DataTemplates"
              xmlns:comp="using:Guify.Models.Components"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Guify.Views.VersatileControl" DataContext="{Binding}">
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" x:DataType="comp:FieldBase"
+             x:Class="Guify.Views.VersatileControl"
+             x:CompileBindings="True">
   <ContentControl Content="{Binding}" HorizontalAlignment="Left">
     <ContentControl.ContentTemplate>
       <dt:FieldTemplateSelector>
@@ -20,7 +21,8 @@
         </DataTemplate>
         
         <DataTemplate x:Key="NumberTemplate" DataType="comp:NumberField">
-          <NumericUpDown Value="{Binding Path=Value, Mode=TwoWay}" 
+          <NumericUpDown x:Name="Numeric"
+                         Value="{Binding Path=Value, Mode=TwoWay}" 
                          Maximum="{Binding Max}" 
                          Minimum="{Binding Min}"></NumericUpDown>
         </DataTemplate>
@@ -36,7 +38,7 @@
                 </ItemsPanelTemplate>
               </ItemsControl.ItemsPanel>
               <ItemsControl.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate DataType="{x:Type x:String}">
                   <TextBlock Classes="DisplayValue" Text="{Binding Mode=OneWay}"></TextBlock>
                 </DataTemplate>
               </ItemsControl.ItemTemplate>
@@ -53,7 +55,7 @@
                     MinHeight="32"
                     VerticalAlignment="Center">
             <ComboBox.ItemTemplate>
-              <DataTemplate>
+              <DataTemplate DataType="{x:Type x:String}">
                 <TextBlock Text="{Binding}"></TextBlock>
               </DataTemplate>
             </ComboBox.ItemTemplate>
@@ -68,7 +70,7 @@
         <DataTemplate x:Key="SaveFileTemplate">
           <StackPanel Orientation="Horizontal" Spacing="10">
             <ContentControl OpacityMask="{DynamicResource DisplayMask}">
-              <TextBlock Classes="DisplayValue" Text="{Binding Value, Mode=OneWay}"></TextBlock>
+              <TextBlock Classes="DisplayValue" Text="{Binding Value, Mode=OneWay}" x:DataType="comp:SaveFileField"></TextBlock>
             </ContentControl>
             <Button Classes="QuickAction" Click="SaveFile">
               <TextBlock Text="&#xE19C;" Padding="-1 -1 0 0"></TextBlock>

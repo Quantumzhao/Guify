@@ -7,7 +7,9 @@
              xmlns:model="clr-namespace:Guify.Models"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Guify.Views.MainView">
+             x:Class="Guify.Views.MainView"
+             x:CompileBindings="True"
+             x:DataType="model:Root">
   <ContentControl Content="{Binding}">
     <ContentControl.ContentTemplate>
       <dt:TopLevelTemplateSelector>

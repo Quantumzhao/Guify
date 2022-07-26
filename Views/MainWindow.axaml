@@ -11,7 +11,8 @@
         SizeToContent="WidthAndHeight"
         TransparencyLevelHint="AcrylicBlur"
         Background="#A02c000a"
-        ExtendClientAreaToDecorationsHint="True">
+        ExtendClientAreaToDecorationsHint="True"
+        x:CompileBindings="True">
   <Grid Margin="0 8 0 0" ColumnDefinitions="*, Auto" MinWidth="480" MinHeight="600">
     <Grid Grid.Column="0" RowDefinitions="*,Auto,Auto">
       <views:MainView x:Name="MainView" Grid.Row="0" Margin="32 4 0 0"/>

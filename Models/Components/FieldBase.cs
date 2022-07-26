@@ -4,11 +4,17 @@ namespace Guify.Models.Components;
 
 abstract class FieldBase : ComponentBase, INotifyPropertyChanged
 {
+	protected FieldBase(string description)
+	{
+		Description = description;
+	}
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	public abstract bool IsValueChanged { get; }
 	public abstract bool FulfillRequirement { get; }
 	public abstract bool IsRequired { get; init; }
+	public string Description { get; init; }
+	public List<string> Flags { get; } = new List<string>();
 	protected char Connector = ' ';
 	public abstract void Reset();
 
@@ -19,7 +25,7 @@ abstract class FieldBase : ComponentBase, INotifyPropertyChanged
 abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 {
 	public FieldBase(T defaultValue, bool isRequired, string? longName, string? shortName
-		,string description, bool useEqualConnector)
+		,string description, bool useEqualConnector) : base(description)
 	{
 		DefaultValue = defaultValue;
 		_Value = defaultValue;
@@ -27,7 +33,6 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 		IsRequired = isRequired;
 		LongName = longName;
 		ShortName = shortName;
-		Description = description;
 
 		if (longName != null) Flags.Add(longName);
 		if (shortName != null) Flags.Add((shortName));
@@ -42,10 +47,8 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 	private readonly string? LongName = null;
 	private readonly string? ShortName = null;
 
-	public List<string> Flags { get; } = new List<string>();
 	public virtual T DefaultValue { get; init; }
 	public override bool IsRequired { get; init; }
-	public string Description { get; init; }
 
 	public override bool FulfillRequirement
 	{

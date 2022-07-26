@@ -9,7 +9,6 @@
     <Company>Quantum</Company>
 	<!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
 	<TrimMode>copyused</TrimMode>
-	<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
 	<Authors>Quantumzhao</Authors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -20,10 +19,7 @@
     <Folder Include="Models/" />
     <AvaloniaResource Include="Assets/**" />
     <None Remove=".gitignore" />
-    <None Update="CLI/config.cfg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="UI/**">
+    <None Update="guify">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <AvaloniaResource Include="**/*.xaml" />
