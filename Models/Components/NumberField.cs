@@ -62,17 +62,8 @@ class NumberField : FieldBase<float>
 	{
 		var flag = GetFlag();
 
-		if (IsRequired) 
-		{
-			if (!_IsUsingDefault) return string.Join(Connector, flag, Value);
-			else throw new WarningException(nameof(Value)
-				, $"Value of {GetName()} is required");
-		}
-		else
-		{
-			if (!_IsUsingDefault) return string.Join(Connector, flag, ValueToString(Value));
-			else if (DefaultValue != float.PositiveInfinity) return string.Join(Connector, flag, ValueToString(DefaultValue));
-			else return string.Empty;
-		}
+		if (Value != float.PositiveInfinity) 
+			return string.Join(Connector, flag, ValueToString(Value));
+		else return string.Empty;
 	}
 }

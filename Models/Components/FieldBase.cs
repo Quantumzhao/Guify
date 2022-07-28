@@ -71,6 +71,7 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 				InvokePropertyChanged(nameof(Value));
 				InvokePropertyChanged(nameof(FulfillRequirement));
 				InvokePropertyChanged(nameof(IsValueChanged));
+				Program.Root?.InvokePropertyChanged(nameof(Program.Root.FulfillRequirement));
 			}
 		}
 	}
@@ -93,18 +94,9 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 	{
 		var flag = GetFlag();
 
-		if (IsRequired) 
-		{
-			if (Value is not null) return string.Join(Connector, flag, ValueToString(Value));
-			else throw new WarningException(nameof(Value)
-				, $"Value of {GetName()} is required");
-		}
-		else
-		{
-			if (Value is not null) return string.Join(Connector, flag, ValueToString(Value));
-			else if (DefaultValue != null) return string.Join(Connector, flag, ValueToString(DefaultValue));
-			else return string.Empty;
-		}
+		if (Value is not null) return string.Join(Connector, flag, ValueToString(Value));
+		else if (DefaultValue != null) return string.Join(Connector, flag, ValueToString(DefaultValue));
+		else return string.Empty;
 	}
 
 	public override void Reset() => Value = DefaultValue;

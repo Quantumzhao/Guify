@@ -56,7 +56,7 @@
             <Button Classes="QuickAction" Click="Reset">
               <Button.IsVisible>
                 <MultiBinding Mode="OneWay" Converter="{StaticResource ResetConverter}">
-                  <Binding Path="$self"></Binding>
+                  <Binding></Binding>
                   <Binding Path="IsValueChanged" Mode="OneWay"></Binding>
                 </MultiBinding>
               </Button.IsVisible>
