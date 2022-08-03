@@ -45,7 +45,7 @@ class NumberField : FieldBase<float>
 	// 	}
 	// }
 
-	private bool _IsUsingDefault = true;
+	// private bool _IsUsingDefault = true;
 	// public override bool IsValueChanged => !_IsUsingDefault;
 
 	public override bool FulfillRequirement

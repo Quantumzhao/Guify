@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using Guify.Models.Components;
 using System.Linq;
+using Guify.IO;
 
 namespace Guify.Models;
 
@@ -44,6 +45,7 @@ namespace Guify.Models;
 			_ => throw new ArgumentException()
 		};
 
+		public bool IsCommandRunning => ShellUtils.IsCommandRunning;
 
 		public string Compile()
 		{
@@ -62,5 +64,8 @@ namespace Guify.Models;
 		}
 
 		public void InvokePropertyChanged(string name)
-			=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+			Console.WriteLine(name);
+		}
 	}

@@ -7,9 +7,20 @@ namespace Guify.IO;
 
 class ShellUtils 
 {
+	private static bool _IsCommandRunning = false;
+	public static bool IsCommandRunning
+	{
+		get => _IsCommandRunning;
+		set
+		{
+			if (value == _IsCommandRunning) return;
+			_IsCommandRunning = value;
+			Program.Root?.InvokePropertyChanged(nameof(Program.Root.IsCommandRunning));
+		}
+	}
 	public static async void Bash(string cmd)
 	{
-		var flag = true;
+		IsCommandRunning = true;
 		var escapedArgs = cmd.Replace("\"", "\\\"");
 
 		using var process = new Process()
@@ -39,16 +50,14 @@ class ShellUtils
 		// 	Console.WriteLine("Process Disposed due to error. ");
 		// };
 
-		process.Disposed += (s, e) => flag = false;
+		process.Disposed += (s, e) => IsCommandRunning = false;
 		
 		var thread = new Thread(() => {
-			while (flag)
+			while (true)
 			{
 				Thread.Sleep(100);
-				if (flag)
-				{
-					Console.WriteLine(process.StandardOutput.ReadLine());
-				}
+				if (_IsCommandRunning) Console.WriteLine(process.StandardOutput.ReadLine());
+				else return;
 			}
 		});
 
@@ -57,15 +66,14 @@ class ShellUtils
 
 		process.Exited += (o, e) => {
 			Console.WriteLine(process.StandardOutput.ReadToEnd());
-			// if (flag) process.Dispose();
 			var code = process.ExitCode;
 			process.Dispose();
-			flag = false;
+			IsCommandRunning = false;
 
 			Console.WriteLine($"Process exited with code {code}");
 		};
 		// string result = process.StandardOutput.ReadToEnd();
 		await process.WaitForExitAsync();
-		flag = false;
+		IsCommandRunning = false;
 	}
 }

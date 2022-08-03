@@ -9,10 +9,10 @@ namespace Guify.CLI
 		private static string GetUIDirectory()
 		{
 			// Use DoNotVerify in case LocalApplicationData doesn’t exist.
-			string appData = Path.Combine(Environment.GetFolderPath(
+			string local = Path.Combine(Environment.GetFolderPath(
 				SpecialFolder.LocalApplicationData, SpecialFolderOption.DoNotVerify), "guify");
 			// Ensure the directory and all its parents exist.
-			return Directory.CreateDirectory(appData).FullName;
+			return Directory.CreateDirectory(local).FullName;
 		}
 
 		public static string CombineName(string name) => GetUIDirectory() + "/" + name;

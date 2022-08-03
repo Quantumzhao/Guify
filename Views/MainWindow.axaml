@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Guify.Views"
+        xmlns:pr="clr-namespace:AvaloniaProgressRing;assembly=AvaloniaProgressRing"
         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
         x:Class="Guify.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
@@ -27,9 +28,20 @@
               Grid.Row="2"
               x:DataType="model:Root"
               IsEnabled="{Binding FulfillRequirement, Mode=OneWay}"
+              IsVisible="{Binding !IsCommandRunning, Mode=OneWay}"
               Click="Execute">
         <TextBlock Text="EXECUTE"></TextBlock>
       </Button>
+      <pr:ProgressRing x:Name="Ring" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="32 16 32 32"
+                       Grid.Row="2"
+                       Width="16" Height="16"
+                       Background="{DynamicResource TransparentBackground}"
+                       Foreground="{DynamicResource NormalForeground}"
+                       IsActive="{Binding IsCommandRunning, Mode=OneWay}"
+                       x:DataType="model:Root"></pr:ProgressRing>
     </Grid>
     
     <!-- <Grid Grid.Column="1"> -->

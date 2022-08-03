@@ -20,6 +20,7 @@
       <StyleInclude Source="avares://Guify/Views/Styles/NumericUpDown.axaml"></StyleInclude>
       <StyleInclude Source="avares://Guify/Views/Styles/Button.axaml"></StyleInclude>
       <StyleInclude Source="avares://Guify/Views/Styles/ToggleButton.axaml"></StyleInclude>
+      <StyleInclude Source="avares://AvaloniaProgressRing/Styles/ProgressRing.xaml"/>
       
       <Style Selector="TextBlock.Body">
         <Setter Property="FontFamily" Value="Segoe UI SemiLight"></Setter>

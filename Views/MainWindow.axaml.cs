@@ -27,31 +27,10 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 		// MainTitle.Text = Program.ProfileName ?? string.Empty;
 		MainView.DataContext = Program.Root?.Content;
 		MainButton.DataContext = Program.Root;
+		Ring.DataContext = Program.Root;
 		
 		Instance = this;
 	}
 
-	// public string HelpText { get; set; }
-	
-	public object MainPageContent => Program.Root?.Content switch
-	{
-		ComponentBase[] items => items,
-		Verb[] verbs => verbs,
-		_ => throw new ArgumentException()
-	};
-	
-	private void Execute(object? sender, RoutedEventArgs e)
-	{
-		try
-		{
-			Program.Run();
-		}
-		catch (WarningException we)
-		{
-			var msgBox = MessageBoxManager.GetMessageBoxStandardWindow(
-				"Missing Fields", we.Message);
-
-			msgBox.Show();
-		}
-	}
+	private void Execute(object? sender, RoutedEventArgs e) => Program.Run();
 }
