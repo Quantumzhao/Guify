@@ -12,8 +12,7 @@
       <Setter Property="IsVisible" Value="False" />
     </Style>
     <Style Selector="TabItem > TextBlock">
-      <Setter Property="FontFamily" Value="Segoe UI"></Setter>
-      <Setter Property="FontWeight" Value="Light"></Setter>
+      <Setter Property="FontFamily" Value="{DynamicResource Light}"></Setter>
       <Setter Property="FontSize" Value="30"></Setter>
       <Setter Property="Margin" Value="0 -10 0 -10"></Setter>
     </Style>

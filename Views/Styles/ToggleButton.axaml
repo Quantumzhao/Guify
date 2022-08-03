@@ -19,7 +19,7 @@
       <Setter Property="Background" Value="{DynamicResource HighlightBackground}"></Setter>
     </Style>
   <Style Selector="ToggleButton.QuickAction > TextBlock">
-    <Setter Property="FontFamily" Value="Segoe UI Symbol"></Setter>
+    <Setter Property="FontFamily" Value="{DynamicResource Symbol}"></Setter>
     <Setter Property="FontSize" Value="14"></Setter>
     <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
     <Setter Property="HorizontalAlignment" Value="Center"></Setter>

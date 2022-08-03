@@ -13,8 +13,7 @@
     <!-- <Setter Property="BorderThickness" Value="1"></Setter> -->
   </Style>
   <Style Selector="Button.Normal > TextBlock">
-    <Setter Property="FontWeight" Value="Black"></Setter>
-    <Setter Property="FontFamily" Value="Segoe UI"></Setter>
+    <Setter Property="FontFamily" Value="{DynamicResource Black}"></Setter>
     <Setter Property="Foreground" Value="{DynamicResource NormalForeground}"></Setter>
     <Setter Property="Margin" Value="16"></Setter>
   </Style>
@@ -41,7 +40,7 @@
     <Setter Property="Background" Value="{DynamicResource SubtleBackground}"></Setter>
   </Style>
   <Style Selector="Button.QuickAction > TextBlock">
-    <Setter Property="FontFamily" Value="Segoe UI Symbol"></Setter>
+    <Setter Property="FontFamily" Value="{DynamicResource Symbol}"></Setter>
     <Setter Property="FontSize" Value="14"></Setter>
     <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
     <Setter Property="HorizontalAlignment" Value="Center"></Setter>

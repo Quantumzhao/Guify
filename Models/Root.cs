@@ -66,6 +66,5 @@ namespace Guify.Models;
 		public void InvokePropertyChanged(string name)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-			Console.WriteLine(name);
 		}
 	}

@@ -23,16 +23,15 @@
       <StyleInclude Source="avares://AvaloniaProgressRing/Styles/ProgressRing.xaml"/>
       
       <Style Selector="TextBlock.Body">
-        <Setter Property="FontFamily" Value="Segoe UI SemiLight"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource SemiLight}"></Setter>
         <Setter Property="FontSize" Value="14"></Setter>
       </Style>
       <Style Selector="TextBlock.Title">
-        <Setter Property="FontFamily" Value="Segoe UI"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Light}"></Setter>
         <Setter Property="FontSize" Value="48"></Setter>
-        <Setter Property="FontWeight" Value="ExtraLight"></Setter>
       </Style>
       <Style Selector="TextBlock.Code">
-        <Setter Property="FontFamily" Value="Cascadia Code"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Code}"></Setter>
         <Setter Property="FontWeight" Value="Bold"></Setter>
       </Style>
       <Style Selector="TextBlock.Small">
@@ -40,19 +39,17 @@
       </Style>
       <Style Selector="TextBlock.Label">
         <Setter Property="FontSize" Value="12"></Setter>
-        <Setter Property="FontWeight" Value="Black"></Setter>
-        <Setter Property="FontFamily" Value="Segoe UI"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Black}"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
       </Style>
       <Style Selector="TextBlock.Asterisk">
         <Setter Property="FontSize" Value="20"></Setter>
-        <Setter Property="FontWeight" Value="Black"></Setter>
-        <Setter Property="FontFamily" Value="Segoe UI"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Black}"></Setter>
       </Style>
       <Style Selector="TextBlock.DisplayValue">
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="TextAlignment" Value="Right"></Setter>
-        <Setter Property="FontFamily" Value="Cascadia Code"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource Code}"></Setter>
         <Setter Property="MaxWidth" Value="150"></Setter>
         <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
@@ -74,5 +71,20 @@
       <GradientStop Color="#FFFFFFFF" Offset="0.25"></GradientStop>
       <GradientStop Color="#FFFFFFFF" Offset="1" />
     </LinearGradientBrush>
+    <FontFamily x:Key="Light">
+      avares://Guify/Assets/Fonts/segoeuil.ttf#Segoe UI
+    </FontFamily>
+    <FontFamily x:Key="SemiLight">
+      avares://Guify/Assets/Fonts/segoeuisl.ttf#Segoe UI
+    </FontFamily>
+    <FontFamily x:Key="Black">
+      avares://Guify/Assets/Fonts/seguibl.ttf#Segoe UI
+    </FontFamily>
+    <FontFamily x:Key="Symbol">
+      avares://Guify/Assets/Fonts/seguisym.ttf#Segoe UI Symbol
+    </FontFamily>
+    <FontFamily x:Key="Code">
+      avares://Guify/Assets/Fonts/CascadiaCode.ttf#Cascadia Code
+    </FontFamily>
   </Application.Resources>
 </Application>
