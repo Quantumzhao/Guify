@@ -14,12 +14,14 @@ public partial class App : Application
 	public override void Initialize()
 	{
 		AvaloniaXamlLoader.Load(this);
+		Console.WriteLine("App layout loaded. ");
 	}
 
 	public override void OnFrameworkInitializationCompleted()
 	{
 		if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
 		{
+			Console.WriteLine("Loading main window");
 			desktop.MainWindow = new MainWindow
 			{
 				DataContext = new MainWindowViewModel(),
@@ -27,5 +29,6 @@ public partial class App : Application
 		}
 
 		base.OnFrameworkInitializationCompleted();
+		Console.WriteLine("Done. ");
 	}
 }
