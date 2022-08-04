@@ -14,6 +14,7 @@
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugSymbols>False</DebugSymbols>
     <DebugType>None</DebugType>
+    <TrimmerDefaultAction>copyused</TrimmerDefaultAction>
   </PropertyGroup>  
   <ItemGroup>
     <Folder Include="Models/" />
@@ -28,6 +29,7 @@
     <!--This helps with theme dll-s trimming.
     If you will publish your application in self-contained mode with p:PublishTrimmed=true and it will use Fluent theme Default theme will be trimmed from the output and vice versa.
     https://github.com/AvaloniaUI/Avalonia/issues/5593 -->
+    <TrimmerRootAssembly Include="Guify" />
     <TrimmableAssembly Include="Avalonia.Themes.Default" />
   </ItemGroup>
   <ItemGroup>

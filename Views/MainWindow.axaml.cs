@@ -8,7 +8,6 @@ using Avalonia;
 using Avalonia.Interactivity;
 using Guify.Models;
 using Guify.Models.Components;
-using MessageBox.Avalonia;
 
 namespace Guify.Views;
 
