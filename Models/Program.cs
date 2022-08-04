@@ -60,15 +60,11 @@ class Program
 
 				var ps = new LinkedList<string>(o.Properties);
 				ProfileName = ps.First?.Value ?? string.Empty;
-
-				Console.WriteLine($"Running profile {ProfileName}");
-
 				ps.RemoveFirst();
 				Postfix = string.Join(' ', ps);
 
 				Root = XMLUtils.LoadRoot(ConfigIO.CombineName(ProfileName));
 
-				Console.WriteLine("Booting up GUI");
 				BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 			});
 
