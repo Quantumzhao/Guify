@@ -2,11 +2,11 @@ using System.Linq;
 using System.ComponentModel;
 namespace Guify.Models.Components
 {
-	class RadioButtonField : FieldBase<bool?>, INotifyPropertyChanged
+	class RadioButtonField : FieldBase<bool>, INotifyPropertyChanged
 	{
 		private static readonly Dictionary<string, List<RadioButtonField>> AllGroups = new();
 
-		public RadioButtonField(bool? defaultValue, bool? isFlag, bool isRequired, string? longName
+		public RadioButtonField(bool defaultValue, bool? isFlag, bool isRequired, string? longName
 			, string? shortName, string description, string group, bool useEqualConnector) 
 			: base(defaultValue, isRequired, longName,
 			shortName, description, useEqualConnector)
@@ -22,7 +22,7 @@ namespace Guify.Models.Components
 		
 		public string Group { get; init; }
 
-		public override bool? Value
+		public override bool Value
 		{
 			get => _Value; 
 			set
@@ -35,13 +35,16 @@ namespace Guify.Models.Components
 				if (_Value != value)
 				{
 					_Value = value;
-					InvokePropertyChanged(nameof(Value));
-					InvokePropertyChanged(nameof(FulfillRequirement));
-					InvokePropertyChanged(nameof(IsValueChanged));
+					// InvokePropertyChanged(nameof(Value));
+					// InvokePropertyChanged(nameof(FulfillRequirement));
+					// InvokePropertyChanged(nameof(IsValueChanged));
 					
-					if (value ?? false) AllGroups[Group].ForEach(r => 
+					if (value) AllGroups[Group].ForEach(r => 
 					{
-						if (r != this) r.Value = false;
+						if (r != this) r._Value = false;
+						r.InvokePropertyChanged(nameof(Value));
+						r.InvokePropertyChanged(nameof(FulfillRequirement));
+						r.InvokePropertyChanged(nameof(IsValueChanged));
 					});
 				}
 			}
@@ -51,8 +54,13 @@ namespace Guify.Models.Components
 		{
 			get
 			{
-				if (!IsRequired || DefaultValue != null) return true;
-				else return Value != null;
+				if (!IsRequired) return true;
+				if (DefaultValue) return true;
+				if (Value) return true;
+
+				return AllGroups[Group].Any(r => r.Value);
+				// if (!IsRequired || DefaultValue) return true;
+				// else return Value != null;
 			}
 		}
 
@@ -60,17 +68,17 @@ namespace Guify.Models.Components
 		{
 			if (IsFlag)
 			{
-				if (Value ?? false) return GetFlag();
+				if (Value) return GetFlag();
 				else return string.Empty;
 			}
 			else return base.Compile();
 		}
 
-		public override string ValueToString(bool? value)
-			=> value ?? false ? "true" : "false";
+		public override string ValueToString(bool value)
+			=> value ? "true" : "false";
 
-		// public override bool IsValueChanged
-		// 	=> Value != DefaultValue || AllGroups[Group].Any(r => r.Value != r.DefaultValue);
+		public override bool IsValueChanged
+			=> Value != DefaultValue || AllGroups[Group].Any(r => r.Value != r.DefaultValue);
 
 		public override void Reset()
 			=> AllGroups[Group].ForEach(r => r.Value = r.DefaultValue);

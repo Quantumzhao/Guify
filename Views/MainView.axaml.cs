@@ -30,6 +30,8 @@ namespace Guify.Views
 				newVerb.IsUsingThis = true;
 			if (e.RemovedItems.Count != 0 && e.RemovedItems[0] is Verb oldVerb) 
 				oldVerb.IsUsingThis = false;
+
+			Program.Root?.InvokePropertyChanged(nameof(Program.Root.FulfillRequirement));
 		}
 
 		private void PART_ScrollViewer_OnScrollChanged(object? sender, ScrollChangedEventArgs e)
