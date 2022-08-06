@@ -6,7 +6,7 @@ class SaveFileField : FieldBase<string?>, INotifyPropertyChanged {
 
 	public SaveFileField(string? customDefaultFileName, string? customDefaultFolder
 	, string description, bool isRequired, string? longName, string? shortName
-	, bool useEqualConnector) : base(customDefaultFolder + customDefaultFileName, isRequired
+	, bool useEqualConnector) : base(customDefaultFolder.Append(customDefaultFileName), isRequired
 	, longName, shortName, description, useEqualConnector) 
 	{
 		CustomDefaultFileName = customDefaultFileName;
