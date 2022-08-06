@@ -8,7 +8,7 @@ class OpenFileField : FieldBase<string[]?>
 	public OpenFileField(string? customDefaultFileName, string? customDefaultFolder, 
 		bool? allowMultiple, bool isRequired, string description
 		, string? longName, string? shortName, bool useEqualConnector) : base(
-			new[] { Path.Join(customDefaultFolder, customDefaultFileName) }
+			JoinPath(customDefaultFolder, customDefaultFileName)
 		, isRequired, longName, shortName, description, useEqualConnector)
 	{
 		CustomDefaultFileName = customDefaultFileName;
@@ -21,5 +21,15 @@ class OpenFileField : FieldBase<string[]?>
 	public string? CustomDefaultFileName { get; init; }
 
 	public override string ValueToString(string[]? value)
-		=> string.Join(' ', value ?? Array.Empty<string>());
+		=> string.Join(' ', (value ?? Array.Empty<string>()).Select(Escape));
+
+	private static string[]? JoinPath(string? folder, string? file)
+		=> (folder, file) switch
+		{
+			(not null, not null) => new[] { Path.Join(folder, file) },
+			_ => null
+		};
+
+	private static string Escape(string s)
+		=> '\"' + s.Replace("\"", "\\\"") + '\"';
 }

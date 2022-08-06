@@ -19,5 +19,6 @@ class Verb
 	public bool IsUsingThis { get; set; } = false;
 
 	public string Compile()
-		=> Name + " " + string.Join(' ', Items.Select(i => i.Compile()));
+		=> Name + " " + string.Join(' ', Items.Select(i => i.Compile())
+											  .Where(s => !string.IsNullOrWhiteSpace(s)));
 }
