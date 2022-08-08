@@ -2,6 +2,10 @@
 
 This is a tool to generate a simple GUI for a CLI command. The user would only need to supply a simple XML file defining the expected representation of various flags and verbs in such a CLI command. 
 
+## Installation
+
+
+
 ## What it is
 
 By using Guify, users don’t need to always refer to the `--help` page or `man` when they only want to use the mere basics of a complex tool. In such way, users who have a hard time memorizing things (just like me), can always rely on the GUI until they get familiarized. 

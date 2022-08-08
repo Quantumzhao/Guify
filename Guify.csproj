@@ -29,6 +29,9 @@
     <None Update="Schemas/**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="*.sh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <AvaloniaResource Include="**/*.xaml" />
   </ItemGroup>
   <ItemGroup>
