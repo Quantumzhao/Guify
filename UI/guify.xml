@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root command="guify" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ./Schemas/Root.xsd">
+<root command="guify" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ../Schemas/Root.xsd">
     <verb name="add" description="Add a new Guify UI file for a command">
         <openFile description="path to an existing UI file. It should have no extensions. " required="true" longName="--path" shortName="-p" />
         <separator label="Advanced" />

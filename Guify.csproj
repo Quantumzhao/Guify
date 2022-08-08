@@ -23,7 +23,10 @@
     <Folder Include="Models/" />
     <AvaloniaResource Include="Assets/**" />
     <None Remove=".gitignore" />
-    <None Update="guify">
+    <None Update="UI/guify">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Schemas/**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <AvaloniaResource Include="**/*.xaml" />

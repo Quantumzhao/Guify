@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root command="dotnet" reusable="true" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ./Schemas/Root.xsd">
+<root command="dotnet" reusable="true" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ../Schemas/Root.xsd">
     <verb name="publish">
         <infix code="--configuration Release" />
         <separator label="Target" />
@@ -11,7 +11,7 @@
         <pickValue description="Architecture" longName="--arch" shortName="-a">
             <candidate value="x86" />
             <candidate value="x64" />
-            <candidate value="arm" />
+            <candidate value="arm64" />
         </pickValue>
         <separator label="Optimizations" />
         <yesNo description="ReadyToRun: less startup time" longName="-p:PublishReadyToRun" isFlag="false" useEqualConnector="true" />
