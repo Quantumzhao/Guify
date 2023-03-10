@@ -30,8 +30,8 @@ namespace Guify.Models;
 
 		public object Content => (FlatItems, Verbs) switch
 		{
-			(ComponentBase[] items, null) => items,
-			(null, Verb[] verbs) => verbs,
+			({ } items, null) => items,
+			(null, { } verbs) => verbs,
 			_ => throw new ArgumentException()
 		};
 

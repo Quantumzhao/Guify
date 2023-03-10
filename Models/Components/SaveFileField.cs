@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace Guify.Models.Components;
 
-class SaveFileField : FieldBase<string?>, INotifyPropertyChanged {
+internal class SaveFileField : FieldBase<string?> {
 
 	public SaveFileField(string? customDefaultFileName, string? customDefaultFolder
 	, string description, bool isRequired, string? longName, string? shortName
@@ -13,6 +13,6 @@ class SaveFileField : FieldBase<string?>, INotifyPropertyChanged {
 		CustomDefaultFolder = customDefaultFolder;
 	}
 
-	public string? CustomDefaultFolder { get; init; }
-	public string? CustomDefaultFileName { get; init; }
+	public string? CustomDefaultFolder { get; }
+	public string? CustomDefaultFileName { get; }
 }

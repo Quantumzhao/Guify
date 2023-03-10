@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace Guify.Models.Components;
 
-abstract class FieldBase : ComponentBase, INotifyPropertyChanged
+internal abstract class FieldBase : ComponentBase, INotifyPropertyChanged
 {
 	protected FieldBase(string description)
 	{
@@ -18,21 +18,21 @@ abstract class FieldBase : ComponentBase, INotifyPropertyChanged
 	protected char Connector = ' ';
 	public abstract void Reset();
 
-	public void InvokePropertyChanged(string propertyName) 
+	protected void InvokePropertyChanged(string propertyName) 
 		=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }
 
-abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
+internal abstract class FieldBase<T> : FieldBase
 {
-	public FieldBase(T defaultValue, bool isRequired, string? longName, string? shortName
+	internal FieldBase(T defaultValue, bool isRequired, string? longName, string? shortName
 		,string description, bool useEqualConnector) : base(description)
 	{
 		DefaultValue = defaultValue;
 		_Value = defaultValue;
 
 		IsRequired = isRequired;
-		LongName = longName;
-		ShortName = shortName;
+		_LongName = longName;
+		_ShortName = shortName;
 
 		if (longName != null) Flags.Add(longName);
 		if (shortName != null) Flags.Add((shortName));
@@ -44,10 +44,10 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 	// default     null   true   false
 	//   value non-null   false  ?? == ??
 	public override bool IsValueChanged => !(_Value?.Equals(DefaultValue) ?? DefaultValue is null);
-	private readonly string? LongName = null;
-	private readonly string? ShortName = null;
+	private readonly string? _LongName;
+	private readonly string? _ShortName;
 
-	public virtual T DefaultValue { get; init; }
+	public T DefaultValue { get; init; }
 	public override bool IsRequired { get; init; }
 
 	public override bool FulfillRequirement
@@ -59,38 +59,34 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 		}
 	}
 
-	protected T _Value;
-	public virtual T Value
+	private protected T _Value;
+	internal virtual T Value
 	{
 		get => _Value; 
 		set
 		{
-			if (!(_Value?.Equals(value) ?? false))
-			{
-				_Value = value;
-				InvokePropertyChanged(nameof(Value));
-				InvokePropertyChanged(nameof(FulfillRequirement));
-				InvokePropertyChanged(nameof(IsValueChanged));
-				Program.Root?.InvokePropertyChanged(nameof(Program.Root.FulfillRequirement));
-			}
+			if (_Value?.Equals(value) ?? false) return;
+			_Value = value;
+			InvokePropertyChanged(nameof(Value));
+			InvokePropertyChanged(nameof(FulfillRequirement));
+			InvokePropertyChanged(nameof(IsValueChanged));
+			Program.Root?.InvokePropertyChanged(nameof(Program.Root.FulfillRequirement));
 		}
 	}
 
-	private bool _ShouldSkip;
-	public bool ShouldSkip
-	{
-		get => _ShouldSkip;
-		set
-		{
-			if (_ShouldSkip != value)
-			{
-				_ShouldSkip = value;
-				InvokePropertyChanged(nameof(ShouldSkip));
-			}
-		}
-	}
+	// private bool _ShouldSkip;
+	// public bool ShouldSkip
+	// {
+	// 	get => _ShouldSkip;
+	// 	set
+	// 	{
+	// 		if (_ShouldSkip == value) return;
+	// 		_ShouldSkip = value;
+	// 		InvokePropertyChanged(nameof(ShouldSkip));
+	// 	}
+	// }
 
-	public override string Compile()
+	internal override string Compile()
 	{
 		var flag = GetFlag();
 
@@ -101,20 +97,20 @@ abstract class FieldBase<T> : FieldBase, INotifyPropertyChanged
 
 	public override void Reset() => Value = DefaultValue;
 
-	protected string GetFlag() 
-		=> (LongName, ShortName) switch
+	internal string GetFlag() 
+		=> (LongName: _LongName, ShortName: _ShortName) switch
 		{
-			(string l, _) => l,
-			(null, string s) => s,
+			({ } l, _) => l,
+			(null, { } s) => s,
 			_ => string.Empty
 		};
 
-	public string GetName()
+	internal string GetName()
 	{
-		if (LongName != null) return LongName;
-		else if (ShortName != null) return ShortName;
+		if (_LongName != null) return _LongName;
+		else if (_ShortName != null) return _ShortName;
 		else return Description[0..5] + "...";
 	}
 
-	public virtual string ValueToString(T value) => value?.ToString() ?? string.Empty;
+	internal virtual string ValueToString(T value) => value?.ToString() ?? string.Empty;
 }

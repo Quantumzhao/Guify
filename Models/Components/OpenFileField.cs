@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Guify.Models.Components;
 
-class OpenFileField : FieldBase<string[]?>
+internal class OpenFileField : FieldBase<string[]?>
 {
 	public OpenFileField(string? customDefaultFileName, string? customDefaultFolder, 
 		bool? allowMultiple, bool isRequired, string description
@@ -20,8 +20,8 @@ class OpenFileField : FieldBase<string[]?>
 	public string? CustomDefaultFolder { get; init; }
 	public string? CustomDefaultFileName { get; init; }
 
-	public override string ValueToString(string[]? value)
-		=> string.Join(' ', (value ?? Array.Empty<string>()).Select(Escape));
+	// public string ValueToString(string[]? value)
+	// 	=> string.Join(' ', (value ?? Array.Empty<string>()).Select(Escape));
 
 	private static string[]? JoinPath(string? folder, string? file)
 		=> (folder, file) switch
@@ -30,6 +30,6 @@ class OpenFileField : FieldBase<string[]?>
 			_ => null
 		};
 
-	private static string Escape(string s)
-		=> '\"' + s.Replace("\"", "\\\"") + '\"';
+	// private static string Escape(string s)
+	// 	=> '\"' + s.Replace("\"", "\\\"") + '\"';
 }

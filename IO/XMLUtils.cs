@@ -49,7 +49,7 @@ static class XMLUtils
 	public static Root LoadRoot(string path)
 	{
 		var doc = XDocument.Load(path);
-		if (doc == null) throw new ArgumentNullException("The file doesn't exist");
+		if (doc == null) throw new ArgumentNullException(nameof(path), "The file doesn't exist");
 
 		var root = doc.Elements().First();
 		var es = root.Elements().ToArray();
@@ -214,7 +214,7 @@ static class XMLUtils
 	private static Infix LoadInfix(XElement node)
 	{
 		var value = node.Attribute(CODE)?.Value;
-		if (value == null) throw new ArgumentNullException();
+		if (value == null) throw new ArgumentNullException(nameof(node));
 		else return new Infix(value);
 	}
 
@@ -230,7 +230,7 @@ static class XMLUtils
 	private static string GetDescription(this XElement node)
 	{
 		var desc = node.Attribute(DESCRIPTION)?.Value;
-		if (desc == null) throw new ArgumentNullException("description is not given");
+		if (desc == null) throw new ArgumentNullException(nameof(node), "description is not given");
 		else return desc;
 	}
 

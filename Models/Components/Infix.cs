@@ -1,12 +1,12 @@
 namespace Guify.Models.Components;
 
-class Infix : ComponentBase
+internal class Infix : ComponentBase
 {
 	public Infix(string value)
 	{
-		Value = value;
+		_Value = value;
 	}
 
-	public string Value { get; init; }
-	public override string Compile() => Value;
+	private readonly string _Value;
+	internal override string Compile() => _Value;
 }

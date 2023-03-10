@@ -1,7 +1,7 @@
 using System.ComponentModel;
 namespace Guify.Models.Components;
 
-class NumberField : FieldBase<float>
+internal class NumberField : FieldBase<float>
 {
 
 	public NumberField(float defaultValue, float? max, float? min, bool isRequired
@@ -52,18 +52,16 @@ class NumberField : FieldBase<float>
 	{
 		get
 		{
-			if (!IsRequired || DefaultValue != float.PositiveInfinity) return true;
-			else return Value != float.PositiveInfinity;
+			if (!IsRequired || !float.IsPositiveInfinity(DefaultValue)) return true;
+			return !float.IsPositiveInfinity(Value);
 		}
 	}
 
-
-	public override string Compile()
+	internal override string Compile()
 	{
 		var flag = GetFlag();
 
-		if (Value != float.PositiveInfinity) 
-			return string.Join(Connector, flag, ValueToString(Value));
-		else return string.Empty;
+		if (float.IsPositiveInfinity(Value)) return string.Empty;
+		return string.Join(Connector, flag, ValueToString(Value));
 	}
 }

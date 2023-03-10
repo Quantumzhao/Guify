@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace Guify.Models.Components;
 
-abstract class ComponentBase 
+internal abstract class ComponentBase 
 { 
-	public abstract string Compile();
+	internal abstract string Compile();
 }

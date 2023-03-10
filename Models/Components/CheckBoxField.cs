@@ -1,17 +1,17 @@
 namespace Guify.Models.Components
 {
-	class CheckBoxField : FieldBase<bool?>
+	internal sealed class CheckBoxField : FieldBase<bool?>
 	{
 		public CheckBoxField(bool? defaultValue, bool? isFlag, bool isRequired, string? longName
 			, string? shortName, string description, bool connector) : base(defaultValue, isRequired
 			, longName, shortName, description, connector)
 		{
-			IsFlag = isFlag ?? true;
+			_IsFlag = isFlag ?? true;
 		}
 
-		public bool IsFlag { get; init; }
+		private readonly bool _IsFlag;
 
-		public override bool? Value 
+		internal override bool? Value 
 		{ 
 			get => base.Value; 
 			set
@@ -21,9 +21,9 @@ namespace Guify.Models.Components
 			}
 		}
 
-		public override string Compile()
+		internal override string Compile()
 		{
-			if (IsFlag)
+			if (_IsFlag)
 			{
 				if (Value ?? false) return GetFlag();
 				else return string.Empty;
@@ -31,7 +31,7 @@ namespace Guify.Models.Components
 			else return base.Compile();
 		}
 
-		public override string ValueToString(bool? value)
+		internal override string ValueToString(bool? value)
 			=> (value ?? false) ? "true" : "false";
 	}
 }

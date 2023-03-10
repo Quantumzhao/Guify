@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root command="dotnet" reusable="true" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ../Schemas/Root.xsd">
     <verb name="publish">
-        <infix code="--configuration Release" />
+        <infix code="--configuration Release -p:Optimize=true" />
         <separator label="Target" />
         <pickValue description="Operating System" longName="--os">
             <candidate value="win" />

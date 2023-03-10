@@ -1,7 +1,5 @@
 using System.Threading;
 using System.Diagnostics;
-using System.IO;
-using Guify.Models;
 
 namespace Guify.IO;
 
@@ -11,7 +9,7 @@ class ShellUtils
 	public static bool IsCommandRunning
 	{
 		get => _IsCommandRunning;
-		set
+		private set
 		{
 			if (value == _IsCommandRunning) return;
 			_IsCommandRunning = value;

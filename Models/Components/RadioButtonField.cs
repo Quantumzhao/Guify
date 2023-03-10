@@ -2,7 +2,7 @@ using System.Linq;
 using System.ComponentModel;
 namespace Guify.Models.Components
 {
-	class RadioButtonField : FieldBase<bool>, INotifyPropertyChanged
+	class RadioButtonField : FieldBase<bool>
 	{
 		private static readonly Dictionary<string, List<RadioButtonField>> AllGroups = new();
 
@@ -12,17 +12,17 @@ namespace Guify.Models.Components
 			shortName, description, useEqualConnector)
 		{
 			Group = group;
-			IsFlag = isFlag ?? true;
+			_IsFlag = isFlag ?? true;
 
 			if (!AllGroups.ContainsKey(group)) AllGroups.Add(group, new());
 			AllGroups[group].Add(this);
 		}
 
-		public bool IsFlag { get; init; }
+		private readonly bool _IsFlag;
 		
 		public string Group { get; init; }
 
-		public override bool Value
+		internal override bool Value
 		{
 			get => _Value; 
 			set
@@ -32,21 +32,19 @@ namespace Guify.Models.Components
 				// if (_Value?.Equals(DefaultValue) ?? DefaultValue == null) UsingDefault = true;
 				// else UsingDefault = false;
 
-				if (_Value != value)
-				{
-					_Value = value;
-					// InvokePropertyChanged(nameof(Value));
-					// InvokePropertyChanged(nameof(FulfillRequirement));
-					// InvokePropertyChanged(nameof(IsValueChanged));
+				if (_Value == value) return;
+				_Value = value;
+				// InvokePropertyChanged(nameof(Value));
+				// InvokePropertyChanged(nameof(FulfillRequirement));
+				// InvokePropertyChanged(nameof(IsValueChanged));
 					
-					if (value) AllGroups[Group].ForEach(r => 
-					{
-						if (r != this) r._Value = false;
-						r.InvokePropertyChanged(nameof(Value));
-						r.InvokePropertyChanged(nameof(FulfillRequirement));
-						r.InvokePropertyChanged(nameof(IsValueChanged));
-					});
-				}
+				if (value) AllGroups[Group].ForEach(r => 
+				{
+					if (r != this) r._Value = false;
+					r.InvokePropertyChanged(nameof(Value));
+					r.InvokePropertyChanged(nameof(FulfillRequirement));
+					r.InvokePropertyChanged(nameof(IsValueChanged));
+				});
 			}
 		}
 
@@ -64,17 +62,17 @@ namespace Guify.Models.Components
 			}
 		}
 
-		public override string Compile()
+		internal override string Compile()
 		{
-			if (IsFlag)
+			if (_IsFlag)
 			{
-				if (Value) return GetFlag();
-				else return string.Empty;
+				if (!Value) return string.Empty;
+				return GetFlag();
 			}
 			else return base.Compile();
 		}
 
-		public override string ValueToString(bool value)
+		internal override string ValueToString(bool value)
 			=> value ? "true" : "false";
 
 		public override bool IsValueChanged
