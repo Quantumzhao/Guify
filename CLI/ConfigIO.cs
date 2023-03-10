@@ -17,14 +17,12 @@ namespace Guify.CLI
 
 		public static string CombineName(string name) 
 		{
-			if (name[^4..^1] != ".xml") name += ".xml";
-
+			if (name[^4..^0] != ".xml") name += ".xml";
 			return GetUIDirectory() + name;
 		}
 
 		public static void AddUI(string pathWithName, bool isLink)
 		{
-			// EnforcePath();
 			var file = new FileInfo(pathWithName);
 			if (isLink) File.CreateSymbolicLink(CombineName(file.Name), pathWithName);
 			else File.Copy(pathWithName, CombineName(file.Name));
@@ -36,12 +34,5 @@ namespace Guify.CLI
 		}
 
 		public static string[] GetEntries() => Directory.GetFiles(GetUIDirectory());
-
-		// public static string FindPathEntry(string name)
-		// {
-		// 	var queryResult = GetEntries().FirstOrDefault(e => e[0] == name);
-		// 	if (queryResult == null) throw new ArgumentNullException();
-		// 	else return queryResult[1];
-		// }
 	}
 }
