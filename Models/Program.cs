@@ -38,7 +38,7 @@ class Program
 			cmd.OnExecute(() => {
 				var isLink = cmd.GetOptions().FirstOrDefault()?.ShortName == "l";
 				var pathValue = path?.Value;
-				if (pathValue is null) throw new UnreachableException();
+				if (pathValue is null) throw new InvalidOperationException();
 				else ConfigIO.AddUI(pathValue, option.HasValue());
 			});
 		});

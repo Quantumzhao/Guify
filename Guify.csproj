@@ -6,7 +6,6 @@
     <RepositoryUrl>https://github.com/Quantumzhao/Guify</RepositoryUrl>
     <Authors>Quantumzhao</Authors>
     <Version>1.0.2</Version>
-    <Company>Quantum</Company>
 	<!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
 <!--	<TrimMode>link</TrimMode>-->
 	<Authors>Quantumzhao</Authors>
@@ -14,7 +13,7 @@
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugSymbols>False</DebugSymbols>
     <DebugType>None</DebugType>
-    <TrimMode>full</TrimMode>
+    <TrimMode>partial</TrimMode>
     <!-- <TrimmerDefaultAction>copyused</TrimmerDefaultAction> -->
     <InvariantGlobalization>true</InvariantGlobalization>
     <IlcOptimizationPreference>Size</IlcOptimizationPreference>
