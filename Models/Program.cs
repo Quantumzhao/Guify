@@ -93,11 +93,9 @@ class Program
 	{
 		if (Root == null) throw new InvalidOperationException("Impossible");
 
-		var command = $"{Root.Command} {Root.Compile()} {Postfix}";
+		var args = Root.Compile() + " " + Postfix;
 
-		ShellUtils.Bash(command);
-
-		Console.WriteLine(command);
+		ShellUtils.Run(Root.Command, args);
 
 		if (Root.IsReusable) return;
 		Console.WriteLine("Done.");

@@ -19,7 +19,7 @@
     <IlcOptimizationPreference>Size</IlcOptimizationPreference>
     <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>
 <!--    <PublishTrimmed>true</PublishTrimmed>-->
-<!--    <PublishAot>true</PublishAot>-->
+   <PublishAot>true</PublishAot>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Models/" />
