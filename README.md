@@ -1,5 +1,7 @@
 # Guify
 
+![](./Assets/icon_256x256.png)
+
 This is a tool to generate a simple GUI for a CLI command. The user would only need to supply a simple XML file defining the expected representation of various flags and verbs in such a CLI command. 
 
 ## Installation
