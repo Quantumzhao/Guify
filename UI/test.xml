@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root command="sleep 5 #" xmlns="urn:Guify" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ../Schemas/Root.xsd" reusable="true">
+<root command="sleep 5 #" xmlns="urn:Guify" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:Guify ../Schemas/Root.xsd" reusable="true">
     <verb name="synchronize" description="description 1">
         <yesNo description="However, it is advisable to notice that, surprisingly, it is indeed a very long description. " required="true" longName="--yesno" shortName="-o" />
         <yesNo description="yesno 2 description" required="true" group="y2" longName="--y2" />
