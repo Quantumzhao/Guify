@@ -8,7 +8,7 @@
         xmlns:pr="clr-namespace:AvaloniaProgressRing;assembly=AvaloniaProgressRing"
         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
         x:Class="Guify.Views.MainWindow"
-        Icon="/Assets/icon_256x256.png"
+        Icon="/Assets/icon.png"
         Title="Guify"
         SizeToContent="WidthAndHeight"
         TransparencyLevelHint="AcrylicBlur"
