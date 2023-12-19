@@ -1,5 +1,4 @@
 ﻿using Avalonia;
-using Avalonia.ReactiveUI;
 using Guify.CLI;
 using Guify.Models.Components;
 using Guify.Models;
@@ -91,7 +90,7 @@ class Program
 
 	public static void Run()
 	{
-		if (Root == null) throw new InvalidOperationException("Impossible");
+		if (Root == null) throw new UnreachableException("Impossible");
 
 		var args = Root.Compile() + " " + Postfix;
 

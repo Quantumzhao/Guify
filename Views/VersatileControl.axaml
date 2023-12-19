@@ -24,7 +24,8 @@
           <NumericUpDown x:Name="Numeric"
                          Value="{Binding Path=Value, Mode=TwoWay}" 
                          Maximum="{Binding Max}" 
-                         Minimum="{Binding Min}"></NumericUpDown>
+                         Minimum="{Binding Min}">
+          </NumericUpDown>
         </DataTemplate>
         
         <DataTemplate x:Key="OpenFileTemplate" DataType="comp:OpenFileField">

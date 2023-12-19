@@ -7,19 +7,18 @@
     <Authors>Quantumzhao</Authors>
     <Version>1.0.2</Version>
     <Company>Quantum</Company>
-	<!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
-<!--	<TrimMode>link</TrimMode>-->
+	<TrimMode>link</TrimMode>
 	<Authors>Quantumzhao</Authors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugSymbols>False</DebugSymbols>
     <DebugType>None</DebugType>
-    <TrimMode>partial</TrimMode>
+    <TrimMode>full</TrimMode>
+    <DebuggerSupport>false</DebuggerSupport>
     <InvariantGlobalization>true</InvariantGlobalization>
     <IlcOptimizationPreference>Size</IlcOptimizationPreference>
     <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>
-<!--    <PublishTrimmed>true</PublishTrimmed>-->
-   <PublishAot>true</PublishAot>
+    <PublishTrimmed>true</PublishTrimmed>
+    <PublishAot>true</PublishAot>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Models/" />
@@ -48,12 +47,9 @@
     <PackageReference Include="Avalonia.Desktop" Version="11.0.6" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.6" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.15" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.6" />
-    <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.6" />
     <PackageReference Include="CliWrap" Version="3.6.0" />
     <PackageReference Include="Deadpikle.AvaloniaProgressRing" Version="0.10.3" />
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.0.2" />
-    <PackageReference Include="MessageBox.Avalonia" Version="3.1.5.1" />
   </ItemGroup>
 </Project>
