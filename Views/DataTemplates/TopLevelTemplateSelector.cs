@@ -15,7 +15,7 @@ class TopLevelTemplateSelector : IDataTemplate
 	public Dictionary<string, IDataTemplate> Templates { get; }
 		= new Dictionary<string, IDataTemplate>();
 
-	public IControl Build(object param)
+	public Control Build(object param)
 		=> param switch
 		{
 			ComponentBase[] => Templates[SINGLETON_TEMPLATE].Build(param),

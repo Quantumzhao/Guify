@@ -14,7 +14,7 @@ internal abstract class FieldBase : ComponentBase, INotifyPropertyChanged
 	public abstract bool FulfillRequirement { get; }
 	public abstract bool IsRequired { get; init; }
 	public string Description { get; init; }
-	public List<string> Flags { get; } = new List<string>();
+	public List<string> Flags { get; } = [];
 	protected char Connector = ' ';
 	public abstract void Reset();
 
@@ -35,7 +35,7 @@ internal abstract class FieldBase<T> : FieldBase
 		_ShortName = shortName;
 
 		if (longName != null) Flags.Add(longName);
-		if (shortName != null) Flags.Add((shortName));
+		if (shortName != null) Flags.Add(shortName);
 		if (useEqualConnector) Connector = '=';
 	}
 
@@ -73,19 +73,7 @@ internal abstract class FieldBase<T> : FieldBase
 			Program.Root?.InvokePropertyChanged(nameof(Program.Root.FulfillRequirement));
 		}
 	}
-
-	// private bool _ShouldSkip;
-	// public bool ShouldSkip
-	// {
-	// 	get => _ShouldSkip;
-	// 	set
-	// 	{
-	// 		if (_ShouldSkip == value) return;
-	// 		_ShouldSkip = value;
-	// 		InvokePropertyChanged(nameof(ShouldSkip));
-	// 	}
-	// }
-
+	
 	internal override string Compile()
 	{
 		var flag = GetFlag();

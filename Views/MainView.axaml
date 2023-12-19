@@ -17,7 +17,7 @@
           <views:PageView></views:PageView>
         </DataTemplate>
         <DataTemplate x:Key="VerbsTemplate" DataType="sys:Array">
-          <TabControl Items="{Binding}" SelectionChanged="UpdateVerbs">
+          <TabControl ItemsSource="{Binding}" SelectionChanged="UpdateVerbs">
             <!--                               Header                                    -->
             <TabControl.ItemTemplate>
               <DataTemplate DataType="model:Verb">

@@ -34,7 +34,7 @@ public partial class VersatileControl : UserControl
 
 	private async void OpenFile(object? sender, RoutedEventArgs e)
 	{
-		if ((sender as IControl)?.DataContext is not OpenFileField of) return;
+		if ((sender as Control)?.DataContext is not OpenFileField of) return;
 
 		var dialog = new OpenFileDialog();
 		dialog.Directory = of.CustomDefaultFolder;
@@ -51,7 +51,7 @@ public partial class VersatileControl : UserControl
 
 	private async void SaveFile(object? sender, RoutedEventArgs e)
 	{
-		if ((sender as IControl)?.DataContext is not SaveFileField sf) return;
+		if ((sender as Control)?.DataContext is not SaveFileField sf) return;
 
 		var dialog = new SaveFileDialog();
 		dialog.Directory = sf.CustomDefaultFolder;

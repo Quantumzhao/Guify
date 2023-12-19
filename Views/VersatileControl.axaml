@@ -29,7 +29,7 @@
         
         <DataTemplate x:Key="OpenFileTemplate" DataType="comp:OpenFileField">
           <StackPanel Orientation="Horizontal" Spacing="10">
-            <ItemsControl Items="{Binding Value, Mode=OneWay}" 
+            <ItemsControl ItemsSource="{Binding Value, Mode=OneWay}" 
                           VerticalAlignment="Center" 
                           OpacityMask="{DynamicResource DisplayMask}">
               <ItemsControl.ItemsPanel>
@@ -50,7 +50,7 @@
         </DataTemplate>
         
         <DataTemplate x:Key="PickValueTemplate" DataType="comp:PickValueField">
-          <ComboBox Items="{Binding Candidates}" 
+          <ComboBox ItemsSource="{Binding Candidates}" 
                     SelectedItem="{Binding Value, Mode=TwoWay}"
                     MinHeight="32"
                     VerticalAlignment="Center">

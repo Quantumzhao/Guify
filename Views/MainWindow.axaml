@@ -11,7 +11,7 @@
         Icon="/Assets/icon.png"
         Title="Guify"
         SizeToContent="WidthAndHeight"
-        TransparencyLevelHint="AcrylicBlur"
+        TransparencyLevelHint="Blur"
         Background="#A02c000a"
         ExtendClientAreaToDecorationsHint="True"
         x:CompileBindings="True">

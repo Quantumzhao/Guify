@@ -38,7 +38,7 @@
                          HorizontalAlignment="Left"
                          TextWrapping="Wrap"
                          Text="{Binding Description}"></TextBlock>
-              <ItemsControl Items="{Binding Flags}" HorizontalAlignment="Left">
+              <ItemsControl ItemsSource="{Binding Flags}" HorizontalAlignment="Left">
                 <ItemsControl.ItemsPanel>
                   <ItemsPanelTemplate>
                     <StackPanel Spacing="10" Orientation="Horizontal"></StackPanel>

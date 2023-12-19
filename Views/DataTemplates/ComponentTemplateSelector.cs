@@ -15,7 +15,7 @@ public class ComponentTemplateSelector : IDataTemplate
     [Content]
     public Dictionary<string, IDataTemplate> Templates { get; } = new();
 
-    public IControl Build(object param)
+    public Control Build(object param)
         => param switch
         {
             Infix => Templates[INFIX_TEMPLATE].Build(param),

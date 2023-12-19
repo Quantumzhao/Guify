@@ -23,7 +23,7 @@ class FieldTemplateSelector : IDataTemplate
 	[Content]
 	public Dictionary<string, IDataTemplate> Templates { get; } = new();
 
-	public IControl Build(object param)
+	public Control Build(object param)
 		=> param switch
 		{
 			StringField => Templates[STRING_TEMPLATE].Build(param),

@@ -3,13 +3,15 @@
              xmlns:local="using:Guify"
              xmlns:converter="clr-namespace:Guify.Views.Converters"
              x:Class="Guify.App"
-             x:CompileBindings="True">
+             x:CompileBindings="True"
+             RequestedThemeVariant="Default">
   <Application.DataTemplates>
     <local:ViewLocator/>
     </Application.DataTemplates>
 
     <Application.Styles>
-      <FluentTheme Mode="Dark" DensityStyle="Compact"></FluentTheme>
+      
+      <FluentTheme />
       
       <StyleInclude Source="avares://Guify/Views/Styles/TabControl.axaml"></StyleInclude>
       <StyleInclude Source="avares://Guify/Views/Styles/CheckBox.axaml"></StyleInclude>
